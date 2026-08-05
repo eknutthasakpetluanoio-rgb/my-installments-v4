@@ -134,3 +134,214 @@ main{
     flex-direction:column;
     gap:16px;
 }
+/* Contract Card */
+
+.contract-card{
+    background:var(--surface);
+    border-radius:22px;
+    padding:18px;
+    box-shadow:0 10px 25px rgba(0,0,0,.25);
+}
+
+.contract-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:14px;
+}
+
+.contract-left{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.contract-icon{
+    width:56px;
+    height:56px;
+    border-radius:18px;
+    background:#334155;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:28px;
+}
+
+.contract-name{
+    font-size:19px;
+    font-weight:600;
+}
+
+.contract-store{
+    color:var(--sub);
+    font-size:14px;
+}
+
+.progress{
+    width:100%;
+    height:10px;
+    background:#334155;
+    border-radius:100px;
+    overflow:hidden;
+    margin:18px 0;
+}
+
+.progress-bar{
+    width:0%;
+    height:100%;
+    background:linear-gradient(90deg,#22c55e,#16a34a);
+    transition:.4s;
+}
+
+.contract-info{
+    display:flex;
+    justify-content:space-between;
+    color:var(--sub);
+    margin-bottom:15px;
+    font-size:14px;
+}
+
+.card-buttons{
+    display:flex;
+    gap:10px;
+}
+
+.btn{
+    flex:1;
+    border:none;
+    border-radius:14px;
+    padding:12px;
+    font-size:15px;
+    cursor:pointer;
+}
+
+.btn-primary{
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+    color:white;
+}
+
+.btn-danger{
+    background:var(--danger);
+    color:white;
+}
+
+/* Floating Button */
+
+.fab{
+    position:fixed;
+    right:20px;
+    bottom:90px;
+    width:62px;
+    height:62px;
+    border:none;
+    border-radius:50%;
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+    color:white;
+    font-size:
+/* ===========================
+   Bottom Sheet
+=========================== */
+
+.sheet{
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+    background:var(--surface2);
+    border-radius:28px 28px 0 0;
+    padding:22px;
+    box-shadow:0 -12px 35px rgba(0,0,0,.45);
+    z-index:9999;
+    max-height:85vh;
+    overflow:auto;
+}
+
+.hidden{
+    display:none;
+}
+
+.sheet-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.sheet-header h2{
+    font-size:22px;
+}
+
+.sheet-header button{
+    width:40px;
+    height:40px;
+    border:none;
+    border-radius:12px;
+    background:#334155;
+    color:#fff;
+    font-size:20px;
+}
+
+.form-group{
+    margin-bottom:18px;
+}
+
+.form-group label{
+    display:block;
+    margin-bottom:8px;
+    color:var(--sub);
+    font-size:14px;
+}
+
+.form-group input{
+    width:100%;
+    padding:14px 16px;
+    border:none;
+    outline:none;
+    border-radius:14px;
+    background:#334155;
+    color:#fff;
+    font-size:16px;
+}
+
+.form-group input::placeholder{
+    color:#94a3b8;
+}
+
+.save-btn{
+    width:100%;
+    border:none;
+    border-radius:16px;
+    padding:15px;
+    margin-top:8px;
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+    color:#fff;
+    font-size:17px;
+    font-weight:600;
+}
+
+/* ===========================
+   Responsive
+=========================== */
+
+@media (max-width:600px){
+
+    .hero-card{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:20px;
+    }
+
+    .hero-circle{
+        align-self:flex-end;
+    }
+
+    .summary{
+        grid-template-columns:1fr;
+    }
+
+    .contract-info{
+        flex-direction:column;
+        gap:8px;
+    }
+
+}
