@@ -11,12 +11,9 @@ Number(localStorage.getItem("currentContract"));
 const contract =
 contracts.find(item => item.id === currentId);
 
-if(!contract){
-
+if (!contract) {
     alert("ไม่พบข้อมูลสัญญา");
-
     history.back();
-
 }
 
 // ===============================
@@ -33,9 +30,10 @@ document.getElementById("remainPrice").textContent =
 Number(contract.remainPay).toLocaleString() + " บาท";
 
 document.getElementById("paidText").textContent =
-contract.paidInstallments +
-" / " +
-contract.totalInstallments;
+`${contract.paidInstallments} / ${contract.totalInstallments}`;
+
+document.getElementById("leftText").textContent =
+`${contract.totalInstallments - contract.paidInstallments} งวด`;
 
 document.getElementById("monthlyPayText").textContent =
 Number(contract.monthlyPay).toLocaleString() + " บาท";
@@ -44,7 +42,7 @@ document.getElementById("totalInstallmentsText").textContent =
 contract.totalInstallments + " งวด";
 
 // ===============================
-// ตารางงวด
+// สร้างรายการงวด
 // ===============================
 
 const list =
@@ -52,111 +50,104 @@ document.getElementById("installmentList");
 
 list.innerHTML = "";
 
-list.innerHTML += `
-
-<div class="contract-card">
-
-    <div class="contract-header">
-
-        <div>
-
-            <div class="contract-name">
-
-                งวดที่ ${i}
-
-            </div>
-
-            <div class="contract-store">
-
-                ${paid ? "✅ ชำระแล้ว" : "⌛ รอชำระ"}
-
-            </div>
-
-        </div>
-
-        <div>
-
-            ${Number(contract.monthlyPay).toLocaleString()} บาท
-
-        </div>
-
-    </div>
-
-    ${
-        paid
-        ? ""
-        :
-        `<button
-            class="btn btn-primary"
-            onclick="payInstallment()">
-
-            ชำระงวดนี้
-
-        </button>`
-    }
-
-</div>
-
-`;
+for (let i = 1; i <= contract.totalInstallments; i++) {
 
     const paid =
-    i <= contract.paidInstallments;
+        i <= contract.paidInstallments;
+
+    const current =
+        i === contract.paidInstallments + 1;
 
     list.innerHTML += `
 
-<div class="contract-card">
+    <div class="contract-card">
 
-<div class="contract-header">
+        <div class="contract-header">
 
-<div>
+            <div>
 
-<div class="contract-name">
+                <div class="contract-name">
+                    งวดที่ ${i}
+                </div>
 
-งวดที่ ${i}
+                <div class="contract-store">
+                    ${
+                        paid
+                        ? "✅ ชำระแล้ว"
+                        : "⌛ รอชำระ"
+                    }
+                </div>
 
-</div>
+            </div>
 
-<div class="contract-store">
+            <div>
+                ${Number(contract.monthlyPay).toLocaleString()} บาท
+            </div>
 
-${paid ? "ชำระแล้ว" : "รอชำระ"}
+        </div>
 
-</div>
+        ${
+            (!paid && current)
+            ?
+            `
+            <button
+                class="btn btn-primary"
+                onclick="payInstallment()">
 
-</div>
+                ชำระงวดนี้
 
-<div>
+            </button>
+            `
+            :
+            ""
+        }
 
-${Number(contract.monthlyPay).toLocaleString()} บาท
+    </div>
 
-</div>
-
-</div>
-
-</div>
-
-`;
-
+    `;
 }
+// ===============================
+// ชำระงวด
+// ===============================
+
 function payInstallment(){
 
-    if(contract.paidInstallments >= contract.totalInstallments){
-
+    if(
+        contract.paidInstallments >=
+        contract.totalInstallments
+    ){
         return;
+    }
+
+    // เพิ่มจำนวนงวดที่ชำระ
+    contract.paidInstallments++;
+
+    // ลดเงินคงเหลือ
+    contract.remainPay =
+        Math.max(
+            0,
+            contract.remainPay - contract.monthlyPay
+        );
+
+    // อัปเดตข้อมูลใน contracts
+    const index =
+        contracts.findIndex(
+            item => item.id === contract.id
+        );
+
+    if(index !== -1){
+
+        contracts[index] = contract;
 
     }
 
-    contract.paidInstallments++;
-
-    contract.remainPay -= contract.monthlyPay;
-
+    // บันทึก LocalStorage
     localStorage.setItem(
-
         "contracts",
-
         JSON.stringify(contracts)
-
     );
 
+    // รีโหลดหน้า
     location.reload();
 
 }
