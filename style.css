@@ -370,31 +370,6 @@ main{
     display:none;
 }
 
-.sheet-content{
-    display:flex;
-    flex-direction:column;
-    gap:14px;
-}
-
-.sheet-content h2{
-    color:#fff;
-    margin:0;
-}
-
-.sheet-content input{
-    width:100%;
-    padding:14px;
-    border:none;
-    border-radius:12px;
-    background:#2b3648;
-    color:#fff;
-    font-size:16px;
-    box-sizing:border-box;
-}
-
-.sheet-content input::placeholder{
-    color:#94a3b8;
-}
 
 #saveContract{
     border:none;
