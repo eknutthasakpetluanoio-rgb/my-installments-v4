@@ -77,9 +77,28 @@ if (payCycle === 30) {
 
 const dueText =
 dueDate.toLocaleDateString("th-TH");
+const today = new Date();
+
+today.setHours(0,0,0,0);
+dueDate.setHours(0,0,0,0);
+
+const diffDay = Math.floor(
+    (dueDate - today) / 86400000
+);
+
+let statusColor = "#9ca3af";
+
+if (paid) {
+    statusColor = "#22c55e";
+} else if (diffDay < 0) {
+    statusColor = "#ef4444";
+} else if (diffDay <= 3) {
+    statusColor = "#facc15";
+}
     list.innerHTML += `
 
-    <div class="contract-card">
+    <div class="contract-card"
+style="border-left:5px solid ${statusColor}">
 
         <div class="contract-header">
 
