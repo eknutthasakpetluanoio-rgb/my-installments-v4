@@ -2,7 +2,7 @@
  My Installments V2
 ==================================*/
 
-const STORAGE_KEY = "installments_v2";
+const STORAGE_KEY = "contracts";
 
 /* ---------- Data ---------- */
 
