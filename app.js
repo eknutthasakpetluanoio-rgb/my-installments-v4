@@ -251,8 +251,16 @@ function saveContract(){
     const totalInstallments =
         Number(document.getElementById("totalInstallments").value);
 
+
     const paidInstallments =
         Number(document.getElementById("paidInstallments").value);
+const firstPayDate =
+document.getElementById("firstPayDate").value;
+
+const payCycle =
+Number(
+document.getElementById("payCycle").value
+);
 
     if(
         productName === "" ||
@@ -265,21 +273,25 @@ function saveContract(){
 
     contracts.push({
 
-        id:Date.now(),
+    id:Date.now(),
 
-        productName,
+    productName,
 
-        storeName,
+    storeName,
 
-        monthlyPay,
+    monthlyPay,
 
-        remainPay,
+    remainPay,
 
-        totalInstallments,
+    totalInstallments,
 
-        paidInstallments
+    paidInstallments,
 
-    });
+    firstPayDate,
+
+    payCycle
+
+});
 
     saveData();
 
@@ -309,6 +321,9 @@ function clearForm(){
 
     document.getElementById("paidInstallments").value = "0";
 
+document.getElementById("firstPayDate").value = "";
+
+document.getElementById("payCycle").value = "7";
 }
 
 // ======================================
