@@ -87,7 +87,25 @@ const diffDay = Math.floor(
 );
 
 let statusColor = "#9ca3af";
+let dueStatus = "";
 
+if (paid) {
+
+    dueStatus = "✅ ชำระแล้ว";
+
+} else if (diffDay < 0) {
+
+    dueStatus = `🔴 เลยกำหนด ${Math.abs(diffDay)} วัน`;
+
+} else if (diffDay === 0) {
+
+    dueStatus = "🟡 ครบกำหนดวันนี้";
+
+} else {
+
+    dueStatus = `⏳ เหลืออีก ${diffDay} วัน`;
+
+}
 if (paid) {
     statusColor = "#22c55e";
 } else if (diffDay < 0) {
@@ -111,11 +129,20 @@ style="border-left:5px solid ${statusColor}">
                 
 <div class="contract-store">
 
-${paid ? "✅ ชำระแล้ว" : "⏳ รอชำระ"}
-
 <div style="margin-top:6px;font-size:13px;opacity:.8">
 
 📅 ${dueText}
+
+<br>
+
+<span style="
+color:${statusColor};
+font-weight:600;
+">
+
+${dueStatus}
+
+</span>
 
 </div>
 
