@@ -1,434 +1,312 @@
+/* ==========================================
+   My Installments V2
+   iOS Dark Theme
+========================================== */
+
 :root{
-    --bg:#0f172a;
-    --surface:#1e293b;
-    --surface2:#111827;
-    --primary:#3b82f6;
-    --secondary:#6366f1;
-    --success:#22c55e;
-    --danger:#ef4444;
-    --text:#ffffff;
-    --sub:#94a3b8;
-    --radius:22px;
+
+--bg:#0F172A;
+--card:#1E293B;
+--card2:#273549;
+--primary:#0A84FF;
+--success:#22C55E;
+--warning:#F59E0B;
+--danger:#EF4444;
+
+--text:#FFFFFF;
+--sub:#94A3B8;
+
+--radius:24px;
+
+--shadow:
+0 10px 30px rgba(0,0,0,.35);
+
 }
 
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Prompt',sans-serif;
+
+margin:0;
+padding:0;
+box-sizing:border-box;
+
+}
+
+html{
+
+scroll-behavior:smooth;
+
 }
 
 body{
-    background:var(--bg);
-    color:var(--text);
-    min-height:100vh;
-    padding-bottom:100px;
+
+font-family:'Prompt',sans-serif;
+
+background:var(--bg);
+
+color:var(--text);
+
+padding-bottom:110px;
+
 }
 
-main{
-    padding:20px;
+a{
+
+text-decoration:none;
+
+color:inherit;
+
+}
+
+button{
+
+font-family:inherit;
+
+border:none;
+
+outline:none;
+
+cursor:pointer;
+
+transition:.25s;
+
+}
+
+input,
+select{
+
+font-family:inherit;
+
+outline:none;
+
+border:none;
+
 }
 
 .topbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:20px;
+
+position:sticky;
+
+top:0;
+
+z-index:100;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:20px;
+
+background:rgba(15,23,42,.92);
+
+backdrop-filter:blur(18px);
+
 }
 
 .brand{
-    display:flex;
-    align-items:center;
-    gap:14px;
+
+display:flex;
+
+align-items:center;
+
+gap:14px;
+
 }
 
 .logo{
-    width:56px;
-    height:56px;
-    border-radius:18px;
-    background:linear-gradient(135deg,var(--primary),var(--secondary));
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-size:28px;
+
+width:56px;
+height:56px;
+
+border-radius:18px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-size:26px;
+
+background:linear-gradient(
+135deg,
+#0A84FF,
+#38BDF8
+);
+
+box-shadow:
+0 8px 20px rgba(10,132,255,.35);
+
 }
 
 .brand h1{
-    font-size:24px;
-    font-weight:700;
+
+font-size:22px;
+
+font-weight:700;
+
 }
 
 .brand p{
-    color:var(--sub);
-    font-size:14px;
+
+font-size:13px;
+
+color:var(--sub);
+
+margin-top:2px;
+
 }
 
 .icon-btn{
-    width:52px;
-    height:52px;
-    border:none;
-    border-radius:18px;
-    background:linear-gradient(135deg,var(--primary),var(--secondary));
-    color:#fff;
-    font-size:30px;
-    cursor:pointer;
+
+width:46px;
+
+height:46px;
+
+border-radius:16px;
+
+background:var(--card);
+
+color:white;
+
+font-size:24px;
+
+}
+
+.icon-btn:hover{
+
+transform:scale(1.05);
+
+}
+
+main{
+
+padding:20px;
+
+}
+
+.hero{
+
+margin-top:10px;
+
 }
 
 .hero-card{
-    background:linear-gradient(135deg,var(--primary),var(--secondary));
-    border-radius:28px;
-    padding:24px;
-    box-shadow:0 20px 40px rgba(59,130,246,.25);
+
+background:linear-gradient(
+135deg,
+#0A84FF,
+#2563EB
+);
+
+padding:26px;
+
+border-radius:28px;
+
+box-shadow:
+0 12px 35px rgba(37,99,235,.4);
+
 }
 
 .hero-card span{
-    color:#dbeafe;
+
+font-size:14px;
+
+opacity:.9;
+
 }
 
 .hero-card h1{
-    margin:12px 0;
-    font-size:42px;
+
+font-size:36px;
+
+margin-top:12px;
+
+font-weight:700;
+
 }
 
 .hero-card p{
-    color:#e0e7ff;
+
+margin-top:8px;
+
+opacity:.85;
+
 }
-/* ===========================
+/* ==========================================
    Summary
-=========================== */
+========================================== */
 
 .summary{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:16px;
-    margin-top:20px;
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:16px;
+
+margin-top:22px;
+
 }
 
 .summary-card{
-    background:var(--surface);
-    border-radius:20px;
-    padding:18px;
-    box-shadow:0 10px 25px rgba(0,0,0,.2);
+
+background:var(--card);
+
+border-radius:22px;
+
+padding:22px;
+
+box-shadow:var(--shadow);
+
 }
 
 .summary-card p{
-    color:var(--sub);
-    font-size:14px;
+
+font-size:13px;
+
+color:var(--sub);
+
+margin-bottom:10px;
+
 }
 
 .summary-card h2{
-    margin-top:8px;
-    font-size:26px;
-    font-weight:700;
+
+font-size:24px;
+
+font-weight:700;
+
 }
 
-/* ===========================
-   Section
-=========================== */
+/* ==========================================
+   Section Title
+========================================== */
 
 .section-title{
-    margin:28px 0 18px;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin:28px 0 18px;
+
 }
 
 .section-title h2{
-    font-size:20px;
-}
 
-#contracts{
-    display:flex;
-    flex-direction:column;
-    gap:16px;
-}
-
-/* ===========================
-   Empty State
-=========================== */
-
-.empty-state{
-    background:var(--surface);
-    border-radius:22px;
-    padding:50px 20px;
-    text-align:center;
-}
-
-.empty-icon{
-    font-size:64px;
-    margin-bottom:18px;
-}
-
-.empty-state h3{
-    font-size:22px;
-    margin-bottom:8px;
-}
-
-.empty-state p{
-    color:var(--sub);
-}
-/* ===========================
-   Contract Card
-=========================== */
-
-.contract-card{
-    background:var(--surface);
-    border-radius:22px;
-    padding:18px;
-    box-shadow:0 10px 25px rgba(0,0,0,.20);
-}
-
-.contract-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:16px;
-}
-
-.contract-left{
-    display:flex;
-    align-items:center;
-    gap:14px;
-}
-
-.contract-icon{
-    width:56px;
-    height:56px;
-    border-radius:18px;
-    background:#334155;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-size:28px;
-}
-
-.contract-name{
-    font-size:18px;
-    font-weight:600;
-}
-
-.contract-store{
-    color:var(--sub);
-    font-size:14px;
-    margin-top:4px;
-}
-
-.progress{
-    width:100%;
-    height:10px;
-    background:#334155;
-    border-radius:999px;
-    overflow:hidden;
-    margin:18px 0;
-}
-
-.progress-bar{
-    height:100%;
-    width:0%;
-    background:linear-gradient(90deg,#22c55e,#16a34a);
-    transition:width .3s ease;
-}
-
-.contract-info{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    color:var(--sub);
-    font-size:14px;
-}
-
-.card-buttons{
-    display:flex;
-    gap:10px;
-    margin-top:18px;
-}
-
-.btn{
-    flex:1;
-    border:none;
-    border-radius:14px;
-    padding:12px;
-    font-size:15px;
-    font-weight:600;
-    cursor:pointer;
-    transition:.2s;
-}
-
-.btn:hover{
-    opacity:.9;
-}
-
-.btn-primary{
-    background:linear-gradient(135deg,var(--primary),var(--secondary));
-    color:#fff;
-}
-
-.btn-danger{
-    background:var(--danger);
-    color:#fff;
-}
-/* ===========================
-   Floating Action Button
-=========================== */
-
-.fab{
-    position:fixed;
-    right:20px;
-    bottom:90px;
-    width:64px;
-    height:64px;
-    border:none;
-    border-radius:50%;
-    background:linear-gradient(135deg,var(--primary),var(--secondary));
-    color:#fff;
-    font-size:34px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    cursor:pointer;
-    box-shadow:0 15px 35px rgba(59,130,246,.35);
-    z-index:1000;
-}
-
-/* ===========================
-   Bottom Navigation
-=========================== */
-
-.bottom-nav{
-    position:fixed;
-    left:0;
-    right:0;
-    bottom:0;
-    height:78px;
-    background:var(--surface2);
-    border-top:1px solid #233047;
-    display:flex;
-    justify-content:space-around;
-    align-items:center;
-    z-index:999;
-}
-
-.bottom-nav button{
-    flex:1;
-    border:none;
-    background:none;
-    color:var(--sub);
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    gap:4px;
-    font-size:13px;
-    cursor:pointer;
-}
-
-.bottom-nav button.active{
-    color:var(--primary);
-}
-
-/* ===========================
-   Bottom Sheet
-=========================== */
-
-.sheet{
-    position:fixed;
-    left:0;
-    right:0;
-    bottom:0;
-    background:var(--surface2);
-    border-radius:28px 28px 0 0;
-    padding:22px;
-    box-shadow:0 -15px 40px rgba(0,0,0,.45);
-    z-index:2000;
-    max-height:85vh;
-    overflow-y:auto;
-}
-
-.hidden{
-    display:none;
-}
-
-.sheet-content{
-    display:flex;
-    flex-direction:column;
-    gap:16px;
-}
-
-.sheet-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-.sheet-header h2{
-    font-size:22px;
-}
-
-.sheet-header button{
-    width:42px;
-    height:42px;
-    border:none;
-    border-radius:12px;
-    background:#334155;
-    color:#fff;
-    font-size:20px;
-    cursor:pointer;
-}
-
-.form-group{
-    display:flex;
-    flex-direction:column;
-    gap:8px;
-}
-
-.form-group label{
-    color:var(--sub);
-    font-size:14px;
-}
-
-.form-group input{
-    width:100%;
-    padding:14px;
-    border:none;
-    border-radius:14px;
-    background:#334155;
-    color:#fff;
-    font-size:16px;
-}
-
-.form-group input::placeholder{
-    color:#94a3b8;
-}
-
-.save-btn{
-    width:100%;
-    border:none;
-    border-radius:16px;
-    padding:15px;
-    background:linear-gradient(135deg,var(--primary),var(--secondary));
-    color:#fff;
-    font-size:17px;
-    font-weight:600;
-    cursor:pointer;
-}
-
-/* ===========================
-   Responsive
-=========================== */
-
-@media (max-width:600px){
-
-    .summary{
-        grid-template-columns:1fr;
-    }
-
-    .contract-info{
-        flex-direction:column;
-        align-items:flex-start;
-        gap:8px;
-    }
+font-size:22px;
 
 }
-/* Detail */
 
-#installmentList{
+/* ==========================================
+   Alert
+========================================== */
+
+#alertBox{
 
 display:flex;
 
@@ -436,29 +314,663 @@ flex-direction:column;
 
 gap:14px;
 
+margin-bottom:18px;
+
 }
+
+.alert-card{
+
+background:var(--card);
+
+border-left:6px solid var(--primary);
+
+padding:18px;
+
+border-radius:18px;
+
+box-shadow:var(--shadow);
+
+}
+
+.alert-title{
+
+font-size:16px;
+
+font-weight:600;
+
+margin-bottom:6px;
+
+}
+
+.alert-text{
+
+font-size:14px;
+
+color:var(--sub);
+
+}
+
+/* ==========================================
+   Contract Card
+========================================== */
+
+.contract-card{
+
+background:var(--card);
+
+padding:22px;
+
+border-radius:24px;
+
+margin-bottom:18px;
+
+box-shadow:var(--shadow);
+
+transition:.25s;
+
+}
+
+.contract-card:hover{
+
+transform:translateY(-3px);
+
+}
+
+.contract-header{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+}
+
+.contract-left{
+
+display:flex;
+
+align-items:center;
+
+gap:16px;
+
+}
+
+.contract-icon{
+
+width:60px;
+
+height:60px;
+
+border-radius:18px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-size:28px;
+
+background:linear-gradient(
+135deg,
+#0A84FF,
+#38BDF8
+);
+
+}
+
+.contract-name{
+
+font-size:18px;
+
+font-weight:600;
+
+}
+
+.contract-store{
+
+font-size:13px;
+
+color:var(--sub);
+
+margin-top:4px;
+
+}
+
+/* ==========================================
+   Progress
+========================================== */
+
+.progress{
+
+margin-top:18px;
+
+height:10px;
+
+background:#334155;
+
+border-radius:999px;
+
+overflow:hidden;
+
+}
+
+.progress-bar{
+
+height:100%;
+
+background:linear-gradient(
+90deg,
+#0A84FF,
+#38BDF8
+);
+
+border-radius:999px;
+
+transition:.4s;
+
+}
+
+.contract-info{
+
+display:flex;
+
+justify-content:space-between;
+
+margin-top:14px;
+
+font-size:14px;
+
+color:var(--sub);
+
+}
+/* ==========================================
+   Buttons
+========================================== */
+
+.card-buttons{
+
+display:flex;
+
+gap:12px;
+
+margin-top:20px;
+
+}
+
+.btn{
+
+flex:1;
+
+padding:14px;
+
+border-radius:16px;
+
+font-size:15px;
+
+font-weight:600;
+
+transition:.25s;
+
+}
+
+.btn:active{
+
+transform:scale(.96);
+
+}
+
+.btn-primary{
+
+background:var(--primary);
+
+color:#fff;
+
+}
+
+.btn-warning{
+
+background:var(--warning);
+
+color:#fff;
+
+}
+
+.btn-danger{
+
+background:var(--danger);
+
+color:#fff;
+
+}
+
+/* ==========================================
+   Floating Button
+========================================== */
+
+.fab{
+
+position:fixed;
+
+right:22px;
+
+bottom:95px;
+
+width:64px;
+
+height:64px;
+
+border-radius:50%;
+
+background:linear-gradient(
+135deg,
+#0A84FF,
+#38BDF8
+);
+
+color:#fff;
+
+font-size:34px;
+
+box-shadow:
+0 12px 30px rgba(10,132,255,.45);
+
+z-index:999;
+
+}
+
+.fab:active{
+
+transform:scale(.95);
+
+}
+
+/* ==========================================
+   Bottom Navigation
+========================================== */
+
+.bottom-nav{
+
+position:fixed;
+
+left:0;
+
+right:0;
+
+bottom:0;
+
+height:74px;
+
+background:rgba(30,41,59,.96);
+
+backdrop-filter:blur(20px);
+
+display:flex;
+
+justify-content:space-around;
+
+align-items:center;
+
+border-top:1px solid rgba(255,255,255,.06);
+
+z-index:999;
+
+}
+
+.bottom-nav button{
+
+background:none;
+
+color:var(--sub);
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+gap:4px;
+
+font-size:22px;
+
+}
+
+.bottom-nav button span{
+
+font-size:11px;
+
+}
+
+.bottom-nav .active{
+
+color:var(--primary);
+
+}
+
+/* ==========================================
+   Bottom Sheet
+========================================== */
+
+.sheet{
+
+position:fixed;
+
+inset:0;
+
+background:rgba(0,0,0,.55);
+
+display:flex;
+
+align-items:flex-end;
+
+z-index:2000;
+
+}
+
+.hidden{
+
+display:none;
+
+}
+
+.sheet-content{
+
+width:100%;
+
+background:var(--card);
+
+border-radius:28px 28px 0 0;
+
+padding:24px;
+
+max-height:88vh;
+
+overflow:auto;
+
+}
+
+.sheet-header{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:22px;
+
+}
+
+.sheet-header h2{
+
+font-size:22px;
+
+}
+
+/* ==========================================
+   Form
+========================================== */
+
+.form-group{
+
+margin-bottom:18px;
+
+}
+
+.form-group label{
+
+display:block;
+
+margin-bottom:8px;
+
+font-size:14px;
+
+color:var(--sub);
+
+}
+
+.form-group input,
 .form-group select{
 
-    width:100%;
-    padding:14px;
-    border:none;
-    border-radius:14px;
-    background:#334155;
-    color:#fff;
-    font-size:16px;
-    outline:none;
+width:100%;
+
+padding:15px;
+
+background:#334155;
+
+color:#fff;
+
+border-radius:16px;
+
+font-size:15px;
 
 }
 
-.form-group input[type="date"]{
+.save-btn{
 
-    color:#fff;
+width:100%;
+
+padding:17px;
+
+margin-top:10px;
+
+border-radius:18px;
+
+font-size:16px;
+
+font-weight:700;
+
+background:linear-gradient(
+135deg,
+#0A84FF,
+#2563EB
+);
+
+color:#fff;
+
+}
+/* ==========================================
+   Empty State
+========================================== */
+
+.empty-state{
+
+text-align:center;
+
+padding:70px 20px;
+
+background:var(--card);
+
+border-radius:24px;
+
+box-shadow:var(--shadow);
 
 }
 
-.form-group input[type="date"]::-webkit-calendar-picker-indicator{
+.empty-icon{
 
-    filter:invert(1);
-    cursor:pointer;
+font-size:64px;
+
+margin-bottom:18px;
+
+}
+
+.empty-state h3{
+
+font-size:22px;
+
+margin-bottom:10px;
+
+}
+
+.empty-state p{
+
+color:var(--sub);
+
+font-size:14px;
+
+}
+
+/* ==========================================
+   Badge
+========================================== */
+
+.badge{
+
+display:inline-block;
+
+padding:6px 12px;
+
+border-radius:999px;
+
+font-size:12px;
+
+font-weight:600;
+
+}
+
+.badge-success{
+
+background:rgba(34,197,94,.15);
+
+color:#22C55E;
+
+}
+
+.badge-warning{
+
+background:rgba(245,158,11,.15);
+
+color:#F59E0B;
+
+}
+
+.badge-danger{
+
+background:rgba(239,68,68,.15);
+
+color:#EF4444;
+
+}
+
+/* ==========================================
+   Animation
+========================================== */
+
+@keyframes fadeUp{
+
+from{
+
+opacity:0;
+
+transform:translateY(20px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+.contract-card,
+.summary-card,
+.hero-card,
+.alert-card{
+
+animation:fadeUp .35s ease;
+
+}
+
+/* ==========================================
+   Scrollbar
+========================================== */
+
+::-webkit-scrollbar{
+
+width:6px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+background:#475569;
+
+border-radius:999px;
+
+}
+
+/* ==========================================
+   Responsive
+========================================== */
+
+@media(max-width:380px){
+
+.hero-card h1{
+
+font-size:30px;
+
+}
+
+.summary{
+
+grid-template-columns:1fr;
+
+}
+
+.contract-header{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+gap:16px;
+
+}
+
+.card-buttons{
+
+flex-direction:column;
+
+}
+
+}
+
+/* ==========================================
+   Utility
+========================================== */
+
+.text-center{
+
+text-align:center;
+
+}
+
+.mt-10{
+
+margin-top:10px;
+
+}
+
+.mt-20{
+
+margin-top:20px;
+
+}
+
+.mb-20{
+
+margin-bottom:20px;
+
+}
+
+.hidden{
+
+display:none !important;
 
 }
