@@ -1,43 +1,126 @@
 <!DOCTYPE html>
 <html lang="th">
-
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>My Installments V4</title>
+<title>PayNest</title>
 
-<link rel="preconnect"
-href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link rel="preconnect"
-href="https://fonts.gstatic.com"
-crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap"
-rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded"
-rel="stylesheet">
-
-<link rel="stylesheet"
-href="style.css">
+<link rel="stylesheet" href="css/style.css">
 
 </head>
 
 <body>
 
-<header class="topbar">
+<div class="background-blur blur1"></div>
+<div class="background-blur blur2"></div>
 
-<div class="brand">
+<header class="topbar">
 
 <div class="logo">
 
+<div class="logo-circle">
+
+<span class="material-symbols-rounded">
+account_balance_wallet
+</span>
+
+</div>
+
+<div>
+
+<h1>PayNest</h1>
+
+<p>Track Every Installment</p>
+
+</div>
+
+</div>
+
+<div class="top-actions">
+
+<button class="glass-btn">
+
+<span class="material-symbols-rounded">
+notifications
+</span>
+
+</button>
+
+<button class="glass-btn">
+
+<span class="material-symbols-rounded">
+person
+</span>
+
+</button>
+
+</div>
+
+</header>
+
+<main>
+
+<section class="hero-card glass">
+
+<p class="hero-subtitle">
+
+ต้องชำระเดือนนี้
+
+</p>
+
+<h2 class="hero-total">
+
+฿2,625
+
+</h2>
+
+<div class="progress">
+
+<div
+class="progress-fill"
+style="width:16%;">
+</div>
+
+</div>
+
+<div class="hero-bottom">
+
+<div>
+
+<h3>3</h3>
+
+<span>สัญญา</span>
+
+</div>
+
+<div>
+
+<h3>฿34,640</h3>
+
+<span>ยอดคงเหลือ</span>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="insight glass">
+
+<div class="insight-icon">
+
 <span class="material-symbols-rounded">
 
-account_balance_wallet
+lightbulb
 
 </span>
 
@@ -45,178 +128,25 @@ account_balance_wallet
 
 <div>
 
-<h1>Installments</h1>
-
-<p>Smart Payment Tracker</p>
-
-</div>
-
-</div>
-
-</header>
-
-<main id="app">
-
-<section class="hero">
-
-<div class="hero-card">
-
-<p class="hero-title">
-
-ยอดที่ต้องชำระเดือนนี้
-
-</p>
-
-<h2 id="totalPay">
-
-฿0
-
-</h2>
-
-<div class="hero-progress">
-
-<div
-id="heroProgress"
-class="hero-progress-bar">
-
-</div>
-
-</div>
-
-<div class="hero-info">
-
-<span id="contractCount">
-
-0 สัญญา
-
-</span>
-
-<span id="remainInstallments">
-
-เหลือ 0 งวด
-
-</span>
-
-</div>
-
-</div>
-
-</section>
-
-<section class="summary">
-
-<div class="summary-card">
-
-<p>ยอดคงเหลือ</p>
-
-<h2 id="remainTotal">
-
-฿0
-
-</h2>
-
-</div>
-
-<div class="summary-card">
-
-<p>ชำระแล้ว</p>
-
-<h2 id="paidPercent">
-
-0%
-
-</h2>
-
-</div>
-
-</section>
-
-<button class="quick-btn">
-
-<span class="material-symbols-rounded">
-
-add_circle
-
-</span>
-
-<span>เพิ่มสัญญา</span>
-
-</button>
-
-<button class="quick-btn">
-
-<span class="material-symbols-rounded">
-
-search
-
-</span>
-
-<span>ค้นหา</span>
-
-</button>
-
-<button class="quick-btn">
-
-<span class="material-symbols-rounded">
-
-calendar_month
-
-</span>
-
-<span>ปฏิทิน</span>
-
-</button>
-
-<button class="quick-btn">
-
-<span class="material-symbols-rounded">
-
-bar_chart
-
-</span>
-
-<span>สถิติ</span>
-
-</button>
-
-</section>
-
-<section id="alertBox"></section>
-
-<section class="contract-section">
-
-<h2>รายการผ่อนทั้งหมด</h2>
-
-<div id="contracts">
-
-<div class="empty-state">
-
-<span class="material-symbols-rounded">
-
-inventory_2
-
-</span>
-
 <h3>
 
-ยังไม่มีรายการผ่อน
+Smart Insight
 
 </h3>
 
 <p>
 
-กดปุ่ม + เพื่อเพิ่มรายการแรก
+อีก 3 วัน ถึงกำหนดชำระ vivo V70
 
 </p>
 
 </div>
 
-</div>
-
 </section>
-</main>
 
-<button id="fab" class="fab">
+<section class="quick-actions">
+
+<button class="action glass">
 
 <span class="material-symbols-rounded">
 
@@ -224,23 +154,11 @@ add
 
 </span>
 
-</button>
-
-<nav class="bottom-nav">
-
-<button class="active">
-
-<span class="material-symbols-rounded">
-
-home
-
-</span>
-
-<span>หน้าหลัก</span>
+<span>เพิ่ม</span>
 
 </button>
 
-<button>
+<button class="action glass">
 
 <span class="material-symbols-rounded">
 
@@ -252,7 +170,7 @@ calendar_month
 
 </button>
 
-<button>
+<button class="action glass">
 
 <span class="material-symbols-rounded">
 
@@ -264,98 +182,160 @@ bar_chart
 
 </button>
 
-<button>
+<button class="action glass">
 
 <span class="material-symbols-rounded">
 
-settings
+backup
 
 </span>
 
-<span>ตั้งค่า</span>
+<span>สำรอง</span>
+
+</button>
+
+</section>
+
+<section class="contracts">
+
+<h2>
+
+รายการผ่อน
+
+</h2>
+<div class="contract-card glass">
+
+    <div class="contract-image">
+        <span class="material-symbols-rounded">smartphone</span>
+    </div>
+
+    <div class="contract-info">
+
+        <h3>vivo V70</h3>
+
+        <p>SABAIRENTAL</p>
+
+        <div class="mini-progress">
+            <div class="mini-progress-fill" style="width:42%;"></div>
+        </div>
+
+        <div class="contract-footer">
+
+            <span>฿2,230 / เดือน</span>
+
+            <span>เหลือ 14 งวด</span>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="contract-card glass">
+
+    <div class="contract-image">
+        <span class="material-symbols-rounded">headphones</span>
+    </div>
+
+    <div class="contract-info">
+
+        <h3>Anker Soundcore R50i NC</h3>
+
+        <p>Pay House</p>
+
+        <div class="mini-progress">
+            <div class="mini-progress-fill" style="width:18%;"></div>
+        </div>
+
+        <div class="contract-footer">
+
+            <span>฿130 / เดือน</span>
+
+            <span>เหลือ 10 งวด</span>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="contract-card glass">
+
+    <div class="contract-image">
+        <span class="material-symbols-rounded">watch</span>
+    </div>
+
+    <div class="contract-info">
+
+        <h3>Redmi Watch 5 Lite</h3>
+
+        <p>ป้าบุ๋ม</p>
+
+        <div class="mini-progress">
+            <div class="mini-progress-fill" style="width:34%;"></div>
+        </div>
+
+        <div class="contract-footer">
+
+            <span>฿265 / เดือน</span>
+
+            <span>เหลือ 8 งวด</span>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+</main>
+
+<nav class="bottom-nav glass">
+
+<button class="active">
+
+<span class="material-symbols-rounded">
+home
+</span>
+
+<p>Home</p>
+
+</button>
+
+<button>
+
+<span class="material-symbols-rounded">
+calendar_month
+</span>
+
+<p>Calendar</p>
+
+</button>
+
+<button>
+
+<span class="material-symbols-rounded">
+bar_chart
+</span>
+
+<p>Stats</p>
+
+</button>
+
+<button>
+
+<span class="material-symbols-rounded">
+settings
+</span>
+
+<p>Settings</p>
 
 </button>
 
 </nav>
 
-<div id="sheet" class="sheet hidden">
-
-<div class="sheet-content">
-
-<div class="sheet-header">
-
-<h2>เพิ่มรายการผ่อน</h2>
-
-<button id="closeSheet" class="icon-btn">
-
-<span class="material-symbols-rounded">
-
-close
-
-</span>
-
-</button>
-
-</div>
-
-<input
-id="productName"
-type="text"
-placeholder="ชื่อสินค้า">
-
-<input
-id="storeName"
-type="text"
-placeholder="ร้านค้า">
-
-<input
-id="monthlyPay"
-type="number"
-placeholder="ค่างวดต่อเดือน">
-
-<input
-id="remainPay"
-type="number"
-placeholder="ยอดคงเหลือ">
-
-<input
-id="totalInstallments"
-type="number"
-placeholder="จำนวนงวดทั้งหมด">
-
-<input
-id="paidInstallments"
-type="number"
-placeholder="งวดที่ชำระแล้ว"
-value="0">
-
-<input
-id="firstPayDate"
-type="date">
-
-<select id="payCycle">
-
-<option value="30">ทุกเดือน</option>
-
-<option value="15">ทุก 15 วัน</option>
-
-<option value="7">ทุก 7 วัน</option>
-
-</select>
-
-<button
-id="saveContract">
-
-บันทึกสัญญา
-
-</button>
-
-</div>
-
-</div>
-
-<script src="app.js"></script>
+<script src="js/app.js"></script>
 
 </body>
-
 </html>
