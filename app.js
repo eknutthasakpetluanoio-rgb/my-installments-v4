@@ -64,4 +64,4 @@ onclick="location.href='detail.html?id=${item.id}'">
 
   contractsDiv.appendChild(card);
 
-});
+}); 
