@@ -66,12 +66,55 @@
 
   <div class="sheet-content">
 
-    <button id="closeSheet">✕</button>
+    <div id="sheet" class="sheet hidden">
 
-    <h2>เพิ่มรายการผ่อน</h2>
+  <div class="sheet-content">
 
-    <input id="productName" type="text" placeholder="ชื่อสินค้า">
+    <div class="sheet-header">
 
+      <h2>เพิ่มรายการผ่อน</h2>
+
+      <button id="closeSheet">✕</button>
+
+    </div>
+
+    <div class="form-group">
+      <label>ชื่อสินค้า</label>
+      <input id="productName" type="text" placeholder="เช่น vivo V70">
+    </div>
+
+    <div class="form-group">
+      <label>ร้านค้า</label>
+      <input id="storeName" type="text" placeholder="เช่น BaNANA">
+    </div>
+
+    <div class="form-group">
+      <label>ค่างวดต่อเดือน</label>
+      <input id="monthlyPay" type="number">
+    </div>
+
+    <div class="form-group">
+      <label>ยอดคงเหลือ</label>
+      <input id="remainPay" type="number">
+    </div>
+
+    <div class="form-group">
+      <label>จำนวนงวดทั้งหมด</label>
+      <input id="totalInstallments" type="number">
+    </div>
+
+    <div class="form-group">
+      <label>งวดที่จ่ายแล้ว</label>
+      <input id="paidInstallments" type="number" value="0">
+    </div>
+
+    <button id="saveContract" class="save-btn">
+      บันทึก
+    </button>
+
+  </div>
+
+</div>
     <input id="storeName" type="text" placeholder="ร้านค้า">
 
     <input id="monthlyPay" type="number" placeholder="ค่างวดต่อเดือน">
