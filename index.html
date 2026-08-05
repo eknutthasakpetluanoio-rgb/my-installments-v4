@@ -1,357 +1,43 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Installments</title>
 
-<title>Installments</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
-
-<link rel="stylesheet" href="style.css">
-
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <header class="topbar">
+    <h1>My Installments</h1>
 
-<div class="brand">
-
-<div class="logo">
-
-<span class="material-symbols-rounded">
-
-account_balance_wallet
-
-</span>
-
-</div>
-
-<div>
-
-<h1>Installments</h1>
-
-<p>Smart Payment Tracker</p>
-
-</div>
-
-</div>
-
-<button id="addBtn" class="icon-btn">
-
-<span class="material-symbols-rounded">
-
-add
-
-</span>
-
-</button>
-
+    <button class="add-btn">+</button>
 </header>
 
-<main id="app">
+<main>
 
-<section class="hero">
+    <section class="hero-card">
 
-<div class="hero-card">
+        <p>ยอดที่ต้องชำระเดือนนี้</p>
 
-<p class="hero-title">
+        <h2>฿0</h2>
 
-ยอดที่ต้องชำระเดือนนี้
+        <div class="progress">
+            <div class="progress-bar"></div>
+        </div>
 
-</p>
+        <div class="hero-footer">
+            <span>0 สัญญา</span>
+            <span>เหลือ 0 งวด</span>
+        </div>
 
-<h2 id="totalPay">
-
-฿0
-
-</h2>
-
-<div class="hero-progress">
-
-<div
-id="heroProgress"
-class="hero-progress-bar">
-
-</div>
-
-</div>
-
-<div class="hero-info">
-
-<span id="contractCount">
-
-0 สัญญา
-
-</span>
-
-<span id="remainInstallments">
-
-เหลือ 0 งวด
-
-</span>
-
-</div>
-
-</div>
-
-</section>
-
-<section class="summary">
-
-<div class="summary-card">
-
-<p>
-
-ยอดคงเหลือ
-
-</p>
-
-<h2 id="remainTotal">
-
-฿0
-
-</h2>
-
-</div>
-
-<div class="summary-card">
-
-<p>
-
-ชำระแล้ว
-
-</p>
-
-<h2 id="paidPercent">
-
-0%
-
-</h2>
-
-</div>
-
-</section>
-
-<section class="quick-actions">
-
-<button class="quick-btn">
-
-<span class="material-symbols-rounded">
-
-add_circle
-
-</span>
-
-<span>
-
-เพิ่มสัญญา
-
-</span>
-
-</button>
-
-<button class="quick-btn">
-
-<span class="material-symbols-rounded">
-
-search
-
-</span>
-
-<span>
-
-ค้นหา
-
-</span>
-
-</button>
-
-<button class="quick-btn">
-
-<span class="material-symbols-rounded">
-
-calendar_month
-
-</span>
-
-<span>
-
-ปฏิทิน
-
-</span>
-
-</button>
-
-<button class="quick-btn">
-
-<span class="material-symbols-rounded">
-
-bar_chart
-
-</span>
-
-<span>
-
-สถิติ
-
-</span>
-
-</button>
-
-</section>
-
-<section id="alertBox">
-
-</section>
-
-<section class="contract-section">
-
-<h2>
-
-รายการผ่อนทั้งหมด
-
-</h2>
-
-<div id="contracts">
-<div class="empty-state">
-
-<span class="material-symbols-rounded">
-
-inventory_2
-
-</span>
-
-<h3>
-
-ยังไม่มีรายการผ่อน
-
-</h3>
-
-<p>
-
-กดปุ่ม + เพื่อเพิ่มรายการแรก
-
-</p>
-
-</div>
-
-</div>
-
-</section>
+    </section>
 
 </main>
-
-<button id="fab" class="fab">
-
-<span class="material-symbols-rounded">
-
-add
-
-</span>
-
-</button>
-
-<nav class="bottom-nav">
-
-<button class="active">
-
-<span class="material-symbols-rounded">
-
-home
-
-</span>
-
-<span>หน้าหลัก</span>
-
-</button>
-
-<button>
-
-<span class="material-symbols-rounded">
-
-calendar_month
-
-</span>
-
-<span>ปฏิทิน</span>
-
-</button>
-
-<button>
-
-<span class="material-symbols-rounded">
-
-bar_chart
-
-</span>
-
-<span>สถิติ</span>
-
-</button>
-
-<button>
-
-<span class="material-symbols-rounded">
-
-settings
-
-</span>
-
-<span>ตั้งค่า</span>
-
-</button>
-
-</nav>
-
-<div id="sheet" class="sheet hidden">
-
-<div class="sheet-content">
-
-<h2>เพิ่มรายการผ่อน</h2>
-
-<input id="productName" placeholder="ชื่อสินค้า">
-
-<input id="storeName" placeholder="ร้านค้า">
-
-<input id="monthlyPay" type="number" placeholder="ค่างวดต่อเดือน">
-
-<input id="remainPay" type="number" placeholder="ยอดคงเหลือ">
-
-<input id="totalInstallments" type="number" placeholder="จำนวนงวด">
-
-<input id="paidInstallments" type="number" placeholder="จ่ายแล้ว">
-
-<input id="firstPayDate" type="date">
-
-<select id="payCycle">
-
-<option value="30">ทุกเดือน</option>
-
-<option value="15">ทุก 15 วัน</option>
-
-<option value="7">ทุก 7 วัน</option>
-
-</select>
-
-<button id="saveContract">
-
-บันทึกสัญญา
-
-</button>
-
-</div>
-
-</div>
 
 <script src="app.js"></script>
 
 </body>
-
 </html>
