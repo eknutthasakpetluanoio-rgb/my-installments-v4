@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -14,183 +13,125 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
 
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="style.css">
 
 </head>
 
 <body>
 
-<div class="background-blur blur1"></div>
-<div class="background-blur blur2"></div>
+<div class="background-blur"></div>
 
 <header class="topbar">
 
+<div class="brand">
+
 <div class="logo">
-
-<div class="logo-circle">
-
-<span class="material-symbols-rounded">
-account_balance_wallet
-</span>
-
+<span class="material-symbols-rounded">account_balance_wallet</span>
 </div>
 
 <div>
 
 <h1>PayNest</h1>
 
-<p>Track Every Installment</p>
+<p>Luxury Installments Tracker</p>
 
 </div>
 
 </div>
 
-<div class="top-actions">
-
-<button class="glass-btn">
+<button id="addBtn" class="glass-btn">
 
 <span class="material-symbols-rounded">
-notifications
+add
 </span>
 
 </button>
-
-<button class="glass-btn">
-
-<span class="material-symbols-rounded">
-person
-</span>
-
-</button>
-
-</div>
 
 </header>
 
 <main>
 
-<section class="hero-card glass">
+<section class="hero glass">
 
-<p class="hero-subtitle">
+<h3>ยอดที่ต้องชำระเดือนนี้</h3>
 
-ต้องชำระเดือนนี้
-
-</p>
-
-<h2 class="hero-total">
-
-฿2,625
-
-</h2>
+<h1 id="totalPay">฿0</h1>
 
 <div class="progress">
 
-<div
-class="progress-fill"
-style="width:16%;">
-</div>
+<div id="progressBar"></div>
 
 </div>
 
 <div class="hero-bottom">
 
-<div>
+<p id="contractCount">0 สัญญา</p>
 
-<h3>3</h3>
-
-<span>สัญญา</span>
-
-</div>
-
-<div>
-
-<h3>฿34,640</h3>
-
-<span>ยอดคงเหลือ</span>
-
-</div>
+<p id="remainCount">เหลือ 0 งวด</p>
 
 </div>
 
 </section>
 
-<section class="insight glass">
+<section class="summary">
 
-<div class="insight-icon">
+<div class="card glass">
 
-<span class="material-symbols-rounded">
+<p>ยอดคงเหลือ</p>
 
-lightbulb
-
-</span>
+<h2 id="remainMoney">฿0</h2>
 
 </div>
 
-<div>
+<div class="card glass">
 
-<h3>
+<p>ชำระแล้ว</p>
 
-Smart Insight
-
-</h3>
-
-<p>
-
-อีก 3 วัน ถึงกำหนดชำระ vivo V70
-
-</p>
+<h2 id="paidPercent">0%</h2>
 
 </div>
 
 </section>
 
-<section class="quick-actions">
+<section class="actions">
 
-<button class="action glass">
+<button class="glass action">
 
 <span class="material-symbols-rounded">
-
-add
-
+add_circle
 </span>
 
-<span>เพิ่ม</span>
+<p>เพิ่ม</p>
 
 </button>
 
-<button class="action glass">
+<button class="glass action">
 
 <span class="material-symbols-rounded">
+search
+</span>
 
+<p>ค้นหา</p>
+
+</button>
+
+<button class="glass action">
+
+<span class="material-symbols-rounded">
 calendar_month
-
 </span>
 
-<span>ปฏิทิน</span>
+<p>ปฏิทิน</p>
 
 </button>
 
-<button class="action glass">
+<button class="glass action">
 
 <span class="material-symbols-rounded">
-
 bar_chart
-
 </span>
 
-<span>สถิติ</span>
-
-</button>
-
-<button class="action glass">
-
-<span class="material-symbols-rounded">
-
-backup
-
-</span>
-
-<span>สำรอง</span>
+<p>สถิติ</p>
 
 </button>
 
@@ -198,98 +139,21 @@ backup
 
 <section class="contracts">
 
-<h2>
+<h2>รายการผ่อนทั้งหมด</h2>
 
-รายการผ่อน
-
-</h2>
-<div class="contract-card glass">
-
-    <div class="contract-image">
-        <span class="material-symbols-rounded">smartphone</span>
-    </div>
-
-    <div class="contract-info">
-
-        <h3>vivo V70</h3>
-
-        <p>SABAIRENTAL</p>
-
-        <div class="mini-progress">
-            <div class="mini-progress-fill" style="width:42%;"></div>
-        </div>
-
-        <div class="contract-footer">
-
-            <span>฿2,230 / เดือน</span>
-
-            <span>เหลือ 14 งวด</span>
-
-        </div>
-
-    </div>
-
-</div>
-
-<div class="contract-card glass">
-
-    <div class="contract-image">
-        <span class="material-symbols-rounded">headphones</span>
-    </div>
-
-    <div class="contract-info">
-
-        <h3>Anker Soundcore R50i NC</h3>
-
-        <p>Pay House</p>
-
-        <div class="mini-progress">
-            <div class="mini-progress-fill" style="width:18%;"></div>
-        </div>
-
-        <div class="contract-footer">
-
-            <span>฿130 / เดือน</span>
-
-            <span>เหลือ 10 งวด</span>
-
-        </div>
-
-    </div>
-
-</div>
-
-<div class="contract-card glass">
-
-    <div class="contract-image">
-        <span class="material-symbols-rounded">watch</span>
-    </div>
-
-    <div class="contract-info">
-
-        <h3>Redmi Watch 5 Lite</h3>
-
-        <p>ป้าบุ๋ม</p>
-
-        <div class="mini-progress">
-            <div class="mini-progress-fill" style="width:34%;"></div>
-        </div>
-
-        <div class="contract-footer">
-
-            <span>฿265 / เดือน</span>
-
-            <span>เหลือ 8 งวด</span>
-
-        </div>
-
-    </div>
-
-</div>
+<div id="contracts"></div>
 
 </section>
 
 </main>
+
+<button class="fab" id="fab">
+
+<span class="material-symbols-rounded">
+add
+</span>
+
+</button>
 
 <nav class="bottom-nav glass">
 
@@ -299,7 +163,7 @@ backup
 home
 </span>
 
-<p>Home</p>
+<p>หน้าหลัก</p>
 
 </button>
 
@@ -309,7 +173,7 @@ home
 calendar_month
 </span>
 
-<p>Calendar</p>
+<p>ปฏิทิน</p>
 
 </button>
 
@@ -319,7 +183,7 @@ calendar_month
 bar_chart
 </span>
 
-<p>Stats</p>
+<p>สถิติ</p>
 
 </button>
 
@@ -329,13 +193,13 @@ bar_chart
 settings
 </span>
 
-<p>Settings</p>
+<p>ตั้งค่า</p>
 
 </button>
 
 </nav>
 
-<script src="js/app.js"></script>
+<script src="app.js"></script>
 
 </body>
 </html>
