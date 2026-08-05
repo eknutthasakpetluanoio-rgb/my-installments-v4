@@ -62,12 +62,18 @@ for (let i = 1; i <= contract.totalInstallments; i++) {
 
     const current =
         i === contract.paidInstallments + 1;
-const dueDate =
-new Date(startDate);
+const dueDate = new Date(startDate);
 
-dueDate.setDate(
-    dueDate.getDate() + ((i - 1) * payCycle)
-);
+if (payCycle === 30) {
+    dueDate.setMonth(
+        dueDate.getMonth() + (i - 1)
+    );
+} else {
+    dueDate.setDate(
+        dueDate.getDate() + ((i - 1) * payCycle)
+    );
+}
+
 
 const dueText =
 dueDate.toLocaleDateString("th-TH");
