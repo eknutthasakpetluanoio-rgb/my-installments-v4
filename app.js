@@ -459,25 +459,21 @@ ${item.totalInstallments}
 
 </p>
 
-<div style="
-display:flex;
-gap:10px;
-margin-top:16px;
-">
+<div class="card-actions">
 
-<button
-class="icon-btn edit-btn">
+<button class="btn btn-primary detail-btn">
 
-<span class="material-symbols-rounded">
-
-edit
-
-</span>
+รายละเอียด
 
 </button>
 
-<button
-class="icon-btn delete-btn">
+<button class="btn btn-secondary edit-btn">
+
+แก้ไข
+
+</button>
+
+<button class="icon-btn delete-btn">
 
 <span class="material-symbols-rounded">
 
@@ -491,19 +487,18 @@ delete
 
 `;
 
-        card.addEventListener(
-        "click",
-        ()=>{
+        card.querySelector(".detail-btn").onclick = (e)=>{
 
-            localStorage.setItem(
-                "currentContract",
-                item.id
-            );
+    e.stopPropagation();
 
-            location.href =
-            "detail.html";
+    localStorage.setItem(
+        "currentContract",
+        item.id
+    );
 
-        });
+    location.href="detail.html";
+
+};
 
         card.querySelector(
         ".edit-btn"
