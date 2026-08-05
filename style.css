@@ -437,3 +437,28 @@ flex-direction:column;
 gap:14px;
 
 }
+.form-group select{
+
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:14px;
+    background:#334155;
+    color:#fff;
+    font-size:16px;
+    outline:none;
+
+}
+
+.form-group input[type="date"]{
+
+    color:#fff;
+
+}
+
+.form-group input[type="date"]::-webkit-calendar-picker-indicator{
+
+    filter:invert(1);
+    cursor:pointer;
+
+}
