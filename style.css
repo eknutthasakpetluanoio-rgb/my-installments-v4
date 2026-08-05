@@ -426,3 +426,14 @@ main{
     }
 
 }
+/* Detail */
+
+#installmentList{
+
+display:flex;
+
+flex-direction:column;
+
+gap:14px;
+
+}
