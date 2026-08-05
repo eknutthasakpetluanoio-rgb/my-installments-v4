@@ -3,10 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Installments v4</title>
+  <title>My Installments</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
@@ -16,149 +17,187 @@
 
 <header class="topbar">
 
-  <div>
-    <h1>💳 My Installments</h1>
-    <p>ติดตามการผ่อนของฉัน</p>
-  </div>
+    <div class="brand">
 
-  <button id="addBtn" class="icon-btn">＋</button>
+        <div class="logo">💳</div>
+
+        <div>
+
+            <h1>My Installments</h1>
+
+            <p>ติดตามการผ่อนของฉัน</p>
+
+        </div>
+
+    </div>
+
+    <button class="icon-btn" id="addBtn">
+        ＋
+    </button>
 
 </header>
 
 <main>
 
-  <section class="hero-card">
+<section class="hero">
 
-    <p class="hero-title">ยอดที่ต้องชำระเดือนนี้</p>
+    <div class="hero-card">
 
-    <h1 id="totalPay">0 บาท</h1>
+        <span>ยอดที่ต้องชำระเดือนนี้</span>
 
-    <span id="contractCount">0 สัญญา</span>
+        <h1 id="totalPay">0 บาท</h1>
 
-  </section>
+        <p id="contractCount">0 สัญญา</p>
 
-  <section class="summary">
+    </div>
+
+</section>
+
+<section class="summary">
 
     <div class="summary-card">
-      <p>ยอดคงเหลือ</p>
-      <h2 id="remainTotal">0 บาท</h2>
+
+        <p>ยอดคงเหลือ</p>
+
+        <h2 id="remainTotal">0 บาท</h2>
+
     </div>
 
     <div class="summary-card">
-      <p>ชำระแล้ว</p>
-      <h2 id="paidPercent">0%</h2>
+
+        <p>ชำระแล้ว</p>
+
+        <h2 id="paidPercent">0%</h2>
+
     </div>
 
-  </section>
+</section>
 
-  <div class="section-header">
+<section class="section-title">
 
     <h2>รายการผ่อนทั้งหมด</h2>
 
-  </div>
+</section>
 
-  <section id="contracts">
+<section id="contracts">
 
-  </section>
+</section>
 
 </main>
-<div id="sheet" class="sheet hidden">
 
-  <div class="sheet-content">
+<button class="fab" id="fab">
 
-    <div id="sheet" class="sheet hidden">
++
 
-  <div class="sheet-content">
-
-    <div class="sheet-header">
-
-      <h2>เพิ่มรายการผ่อน</h2>
-
-      <button id="closeSheet">✕</button>
-
-    </div>
-
-    <div class="form-group">
-      <label>ชื่อสินค้า</label>
-      <input id="productName" type="text" placeholder="เช่น vivo V70">
-    </div>
-
-    <div class="form-group">
-      <label>ร้านค้า</label>
-      <input id="storeName" type="text" placeholder="เช่น BaNANA">
-    </div>
-
-    <div class="form-group">
-      <label>ค่างวดต่อเดือน</label>
-      <input id="monthlyPay" type="number">
-    </div>
-
-    <div class="form-group">
-      <label>ยอดคงเหลือ</label>
-      <input id="remainPay" type="number">
-    </div>
-
-    <div class="form-group">
-      <label>จำนวนงวดทั้งหมด</label>
-      <input id="totalInstallments" type="number">
-    </div>
-
-    <div class="form-group">
-      <label>งวดที่จ่ายแล้ว</label>
-      <input id="paidInstallments" type="number" value="0">
-    </div>
-
-    <button id="saveContract" class="save-btn">
-      บันทึก
-    </button>
-
-  </div>
-
-</div>
-    <input id="storeName" type="text" placeholder="ร้านค้า">
-
-    <input id="monthlyPay" type="number" placeholder="ค่างวดต่อเดือน">
-
-    <input id="remainPay" type="number" placeholder="ยอดคงเหลือ">
-
-    <input id="totalInstallments" type="number" placeholder="จำนวนงวดทั้งหมด">
-
-    <input id="paidInstallments" type="number" placeholder="งวดที่จ่ายแล้ว">
-
-    <button id="saveContract">
-      บันทึก
-    </button>
-
-  </div>
-
-</div>
-<button class="fab" id="fab">+</button>
+</button>
 
 <nav class="bottom-nav">
 
-  <button class="active">
-    🏠
-    <span>หน้าหลัก</span>
-  </button>
+<button class="active">
 
-  <button>
-    📅
-    <span>ปฏิทิน</span>
-  </button>
+🏠
 
-  <button>
-    📊
-    <span>สถิติ</span>
-  </button>
+<span>หน้าหลัก</span>
 
-  <button>
-    ⚙️
-    <span>ตั้งค่า</span>
-  </button>
+</button>
+
+<button>
+
+📅
+
+<span>ปฏิทิน</span>
+
+</button>
+
+<button>
+
+📊
+
+<span>สถิติ</span>
+
+</button>
+
+<button>
+
+⚙️
+
+<span>ตั้งค่า</span>
+
+</button>
 
 </nav>
 
-<script src="App.js"></script>
+<div id="sheet" class="sheet hidden">
+
+<div class="sheet-content">
+
+<div class="sheet-header">
+
+<h2>เพิ่มรายการผ่อน</h2>
+
+<button id="closeSheet">✕</button>
+
+</div>
+
+<div class="form-group">
+
+<label>ชื่อสินค้า</label>
+
+<input id="productName" placeholder="เช่น vivo V70">
+
+</div>
+
+<div class="form-group">
+
+<label>ร้านค้า</label>
+
+<input id="storeName" placeholder="เช่น BaNANA">
+
+</div>
+
+<div class="form-group">
+
+<label>ค่างวดต่อเดือน</label>
+
+<input id="monthlyPay" type="number">
+
+</div>
+
+<div class="form-group">
+
+<label>ยอดคงเหลือ</label>
+
+<input id="remainPay" type="number">
+
+</div>
+
+<div class="form-group">
+
+<label>จำนวนงวดทั้งหมด</label>
+
+<input id="totalInstallments" type="number">
+
+</div>
+
+<div class="form-group">
+
+<label>งวดที่จ่ายแล้ว</label>
+
+<input id="paidInstallments" type="number" value="0">
+
+</div>
+
+<button class="save-btn" id="saveContract">
+
+บันทึก
+
+</button>
+
+</div>
+
+</div>
+
+<script src="app.js"></script>
 
 </body>
 </html>
