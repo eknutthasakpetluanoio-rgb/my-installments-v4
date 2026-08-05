@@ -137,3 +137,26 @@ ${Number(contract.monthlyPay).toLocaleString()} บาท
 `;
 
 }
+function payInstallment(){
+
+    if(contract.paidInstallments >= contract.totalInstallments){
+
+        return;
+
+    }
+
+    contract.paidInstallments++;
+
+    contract.remainPay -= contract.monthlyPay;
+
+    localStorage.setItem(
+
+        "contracts",
+
+        JSON.stringify(contracts)
+
+    );
+
+    location.reload();
+
+}
