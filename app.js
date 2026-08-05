@@ -28,7 +28,8 @@ document.getElementById("contractCount");
 
 const contractsBox =
 document.getElementById("contracts");
-
+const alertBox =
+document.getElementById("alertBox");
 // ---------- Bottom Sheet ----------
 
 const sheet =
@@ -394,12 +395,110 @@ function render(){
 
     renderDashboard();
 
+    renderAlerts();
+
     renderContracts();
+
+
 
 }
 
 // ======================================
 // Start App
 // ======================================
-
 render();
+
+// Alerts...
+function renderAlerts(){ ... }
+
+// ======================================
+// Render
+// ======================================
+// ======================================
+// Alerts
+// ======================================
+
+function renderAlerts(){
+
+    if(!alertBox) return;
+
+    alertBox.innerHTML = "";
+
+    const today = new Date();
+    today.setHours(0,0,0,0);
+
+    contracts.forEach(item=>{
+
+        if(item.paidInstallments >= item.totalInstallments){
+            return;
+        }
+
+        const start = new Date(item.firstPayDate);
+
+        let due = new Date(start);
+
+        const next =
+            item.paidInstallments + 1;
+
+        if(item.payCycle == 30){
+
+            due.setMonth(
+                due.getMonth() + (next - 1)
+            );
+
+        }else{
+
+            due.setDate(
+                due.getDate() +
+                ((next - 1) * item.payCycle)
+            );
+
+        }
+
+        due.setHours(0,0,0,0);
+
+        const diff =
+            Math.floor(
+                (due - today) / 86400000
+            );
+
+        if(diff <= 7){
+
+            let color = "#22c55e";
+            let text = "";
+
+            if(diff < 0){
+
+                color = "#ef4444";
+                text = `เลยกำหนด ${Math.abs(diff)} วัน`;
+
+            }else if(diff === 0){
+
+                color = "#facc15";
+                text = "ครบกำหนดวันนี้";
+
+            }else{
+
+                color = "#3b82f6";
+                text = `เหลืออีก ${diff} วัน`;
+
+            }
+
+            alertBox.innerHTML += `
+            <div class="contract-card"
+            style="border-left:5px solid ${color};margin-bottom:16px">
+
+                <strong>${item.productName}</strong>
+
+                <div style="margin-top:6px">
+                    ${text}
+                </div>
+
+            </div>
+            `;
+
+        }
+
+    });
+
+}
