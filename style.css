@@ -1,0 +1,170 @@
+:root{
+    --bg:#0f172a;
+    --card:#1e293b;
+    --card2:#111827;
+    --primary:#3b82f6;
+    --primary2:#2563eb;
+    --text:#ffffff;
+    --sub:#94a3b8;
+    --green:#22c55e;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Prompt',sans-serif;
+}
+
+body{
+    background:var(--bg);
+    color:var(--text);
+    padding-bottom:90px;
+}
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:22px;
+}
+
+.topbar p{
+    color:var(--sub);
+}
+
+#addBtn{
+    width:50px;
+    height:50px;
+    border:none;
+    border-radius:16px;
+    background:var(--primary);
+    color:white;
+    font-size:26px;
+    cursor:pointer;
+}
+
+main{
+    padding:20px;
+}
+
+.hero-card{
+    background:linear-gradient(135deg,var(--primary),#5b5cf0);
+    border-radius:24px;
+    padding:24px;
+    box-shadow:0 12px 30px rgba(0,0,0,.35);
+}
+
+.hero-card h1{
+    font-size:42px;
+    margin:12px 0;
+}
+
+.summary{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+    margin-top:18px;
+}
+
+.summary-card{
+    background:var(--card);
+    padding:18px;
+    border-radius:20px;
+}
+
+.summary-card p{
+    color:var(--sub);
+    margin-bottom:8px;
+}
+
+.title{
+    margin:30px 0 18px;
+}
+
+#contracts{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.contract-card{
+    background:var(--card);
+    border-radius:22px;
+    padding:18px;
+    box-shadow:0 8px 25px rgba(0,0,0,.25);
+}
+
+.contract-card h2{
+    margin-bottom:8px;
+}
+
+.contract-card p{
+    color:var(--sub);
+    margin:5px 0;
+}
+
+.fab{
+    position:fixed;
+    right:20px;
+    bottom:90px;
+
+    width:60px;
+    height:60px;
+
+    border:none;
+    border-radius:50%;
+
+    background:var(--green);
+    color:white;
+
+    font-size:32px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
+}
+
+.bottom-nav{
+
+    position:fixed;
+
+    left:0;
+    right:0;
+    bottom:0;
+
+    height:72px;
+
+    background:var(--card2);
+
+    display:flex;
+
+    justify-content:space-around;
+
+    align-items:center;
+
+    border-top:1px solid #334155;
+
+}
+
+.bottom-nav button{
+
+    background:none;
+
+    border:none;
+
+    color:var(--sub);
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:4px;
+
+}
+
+.bottom-nav .active{
+
+    color:var(--primary);
+
+}
