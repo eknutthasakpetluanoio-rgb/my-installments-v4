@@ -1,1 +1,189 @@
-.
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width,initial-scale=1.0">
+
+<title>รายละเอียดสัญญา</title>
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="style.css">
+
+</head>
+
+<body>
+
+<header class="topbar">
+
+<button
+class="icon-btn"
+onclick="history.back()">
+
+<span class="material-symbols-rounded">
+
+arrow_back
+
+</span>
+
+</button>
+
+<div class="brand">
+
+<div>
+
+<h1>
+
+รายละเอียดสัญญา
+
+</h1>
+
+<p id="storeName">
+
+-
+
+</p>
+
+</div>
+
+</div>
+
+</header>
+
+<main>
+
+<section class="hero">
+
+<div class="hero-card">
+
+<p class="hero-title">
+
+สินค้า
+
+</p>
+
+<h2 id="productName">
+
+-
+
+</h2>
+
+<p
+id="remainPrice"
+style="margin-top:12px">
+
+0 บาท
+
+</p>
+
+</div>
+
+</section>
+
+<section class="summary">
+
+<div class="summary-card">
+
+<p>ค่างวด</p>
+
+<h2
+id="monthlyPayText">
+
+0 บาท
+
+</h2>
+
+</div>
+
+<div class="summary-card">
+
+<p>จำนวนงวด</p>
+
+<h2
+id="totalInstallmentsText">
+
+0 งวด
+
+</h2>
+
+</div>
+
+</section>
+<section class="summary">
+
+<div class="summary-card"
+style="text-align:center">
+
+<canvas
+id="progressCircle"
+width="110"
+height="110">
+
+</canvas>
+
+<p
+style="margin-top:12px">
+
+ชำระแล้ว
+
+</p>
+
+<h2 id="paidText">
+
+0 / 0
+
+</h2>
+
+</div>
+
+<div class="summary-card">
+
+<p>คงเหลือ</p>
+
+<h2 id="leftText">
+
+0 งวด
+
+</h2>
+
+</div>
+
+</section>
+
+<section class="contract-section">
+
+<h2>
+
+รายการงวดทั้งหมด
+
+</h2>
+
+<div
+id="installmentList">
+
+</div>
+
+</section>
+
+</main>
+
+<script src="detail.js"></script>
+
+</body>
+
+</html>
