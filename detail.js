@@ -37,9 +37,11 @@ contract.paidInstallments +
 " / " +
 contract.totalInstallments;
 
-document.getElementById("leftText").textContent =
-(contract.totalInstallments - contract.paidInstallments)
-+ " งวด";
+document.getElementById("monthlyPayText").textContent =
+Number(contract.monthlyPay).toLocaleString() + " บาท";
+
+document.getElementById("totalInstallmentsText").textContent =
+contract.totalInstallments + " งวด";
 
 // ===============================
 // ตารางงวด
