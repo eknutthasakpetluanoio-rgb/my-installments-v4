@@ -1,30 +1,58 @@
-// app.js v1
-// ระบบพื้นฐานของ My Installments
+// =========================
+// My Installments v1
+// =========================
 
-let contracts = JSON.parse(localStorage.getItem("contracts")) || [];
+let contracts =
+JSON.parse(localStorage.getItem("contracts")) || [];
 
-const contractsEl = document.getElementById("contracts");
-const totalPayEl = document.getElementById("totalPay");
-const remainTotalEl = document.getElementById("remainTotal");
-const paidPercentEl = document.getElementById("paidPercent");
-const contractCountEl = document.getElementById("contractCount");
+const contractsEl =
+document.getElementById("contracts");
 
-function saveData() {
-    localStorage.setItem("contracts", JSON.stringify(contracts));
+const totalPayEl =
+document.getElementById("totalPay");
+
+const remainTotalEl =
+document.getElementById("remainTotal");
+
+const paidPercentEl =
+document.getElementById("paidPercent");
+
+const contractCountEl =
+document.getElementById("contractCount");
+
+function saveData(){
+
+    localStorage.setItem(
+        "contracts",
+        JSON.stringify(contracts)
+    );
+
 }
 
-function renderDashboard() {
+function render(){
+
+    renderDashboard();
+
+    renderContracts();
+
+}
+function renderDashboard(){
 
     let totalPay = 0;
     let totalRemain = 0;
-    let paid = 0;
-    let total = 0;
+    let totalPaid = 0;
+    let totalInstallments = 0;
 
-    contracts.forEach(item => {
-        totalPay += Number(item.monthlyPay);
-        totalRemain += Number(item.remainPay);
-        paid += Number(item.paidInstallments);
-        total += Number(item.totalInstallments);
+    contracts.forEach(item=>{
+
+        totalPay += Number(item.monthlyPay || 0);
+
+        totalRemain += Number(item.remainPay || 0);
+
+        totalPaid += Number(item.paidInstallments || 0);
+
+        totalInstallments += Number(item.totalInstallments || 0);
+
     });
 
     totalPayEl.textContent =
@@ -36,138 +64,174 @@ function renderDashboard() {
     contractCountEl.textContent =
         contracts.length + " สัญญา";
 
-    if(total===0){
+    if(totalInstallments===0){
+
         paidPercentEl.textContent="0%";
+
     }else{
-        paidPercentEl.textContent=
-        Math.round((paid/total)*100)+"%";
+
+        paidPercentEl.textContent =
+        Math.round(
+            (totalPaid/totalInstallments)*100
+        ) + "%";
+
     }
 
 }
-function renderContracts() {
+function renderContracts(){
 
-    contractsEl.innerHTML = "";
+    contractsEl.innerHTML="";
 
-    if (contracts.length === 0) {
+    if(contracts.length===0){
 
-        contractsEl.innerHTML = `
+        contractsEl.innerHTML=`
         <div class="empty-state">
+
             <div class="empty-icon">📦</div>
+
             <h3>ยังไม่มีรายการผ่อน</h3>
+
             <p>กดปุ่ม + เพื่อเพิ่มรายการแรกของคุณ</p>
+
         </div>
         `;
 
         return;
+
     }
 
-    contracts.forEach(item => {
+    contracts.forEach(item=>{
 
-        const percent = item.totalInstallments === 0
-            ? 0
-            : Math.round((item.paidInstallments / item.totalInstallments) * 100);
+        const percent =
+        item.totalInstallments==0
+        ?0
+        :Math.round(
+            (item.paidInstallments/item.totalInstallments)*100
+        );
 
         contractsEl.innerHTML += `
+        <div class="contract-card">
 
-<div class="contract-card">
+            <div class="contract-header">
 
-    <div class="contract-header">
+                <div class="contract-left">
 
-        <div class="contract-left">
+                    <div class="contract-icon">
 
-            <div class="contract-icon">
-                📱
+                        📱
+
+                    </div>
+
+                    <div>
+
+                        <div class="contract-name">
+
+                            ${item.productName}
+
+                        </div>
+
+                        <div class="contract-store">
+
+                            ${item.storeName}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
             </div>
 
-            <div>
+            <div class="progress">
 
-                <div class="contract-name">
-                    ${item.productName}
+                <div
+                class="progress-bar"
+                style="width:${percent}%">
+
                 </div>
 
-                <div class="contract-store">
-                    ${item.storeName}
-                </div>
+            </div>
+
+            <div class="contract-info">
+
+                <span>
+
+                    งวด ${item.paidInstallments}/${item.totalInstallments}
+
+                </span>
+
+                <span>
+
+                    ${Number(item.remainPay).toLocaleString()} บาท
+
+                </span>
 
             </div>
 
         </div>
-
-    </div>
-
-    <div class="progress">
-
-        <div class="progress-bar"
-             style="width:${percent}%">
-        </div>
-
-    </div>
-
-    <div class="contract-info">
-
-        <span>
-            งวด ${item.paidInstallments}/${item.totalInstallments}
-        </span>
-
-        <span>
-            ${Number(item.remainPay).toLocaleString()} บาท
-        </span>
-
-    </div>
-
-    <div class="card-buttons">
-
-        <button class="btn btn-primary">
-            รายละเอียด
-        </button>
-
-        <button
-        class="btn btn-danger"
-        onclick="deleteContract(${item.id})">
-            ลบ
-        </button>
-
-    </div>
-
-</div>
-
-`;
+        `;
 
     });
 
 }
-function saveContract() {
+function openSheet(){
+
+    document
+    .getElementById("sheet")
+    .classList.remove("hidden");
+
+}
+
+function closeSheet(){
+
+    document
+    .getElementById("sheet")
+    .classList.add("hidden");
+
+}
+
+function clearForm(){
+
+    document.getElementById("productName").value="";
+    document.getElementById("storeName").value="";
+    document.getElementById("monthlyPay").value="";
+    document.getElementById("remainPay").value="";
+    document.getElementById("totalInstallments").value="";
+    document.getElementById("paidInstallments").value="0";
+
+}
+
+function saveContract(){
 
     const productName =
-        document.getElementById("productName").value.trim();
+    document.getElementById("productName").value.trim();
 
     const storeName =
-        document.getElementById("storeName").value.trim();
+    document.getElementById("storeName").value.trim();
 
     const monthlyPay =
-        Number(document.getElementById("monthlyPay").value);
+    Number(document.getElementById("monthlyPay").value);
 
     const remainPay =
-        Number(document.getElementById("remainPay").value);
+    Number(document.getElementById("remainPay").value);
 
     const totalInstallments =
-        Number(document.getElementById("totalInstallments").value);
+    Number(document.getElementById("totalInstallments").value);
 
     const paidInstallments =
-        Number(document.getElementById("paidInstallments").value);
+    Number(document.getElementById("paidInstallments").value);
 
-    if (
-        productName === "" ||
-        monthlyPay <= 0 ||
-        totalInstallments <= 0
-    ) {
-        alert("กรุณากรอกข้อมูลให้ครบ");
+    if(productName===""){
+
+        alert("กรุณากรอกชื่อสินค้า");
+
         return;
+
     }
 
     contracts.push({
 
-        id: Date.now(),
+        id:Date.now(),
 
         productName,
 
@@ -185,37 +249,35 @@ function saveContract() {
 
     saveData();
 
-    renderDashboard();
-
-    renderContracts();
+    render();
 
     closeSheet();
 
     clearForm();
 
 }
-function clearForm(){
-
-    document.getElementById("productName").value="";
-    document.getElementById("storeName").value="";
-    document.getElementById("monthlyPay").value="";
-    document.getElementById("remainPay").value="";
-    document.getElementById("totalInstallments").value="";
-    document.getElementById("paidInstallments").value="0";
-
-}
 function deleteContract(id){
 
-    if(!confirm("ลบรายการนี้ใช่ไหม?")) return;
+    if(!confirm("ลบรายการนี้ใช่ไหม?")){
+
+        return;
+
+    }
 
     contracts = contracts.filter(item=>item.id!==id);
 
     saveData();
 
-    renderDashboard();
-
-    renderContracts();
+    render();
 
 }
-renderDashboard();
-renderContracts();
+
+document.getElementById("addBtn").onclick = openSheet;
+
+document.getElementById("fab").onclick = openSheet;
+
+document.getElementById("closeSheet").onclick = closeSheet;
+
+document.getElementById("saveContract").onclick = saveContract;
+
+render();
