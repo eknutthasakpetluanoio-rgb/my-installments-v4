@@ -262,3 +262,214 @@ render();
   render();
 
 });
+/*==================================
+ Render
+==================================*/
+
+function render(){
+
+    let monthTotal=0;
+    let remain=0;
+    let paid=0;
+    let total=0;
+
+    contractsBox.innerHTML="";
+    alertBox.innerHTML="";
+
+    if(contracts.length===0){
+
+        contractsBox.innerHTML=`
+        <div class="empty-state">
+            <span class="material-symbols-rounded">
+                inventory_2
+            </span>
+            <h3>ยังไม่มีรายการผ่อน</h3>
+            <p>กดปุ่ม + เพื่อเพิ่มรายการแรก</p>
+        </div>`;
+
+        totalPay.textContent="฿0";
+        remainTotal.textContent="฿0";
+        paidPercent.textContent="0%";
+        contractCount.textContent="0 สัญญา";
+        remainInstallments.textContent="เหลือ 0 งวด";
+        heroProgress.style.width="0%";
+
+        return;
+    }
+
+    contracts.forEach(item=>{
+
+        monthTotal+=item.monthlyPay;
+        remain+=item.remainPay;
+        paid+=item.paidInstallments;
+        total+=item.totalInstallments;
+
+        const percent=
+        item.totalInstallments
+        ?
+        Math.round(
+        (item.paidInstallments/item.totalInstallments)*100
+        )
+        :
+        0;
+
+        const card=document.createElement("div");
+
+        card.className="contract-card";
+
+        card.innerHTML=`
+
+<h3>${item.productName}</h3>
+
+<p>${item.storeName}</p>
+
+<p>
+ค่างวด
+${item.monthlyPay.toLocaleString()}
+บาท / เดือน
+</p>
+
+<div class="hero-progress">
+
+<div class="hero-progress-bar"
+style="width:${percent}%">
+
+</div>
+
+</div>
+
+<p style="margin-top:10px">
+
+${item.paidInstallments}
+
+/
+
+${item.totalInstallments}
+
+งวด
+
+</p>
+
+<div style="
+display:flex;
+gap:10px;
+margin-top:16px;
+">
+
+<button
+class="icon-btn edit-btn">
+
+<span class="material-symbols-rounded">
+
+edit
+
+</span>
+
+</button>
+
+<button
+class="icon-btn delete-btn">
+
+<span class="material-symbols-rounded">
+
+delete
+
+</span>
+
+</button>
+
+</div>
+
+`;
+
+        card.onclick=()=>{
+
+            localStorage.setItem(
+                "currentContract",
+                item.id
+            );
+
+            location.href="detail.html";
+
+        };
+
+        card
+        .querySelector(".edit-btn")
+        .onclick=(e)=>{
+
+            e.stopPropagation();
+
+            editingId=item.id;
+
+            productName.value=item.productName;
+            storeName.value=item.storeName;
+            monthlyPay.value=item.monthlyPay;
+            remainPay.value=item.remainPay;
+            totalInstallments.value=item.totalInstallments;
+            paidInstallments.value=item.paidInstallments;
+            firstPayDate.value=item.firstPayDate;
+            payCycle.value=item.payCycle;
+
+            openSheet();
+
+        };
+
+        card
+        .querySelector(".delete-btn")
+        .onclick=(e)=>{
+
+            e.stopPropagation();
+
+            if(!confirm("ลบรายการนี้ ?")) return;
+
+            contracts=
+            contracts.filter(
+            x=>x.id!==item.id
+            );
+
+            saveStorage();
+
+            render();
+
+        };
+
+        contractsBox.appendChild(card);
+
+    });
+
+    const allPercent=
+    total
+    ?
+    Math.round((paid/total)*100)
+    :
+    0;
+
+    totalPay.textContent=
+    "฿"+
+    monthTotal.toLocaleString();
+
+    remainTotal.textContent=
+    "฿"+
+    remain.toLocaleString();
+
+    paidPercent.textContent=
+    allPercent+"%";
+
+    contractCount.textContent=
+    contracts.length+" สัญญา";
+
+    remainInstallments.textContent=
+    "เหลือ "+
+    (total-paid)+
+    " งวด";
+
+    heroProgress.style.width=
+    allPercent+"%";
+
+}
+
+/*==================================
+ Start
+==================================*/
+
+render();
