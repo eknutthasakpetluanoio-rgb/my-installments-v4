@@ -31,7 +31,47 @@ Number(contract.remainPay).toLocaleString() + " บาท";
 
 document.getElementById("paidText").textContent =
 `${contract.paidInstallments} / ${contract.totalInstallments}`;
+const canvas =
+document.getElementById("progressCircle");
 
+const ctx =
+canvas.getContext("2d");
+
+const percent =
+contract.paidInstallments /
+contract.totalInstallments;
+
+// พื้นหลัง
+ctx.lineWidth = 10;
+ctx.strokeStyle = "#374151";
+
+ctx.beginPath();
+ctx.arc(55,55,40,0,Math.PI*2);
+ctx.stroke();
+
+// วงเปอร์เซ็นต์
+ctx.strokeStyle = "#4f7cff";
+
+ctx.beginPath();
+ctx.arc(
+55,
+55,
+40,
+-Math.PI/2,
+(percent*2*Math.PI)-Math.PI/2
+);
+ctx.stroke();
+
+// ตัวเลข
+ctx.fillStyle = "#ffffff";
+ctx.font = "bold 20px Prompt";
+ctx.textAlign = "center";
+ctx.textBaseline = "middle";
+ctx.fillText(
+Math.round(percent*100)+"%",
+55,
+55
+);
 document.getElementById("leftText").textContent =
 `${contract.totalInstallments - contract.paidInstallments} งวด`;
 
