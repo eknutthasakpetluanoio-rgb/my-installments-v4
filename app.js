@@ -214,14 +214,14 @@ function renderContracts(){
 
                 </button>
 
-                <button
-                    class="btn btn-danger"
-                    onclick="deleteContract(${item.id})">
+                
+<button
+    class="btn btn-warning"
+    onclick="editContract(${item.id})">
 
-                    ลบ
+    แก้ไข
 
-                </button>
-
+</button>
             </div>
 
         </div>
@@ -329,7 +329,26 @@ document.getElementById("payCycle").value = "7";
 // ======================================
 // Delete
 // ======================================
+function editContract(id){
 
+    const item = contracts.find(c => c.id === id);
+
+    if(!item) return;
+
+    document.getElementById("productName").value = item.productName;
+    document.getElementById("storeName").value = item.storeName;
+    document.getElementById("monthlyPay").value = item.monthlyPay;
+    document.getElementById("remainPay").value = item.remainPay;
+    document.getElementById("totalInstallments").value = item.totalInstallments;
+    document.getElementById("paidInstallments").value = item.paidInstallments;
+    document.getElementById("firstPayDate").value = item.firstPayDate || "";
+    document.getElementById("payCycle").value = item.payCycle || 7;
+
+    deleteContract(id);
+
+    openSheet();
+
+}
 function deleteContract(id){
 
     if(!confirm("ลบรายการนี้ใช่ไหม?")){
@@ -338,11 +357,11 @@ function deleteContract(id){
 
     }
 
-    contracts = contracts.filter(item=>item.id!==id);
+    contracts = contracts.filter(item => item.id !== id);
 
-    saveData();
+saveData();
 
-    render();
+openSheet();
 
 }
 
