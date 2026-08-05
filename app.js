@@ -5,12 +5,14 @@
 const STORAGE_KEY = "contracts";
 
 let contracts =
-JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+JSON.parse(
+localStorage.getItem(STORAGE_KEY)
+) || [];
 
 let editingId = null;
 
 /*==================================
- Hero
+ DOM
 ==================================*/
 
 const totalPay =
@@ -31,19 +33,11 @@ document.getElementById("remainInstallments");
 const heroProgress =
 document.getElementById("heroProgress");
 
-/*==================================
- Layout
-==================================*/
-
 const contractsBox =
 document.getElementById("contracts");
 
 const alertBox =
 document.getElementById("alertBox");
-
-/*==================================
- Buttons
-==================================*/
 
 const addBtn =
 document.getElementById("addBtn");
@@ -61,7 +55,7 @@ const saveBtn =
 document.getElementById("saveContract");
 
 /*==================================
- Inputs
+ INPUT
 ==================================*/
 
 const productName =
@@ -94,17 +88,17 @@ document.getElementById("payCycle");
 
 function openSheet(){
 
-    sheet.classList.remove("hidden");
+sheet.classList.remove("hidden");
 
 }
 
 function closeSheetUI(){
 
-    sheet.classList.add("hidden");
+sheet.classList.add("hidden");
 
-    editingId = null;
+editingId = null;
 
-    resetForm();
+resetForm();
 
 }
 
@@ -112,7 +106,7 @@ addBtn.onclick = openSheet;
 
 if(fab){
 
-    fab.onclick = openSheet;
+fab.onclick = openSheet;
 
 }
 
@@ -120,54 +114,39 @@ closeSheet.onclick = closeSheetUI;
 
 sheet.onclick = e=>{
 
-    if(e.target===sheet){
+if(e.target===sheet){
 
-        closeSheetUI();
+closeSheetUI();
 
-    }
+}
 
 };
 
 /*==================================
- Storage
+ Helper
 ==================================*/
 
 function saveStorage(){
 
-    localStorage.setItem(
-
-        STORAGE_KEY,
-
-        JSON.stringify(contracts)
-
-    );
+localStorage.setItem(
+STORAGE_KEY,
+JSON.stringify(contracts)
+);
 
 }
-
-/*==================================
- Reset Form
-==================================*/
 
 function resetForm(){
 
-    productName.value = "";
-
-    storeName.value = "";
-
-    monthlyPay.value = "";
-
-    remainPay.value = "";
-
-    totalInstallments.value = "";
-
-    paidInstallments.value = 0;
-
-    firstPayDate.value = "";
-
-    payCycle.value = 30;
+productName.value="";
+storeName.value="";
+monthlyPay.value="";
+remainPay.value="";
+totalInstallments.value="";
+paidInstallments.value=0;
+firstPayDate.value="";
+payCycle.value=30;
 
 }
-
 /*==================================
  Save Contract
 ==================================*/
@@ -175,11 +154,8 @@ function resetForm(){
 saveBtn.onclick = ()=>{
 
     if(
-
         productName.value.trim()==="" ||
-
         monthlyPay.value===""
-
     ){
 
         alert("กรุณากรอกข้อมูลให้ครบ");
@@ -192,9 +168,9 @@ saveBtn.onclick = ()=>{
 
         id:editingId || Date.now(),
 
-        productName:productName.value,
+        productName:productName.value.trim(),
 
-        storeName:storeName.value,
+        storeName:storeName.value.trim(),
 
         monthlyPay:Number(monthlyPay.value),
 
@@ -209,16 +185,17 @@ saveBtn.onclick = ()=>{
         payCycle:Number(payCycle.value)
 
     };
+
     if(editingId){
 
-        const index =
+        const index=
         contracts.findIndex(
-            c => c.id === editingId
+            c=>c.id===editingId
         );
 
-        if(index !== -1){
+        if(index!==-1){
 
-            contracts[index] = item;
+            contracts[index]=item;
 
         }
 
@@ -237,21 +214,57 @@ saveBtn.onclick = ()=>{
 };
 
 /*==================================
+ Edit
+==================================*/
+
+function editContract(id){
+
+    const item=
+    contracts.find(
+        c=>c.id===id
+    );
+
+    if(!item) return;
+
+    editingId=item.id;
+
+    productName.value=item.productName;
+
+    storeName.value=item.storeName;
+
+    monthlyPay.value=item.monthlyPay;
+
+    remainPay.value=item.remainPay;
+
+    totalInstallments.value=item.totalInstallments;
+
+    paidInstallments.value=item.paidInstallments;
+
+    firstPayDate.value=item.firstPayDate;
+
+    payCycle.value=item.payCycle;
+
+    openSheet();
+
+}
+
+/*==================================
  Delete
 ==================================*/
 
 function deleteContract(id){
 
-    if(!confirm("ลบรายการนี้ ?")){
+    if(
+        !confirm("ลบรายการนี้ ?")
+    ){
 
         return;
 
     }
 
-    contracts = contracts.filter(
-
-        item => item.id !== id
-
+    contracts=
+    contracts.filter(
+        item=>item.id!==id
     );
 
     saveStorage();
@@ -261,106 +274,58 @@ function deleteContract(id){
 }
 
 /*==================================
- Edit
-==================================*/
-
-function editContract(id){
-
-    const item = contracts.find(
-
-        c => c.id === id
-
-    );
-
-    if(!item){
-
-        return;
-
-    }
-
-    editingId = item.id;
-
-    productName.value =
-    item.productName;
-
-    storeName.value =
-    item.storeName;
-
-    monthlyPay.value =
-    item.monthlyPay;
-
-    remainPay.value =
-    item.remainPay;
-
-    totalInstallments.value =
-    item.totalInstallments;
-
-    paidInstallments.value =
-    item.paidInstallments;
-
-    firstPayDate.value =
-    item.firstPayDate;
-
-    payCycle.value =
-    item.payCycle;
-
-    openSheet();
-
-}
-
-/*==================================
  Summary
 ==================================*/
 
-function updateSummary(
+function updateSummary(){
 
-    monthTotal,
+    let monthTotal=0;
+    let remainTotalPrice=0;
+    let paid=0;
+    let total=0;
 
-    remain,
+    contracts.forEach(item=>{
 
-    paid,
+        monthTotal+=item.monthlyPay;
 
+        remainTotalPrice+=item.remainPay;
+
+        paid+=item.paidInstallments;
+
+        total+=item.totalInstallments;
+
+    });
+
+    const percent=
     total
-
-){
-
-    const percent =
-
-    total > 0
-
     ?
-
     Math.round(
-
-    (paid / total) * 100
-
+        (paid/total)*100
     )
-
     :
-
     0;
 
-    totalPay.textContent =
-    "฿" +
+    totalPay.textContent=
+    "฿"+
     monthTotal.toLocaleString();
 
-    remainTotal.textContent =
-    "฿" +
-    remain.toLocaleString();
+    remainTotal.textContent=
+    "฿"+
+    remainTotalPrice.toLocaleString();
 
-    paidPercent.textContent =
-    percent + "%";
+    paidPercent.textContent=
+    percent+"%";
 
-    contractCount.textContent =
-    contracts.length + " สัญญา";
+    contractCount.textContent=
+    contracts.length+" สัญญา";
 
-    remainInstallments.textContent =
-    "เหลือ " +
-    (total - paid) +
+    remainInstallments.textContent=
+    "เหลือ "+
+    (total-paid)+
     " งวด";
 
-    heroProgress.style.width =
-    percent + "%";
+    heroProgress.style.width=
+    percent+"%";
 
 }
 /*==================================
@@ -369,18 +334,14 @@ function updateSummary(
 
 function render(){
 
-    let monthTotal = 0;
-    let remain = 0;
-    let paid = 0;
-    let total = 0;
+    contractsBox.innerHTML="";
+    alertBox.innerHTML="";
 
-    contractsBox.innerHTML = "";
-    alertBox.innerHTML = "";
+    if(contracts.length===0){
 
-    if(contracts.length === 0){
-
-        contractsBox.innerHTML = `
+        contractsBox.innerHTML=`
         <div class="empty-state">
+
             <span class="material-symbols-rounded">
                 inventory_2
             </span>
@@ -388,9 +349,10 @@ function render(){
             <h3>ยังไม่มีรายการผ่อน</h3>
 
             <p>กดปุ่ม + เพื่อเพิ่มรายการแรก</p>
+
         </div>`;
 
-        updateSummary(0,0,0,0);
+        updateSummary();
 
         return;
 
@@ -398,17 +360,12 @@ function render(){
 
     contracts.forEach(item=>{
 
-        monthTotal += item.monthlyPay;
-        remain += item.remainPay;
-        paid += item.paidInstallments;
-        total += item.totalInstallments;
-
         const percent =
         item.totalInstallments > 0
         ?
         Math.round(
-        (item.paidInstallments /
-        item.totalInstallments)*100
+            (item.paidInstallments /
+            item.totalInstallments) * 100
         )
         :
         0;
@@ -416,8 +373,7 @@ function render(){
         const card =
         document.createElement("div");
 
-        card.className =
-        "contract-card";
+        card.className = "contract-card";
 
         card.innerHTML = `
 
@@ -426,14 +382,14 @@ function render(){
 <p>${item.storeName}</p>
 
 <p>
-ค่างวด
-${item.monthlyPay.toLocaleString()}
+💵 ค่างวด
+<b>${item.monthlyPay.toLocaleString()}</b>
 บาท / เดือน
 </p>
 
 <p>
-ยอดคงเหลือ
-${item.remainPay.toLocaleString()}
+💰 คงเหลือ
+<b>${item.remainPay.toLocaleString()}</b>
 บาท
 </p>
 
@@ -447,7 +403,7 @@ style="width:${percent}%">
 
 </div>
 
-<p style="margin-top:10px">
+<p style="margin-top:12px">
 
 ${item.paidInstallments}
 
@@ -457,23 +413,28 @@ ${item.totalInstallments}
 
 งวด
 
+(${percent}%)
+
 </p>
 
 <div class="card-actions">
 
-<button class="btn btn-primary detail-btn">
+<button
+class="btn btn-primary detail-btn">
 
 รายละเอียด
 
 </button>
 
-<button class="btn btn-secondary edit-btn">
+<button
+class="btn btn-secondary edit-btn">
 
 แก้ไข
 
 </button>
 
-<button class="icon-btn delete-btn">
+<button
+class="icon-btn delete-btn">
 
 <span class="material-symbols-rounded">
 
@@ -487,24 +448,26 @@ delete
 
 `;
 
-        card.querySelector(".detail-btn").onclick = (e)=>{
+        /* รายละเอียด */
 
-    e.stopPropagation();
+        card.querySelector(".detail-btn")
+        .addEventListener("click",e=>{
 
-    localStorage.setItem(
-        "currentContract",
-        item.id
-    );
+            e.stopPropagation();
 
-    location.href="detail.html";
+            localStorage.setItem(
+                "currentContract",
+                item.id
+            );
 
-};
+            location.href="detail.html";
 
-        card.querySelector(
-        ".edit-btn"
-        ).addEventListener(
-        "click",
-        e=>{
+        });
+
+        /* แก้ไข */
+
+        card.querySelector(".edit-btn")
+        .addEventListener("click",e=>{
 
             e.stopPropagation();
 
@@ -512,11 +475,10 @@ delete
 
         });
 
-        card.querySelector(
-        ".delete-btn"
-        ).addEventListener(
-        "click",
-        e=>{
+        /* ลบ */
+
+        card.querySelector(".delete-btn")
+        .addEventListener("click",e=>{
 
             e.stopPropagation();
 
@@ -528,17 +490,7 @@ delete
 
     });
 
-    updateSummary(
-
-        monthTotal,
-
-        remain,
-
-        paid,
-
-        total
-
-    );
+    updateSummary();
 
 }
 
