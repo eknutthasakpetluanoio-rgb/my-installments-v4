@@ -1,332 +1,136 @@
 :root{
-  --bg:#0f172a;
-  --surface:#1e293b;
-  --surface2:#111827;
-  --primary:#3b82f6;
-  --primary-dark:#2563eb;
-  --text:#ffffff;
-  --muted:#94a3b8;
-  --success:#22c55e;
-  --danger:#ef4444;
-  --radius:22px;
+    --bg:#0f172a;
+    --surface:#1e293b;
+    --surface2:#111827;
+    --primary:#3b82f6;
+    --secondary:#6366f1;
+    --success:#22c55e;
+    --danger:#ef4444;
+    --text:#ffffff;
+    --sub:#94a3b8;
+    --radius:22px;
 }
 
 *{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Prompt',sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Prompt',sans-serif;
 }
 
 body{
-  background:var(--bg);
-  color:var(--text);
-  min-height:100vh;
-  padding-bottom:95px;
+    background:var(--bg);
+    color:var(--text);
+    min-height:100vh;
+    padding-bottom:90px;
 }
-
-/* Header */
 
 .topbar{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:22px;
-}
-
-.topbar h1{
-  font-size:28px;
-  font-weight:700;
-}
-
-.topbar p{
-  color:var(--muted);
-  margin-top:4px;
-}
-
-.icon-btn{
-  width:52px;
-  height:52px;
-  border:none;
-  border-radius:16px;
-  background:var(--primary);
-  color:#fff;
-  font-size:28px;
-  cursor:pointer;
-}
-
-/* Main */
-
-main{
-  padding:20px;
-}
-
-/* Hero */
-
-.hero-card{
-  background:linear-gradient(135deg,#2563eb,#5b5cf0);
-  border-radius:28px;
-  padding:28px;
-  box-shadow:0 18px 40px rgba(0,0,0,.35);
-}
-
-.hero-title{
-  color:#dbeafe;
-  font-size:16px;
-}
-
-.hero-card h1{
-  margin:12px 0;
-  font-size:42px;
-}
-
-.hero-card span{
-  color:#dbeafe;
-}
-/* ==========================
-   Contract Cards
-========================== */
-
-.section-header{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    margin:28px 0 16px;
+    padding:20px;
 }
 
-.section-header h2{
+.logo-area{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.logo{
+    width:55px;
+    height:55px;
+    border-radius:18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+    font-size:26px;
+}
+
+.logo-area h1{
+    font-size:24px;
+}
+
+.logo-area p{
+    color:var(--sub);
+    font-size:14px;
+}
+
+.icon-btn{
+    width:52px;
+    height:52px;
+    border:none;
+    border-radius:18px;
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+    color:#fff;
+    font-size:28px;
+}
+
+main{
+    padding:20px;
+}
+
+.hero-card{
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+    border-radius:28px;
+    padding:24px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 15px 35px rgba(0,0,0,.35);
+}
+
+.hero-card p{
+    color:#dbeafe;
+}
+
+.hero-card h2{
+    font-size:42px;
+    margin:10px 0;
+}
+
+.hero-circle{
+    width:90px;
+    height:90px;
+    border-radius:50%;
+    background:rgba(255,255,255,.15);
+    display:flex;
+    align-items:center;
+    justify-content:center;
     font-size:22px;
-    font-weight:600;
+    font-weight:bold;
+}
+
+.summary{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+    margin-top:20px;
+}
+
+.summary-card{
+    background:var(--surface);
+    border-radius:20px;
+    padding:18px;
+}
+
+.summary-card p{
+    color:var(--sub);
+    margin-bottom:8px;
+}
+
+.summary-card h3{
+    font-size:24px;
+}
+
+.section-title{
+    margin:28px 0 16px;
 }
 
 #contracts{
     display:flex;
     flex-direction:column;
     gap:16px;
-}
-
-.contract-card{
-    background:var(--surface);
-    border-radius:var(--radius);
-    padding:18px;
-    box-shadow:0 12px 30px rgba(0,0,0,.25);
-    transition:.25s;
-}
-
-.contract-card:active{
-    transform:scale(.98);
-}
-
-.contract-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:12px;
-}
-
-.contract-left{
-    display:flex;
-    align-items:center;
-    gap:14px;
-}
-
-.contract-icon{
-    width:56px;
-    height:56px;
-    border-radius:18px;
-    background:#26354d;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-size:28px;
-}
-
-.contract-name{
-    font-size:19px;
-    font-weight:600;
-}
-
-.contract-store{
-    color:var(--muted);
-    font-size:14px;
-}
-
-/* Progress */
-
-.progress{
-    width:100%;
-    height:10px;
-    background:#334155;
-    border-radius:999px;
-    overflow:hidden;
-    margin:14px 0;
-}
-
-.progress-bar{
-    height:100%;
-    width:0%;
-    background:linear-gradient(90deg,#22c55e,#16a34a);
-    transition:.4s;
-}
-
-.contract-info{
-    display:flex;
-    justify-content:space-between;
-    margin-top:12px;
-    color:var(--muted);
-    font-size:14px;
-}
-
-/* Buttons */
-
-.card-actions{
-    display:flex;
-    gap:10px;
-    margin-top:18px;
-}
-
-.btn{
-    flex:1;
-    border:none;
-    border-radius:14px;
-    padding:12px;
-    font-size:15px;
-    cursor:pointer;
-}
-
-.btn-primary{
-    background:var(--primary);
-    color:white;
-}
-
-.btn-danger{
-    background:var(--danger);
-    color:white;
-}
-/* ==========================
-   Floating Action Button
-========================== */
-
-.fab{
-    position:fixed;
-    right:20px;
-    bottom:90px;
-
-    width:64px;
-    height:64px;
-
-    border:none;
-    border-radius:50%;
-
-    background:linear-gradient(135deg,var(--primary),#5b5cf0);
-    color:#fff;
-
-    font-size:34px;
-    font-weight:bold;
-
-    box-shadow:0 15px 35px rgba(37,99,235,.45);
-
-    cursor:pointer;
-    transition:.25s;
-}
-
-.fab:active{
-    transform:scale(.95);
-}
-
-/* ==========================
-   Bottom Navigation
-========================== */
-
-.bottom-nav{
-    position:fixed;
-    left:0;
-    right:0;
-    bottom:0;
-
-    height:72px;
-
-    background:var(--surface2);
-
-    border-top:1px solid #334155;
-
-    display:flex;
-    justify-content:space-around;
-    align-items:center;
-
-    z-index:999;
-}
-
-.bottom-nav button{
-
-    background:none;
-    border:none;
-
-    color:var(--muted);
-
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-
-    gap:4px;
-
-    font-size:13px;
-
-    cursor:pointer;
-
-}
-
-.bottom-nav .active{
-
-    color:var(--primary);
-
-}
-
-/* ==========================
-   Responsive
-========================== */
-
-@media (max-width:600px){
-
-    .topbar{
-        padding:18px;
-    }
-
-    .hero-card h1{
-        font-size:34px;
-    }
-
-    .summary{
-        grid-template-columns:1fr;
-    }
-
-    .contract-info{
-        flex-direction:column;
-        gap:6px;
-    }
-
-}
-
-/* Summary */
-
-.summary{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:15px;
-  margin-top:18px;
-}
-
-.summary-card{
-  background:var(--surface);
-  border-radius:20px;
-  padding:18px;
-}
-
-.summary-card p{
-  color:var(--muted);
-  margin-bottom:8px;
-}
-
-.summary-card h2{
-  font-size:24px;
 }
