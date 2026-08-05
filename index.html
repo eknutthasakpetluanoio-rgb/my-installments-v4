@@ -1,47 +1,67 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Installments</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta charset="UTF-8">
 
-  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<meta name="viewport"
+content="width=device-width,initial-scale=1.0">
 
-  <link rel="stylesheet" href="style.css">
+<title>My Installments</title>
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="style.css">
+
 </head>
 
 <body>
 
 <header class="topbar">
 
-  <div class="brand">
+<div class="brand">
 
-    <div class="logo">
-      💳
-    </div>
+<div class="logo">
 
-    <div>
+💳
 
-      <h1>My Installments</h1>
+</div>
 
-      <p>ติดตามการผ่อนของฉัน</p>
+<div>
 
-    </div>
+<h1>My Installments</h1>
 
-  </div>
+<p>ติดตามการผ่อนของฉัน</p>
 
-  <button id="addBtn" class="icon-btn">
+</div>
 
-    +
+</div>
 
-  </button>
+<button
+id="addBtn"
+class="icon-btn">
+
+＋
+
+</button>
 
 </header>
 
 <main>
+
+<!-- ========================= -->
+<!-- Hero -->
+<!-- ========================= -->
 
 <section class="hero">
 
@@ -55,19 +75,108 @@
 
 <h1 id="totalPay">
 
-0 บาท
+฿0
 
 </h1>
 
-<p id="contractCount">
+<p>
+
+<span id="contractCount">
 
 0 สัญญา
+
+</span>
+
+•
+
+<span id="paidPercent">
+
+0%
+
+</span>
+
+ชำระแล้ว
 
 </p>
 
 </div>
 
 </section>
+
+<!-- ========================= -->
+<!-- Quick Action -->
+<!-- ========================= -->
+
+<section class="quick-actions">
+
+<button class="quick-btn">
+
+<div>
+
+➕
+
+</div>
+
+<span>
+
+เพิ่มสัญญา
+
+</span>
+
+</button>
+
+<button class="quick-btn">
+
+<div>
+
+📅
+
+</div>
+
+<span>
+
+ปฏิทิน
+
+</span>
+
+</button>
+
+<button class="quick-btn">
+
+<div>
+
+📊
+
+</div>
+
+<span>
+
+สถิติ
+
+</span>
+
+</button>
+
+<button class="quick-btn">
+
+<div>
+
+🔍
+
+</div>
+
+<span>
+
+ค้นหา
+
+</span>
+
+</button>
+
+</section>
+<!-- ========================= -->
+<!-- Summary -->
+<!-- ========================= -->
 
 <section class="summary">
 
@@ -81,7 +190,7 @@
 
 <h2 id="remainTotal">
 
-0 บาท
+฿0
 
 </h2>
 
@@ -95,7 +204,7 @@
 
 </p>
 
-<h2 id="paidPercent">
+<h2 id="paidPercentCard">
 
 0%
 
@@ -105,7 +214,43 @@
 
 </section>
 
-<div id="alertBox"></div>
+<!-- ========================= -->
+<!-- Alerts -->
+<!-- ========================= -->
+
+<section class="section-title">
+
+<h2>
+
+การแจ้งเตือน
+
+</h2>
+
+</section>
+
+<section id="alertBox">
+
+<div class="alert-card">
+
+<div class="alert-title">
+
+🎉 ยังไม่มีการแจ้งเตือน
+
+</div>
+
+<div class="alert-text">
+
+เมื่อมีรายการใกล้ครบกำหนดจะแสดงที่นี่
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ========================= -->
+<!-- Contract List -->
+<!-- ========================= -->
 
 <section class="section-title">
 
@@ -135,15 +280,18 @@
 
 <p>
 
-กดปุ่ม + เพื่อเพิ่มรายการแรก
+กดปุ่ม "เพิ่มสัญญา"
+
+เพื่อเริ่มต้นใช้งาน
 
 </p>
 
 </div>
 
 </section>
-
-</main>
+<!-- ========================= -->
+<!-- Floating Action Button -->
+<!-- ========================= -->
 
 <button id="fab" class="fab">
 
@@ -151,17 +299,19 @@
 
 </button>
 
+</main>
+
+<!-- ========================= -->
+<!-- Bottom Navigation -->
+<!-- ========================= -->
+
 <nav class="bottom-nav">
 
 <button class="active">
 
 🏠
 
-<span>
-
-หน้าหลัก
-
-</span>
+<span>หน้าหลัก</span>
 
 </button>
 
@@ -169,11 +319,7 @@
 
 📅
 
-<span>
-
-ปฏิทิน
-
-</span>
+<span>ปฏิทิน</span>
 
 </button>
 
@@ -181,11 +327,7 @@
 
 📊
 
-<span>
-
-สถิติ
-
-</span>
+<span>สถิติ</span>
 
 </button>
 
@@ -193,15 +335,15 @@
 
 ⚙️
 
-<span>
-
-ตั้งค่า
-
-</span>
+<span>ตั้งค่า</span>
 
 </button>
 
 </nav>
+
+<!-- ========================= -->
+<!-- Bottom Sheet -->
+<!-- ========================= -->
 
 <div id="sheet" class="sheet hidden">
 
@@ -211,11 +353,11 @@
 
 <h2>
 
-เพิ่มรายการผ่อน
+เพิ่มสัญญา
 
 </h2>
 
-<button id="closeSheet">
+<button id="closeSheet" class="icon-btn">
 
 ✕
 
@@ -225,39 +367,29 @@
 
 <div class="form-group">
 
-<label>
-
-ชื่อสินค้า
-
-</label>
+<label>ชื่อสินค้า</label>
 
 <input
 id="productName"
-type="text">
+type="text"
+placeholder="เช่น vivo V70">
 
 </div>
 
 <div class="form-group">
 
-<label>
-
-ร้านค้า
-
-</label>
+<label>ร้านค้า</label>
 
 <input
 id="storeName"
-type="text">
+type="text"
+placeholder="เช่น BaNANA">
 
 </div>
 
 <div class="form-group">
 
-<label>
-
-ค่างวดต่อเดือน
-
-</label>
+<label>ค่างวดต่อเดือน</label>
 
 <input
 id="monthlyPay"
@@ -267,11 +399,7 @@ type="number">
 
 <div class="form-group">
 
-<label>
-
-ยอดคงเหลือ
-
-</label>
+<label>ยอดคงเหลือ</label>
 
 <input
 id="remainPay"
@@ -281,11 +409,7 @@ type="number">
 
 <div class="form-group">
 
-<label>
-
-จำนวนงวดทั้งหมด
-
-</label>
+<label>จำนวนงวดทั้งหมด</label>
 
 <input
 id="totalInstallments"
@@ -295,11 +419,7 @@ type="number">
 
 <div class="form-group">
 
-<label>
-
-งวดที่จ่ายแล้ว
-
-</label>
+<label>งวดที่จ่ายแล้ว</label>
 
 <input
 id="paidInstallments"
@@ -310,11 +430,7 @@ value="0">
 
 <div class="form-group">
 
-<label>
-
-วันเริ่มสัญญา
-
-</label>
+<label>วันเริ่มสัญญา</label>
 
 <input
 id="firstPayDate"
@@ -324,25 +440,15 @@ type="date">
 
 <div class="form-group">
 
-<label>
-
-รอบการชำระ
-
-</label>
+<label>รอบการชำระ</label>
 
 <select id="payCycle">
 
-<option value="7">
-ทุก 7 วัน
-</option>
+<option value="7">ทุก 7 วัน</option>
 
-<option value="15">
-ทุก 15 วัน
-</option>
+<option value="15">ทุก 15 วัน</option>
 
-<option value="30">
-ทุก 1 เดือน
-</option>
+<option value="30">ทุกเดือน</option>
 
 </select>
 
@@ -352,7 +458,7 @@ type="date">
 id="saveContract"
 class="save-btn">
 
-บันทึก
+บันทึกสัญญา
 
 </button>
 
@@ -363,4 +469,5 @@ class="save-btn">
 <script src="app.js"></script>
 
 </body>
+
 </html>
