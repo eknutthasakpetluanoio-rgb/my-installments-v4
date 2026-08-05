@@ -1,15 +1,17 @@
 /*==================================
- My Installments V2
+ My Installments V4
 ==================================*/
 
 const STORAGE_KEY = "contracts";
 
-/* ---------- Data ---------- */
-
 let contracts =
 JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
 
-/* ---------- Hero ---------- */
+let editingId = null;
+
+/*==================================
+ Hero
+==================================*/
 
 const totalPay =
 document.getElementById("totalPay");
@@ -29,7 +31,9 @@ document.getElementById("remainInstallments");
 const heroProgress =
 document.getElementById("heroProgress");
 
-/* ---------- Layout ---------- */
+/*==================================
+ Layout
+==================================*/
 
 const contractsBox =
 document.getElementById("contracts");
@@ -37,7 +41,9 @@ document.getElementById("contracts");
 const alertBox =
 document.getElementById("alertBox");
 
-/* ---------- Buttons ---------- */
+/*==================================
+ Buttons
+==================================*/
 
 const addBtn =
 document.getElementById("addBtn");
@@ -54,7 +60,9 @@ document.getElementById("closeSheet");
 const saveBtn =
 document.getElementById("saveContract");
 
-/* ---------- Inputs ---------- */
+/*==================================
+ Inputs
+==================================*/
 
 const productName =
 document.getElementById("productName");
@@ -79,245 +87,339 @@ document.getElementById("firstPayDate");
 
 const payCycle =
 document.getElementById("payCycle");
+
 /*==================================
  Bottom Sheet
 ==================================*/
 
-function openSheet() {
-  sheet.classList.remove("hidden");
+function openSheet(){
+
+    sheet.classList.remove("hidden");
+
 }
 
-function closeSheetUI() {
-  sheet.classList.add("hidden");
+function closeSheetUI(){
+
+    sheet.classList.add("hidden");
+
+    editingId = null;
+
+    resetForm();
+
 }
 
-addBtn.addEventListener("click", openSheet);
-fab.addEventListener("click", openSheet);
+addBtn.onclick = openSheet;
 
-closeSheet.addEventListener("click", closeSheetUI);
+if(fab){
 
-sheet.addEventListener("click", (e) => {
-  if (e.target === sheet) {
+    fab.onclick = openSheet;
+
+}
+
+closeSheet.onclick = closeSheetUI;
+
+sheet.onclick = e=>{
+
+    if(e.target===sheet){
+
+        closeSheetUI();
+
+    }
+
+};
+
+/*==================================
+ Storage
+==================================*/
+
+function saveStorage(){
+
+    localStorage.setItem(
+
+        STORAGE_KEY,
+
+        JSON.stringify(contracts)
+
+    );
+
+}
+
+/*==================================
+ Reset Form
+==================================*/
+
+function resetForm(){
+
+    productName.value = "";
+
+    storeName.value = "";
+
+    monthlyPay.value = "";
+
+    remainPay.value = "";
+
+    totalInstallments.value = "";
+
+    paidInstallments.value = 0;
+
+    firstPayDate.value = "";
+
+    payCycle.value = 30;
+
+}
+
+/*==================================
+ Save Contract
+==================================*/
+
+saveBtn.onclick = ()=>{
+
+    if(
+
+        productName.value.trim()==="" ||
+
+        monthlyPay.value===""
+
+    ){
+
+        alert("กรุณากรอกข้อมูลให้ครบ");
+
+        return;
+
+    }
+
+    const item={
+
+        id:editingId || Date.now(),
+
+        productName:productName.value,
+
+        storeName:storeName.value,
+
+        monthlyPay:Number(monthlyPay.value),
+
+        remainPay:Number(remainPay.value),
+
+        totalInstallments:Number(totalInstallments.value),
+
+        paidInstallments:Number(paidInstallments.value),
+
+        firstPayDate:firstPayDate.value,
+
+        payCycle:Number(payCycle.value)
+
+    };
+    if(editingId){
+
+        const index =
+        contracts.findIndex(
+            c => c.id === editingId
+        );
+
+        if(index !== -1){
+
+            contracts[index] = item;
+
+        }
+
+    }else{
+
+        contracts.push(item);
+
+    }
+
+    saveStorage();
+
     closeSheetUI();
-  }
-});
+
+    render();
+
+};
 
 /*==================================
- Save
+ Delete
 ==================================*/
 
-saveBtn.addEventListener("click", () => {
+function deleteContract(id){
 
-  if (
-    productName.value.trim() === "" ||
-    monthlyPay.value === ""
-  ) {
-    alert("กรุณากรอกข้อมูลให้ครบ");
-    return;
-  }
+    if(!confirm("ลบรายการนี้ ?")){
 
-  const item = {
+        return;
 
-    id: Date.now(),
+    }
 
-    product: productName.value,
+    contracts = contracts.filter(
 
-    store: storeName.value,
+        item => item.id !== id
 
-    monthly: Number(monthlyPay.value),
+    );
 
-    remain: Number(remainPay.value),
+    saveStorage();
 
-    total: Number(totalInstallments.value),
+    render();
 
-    paid: Number(paidInstallments.value),
+}
 
-    firstDate: firstPayDate.value,
-
-    cycle: Number(payCycle.value)
-
-  };
 /*==================================
- Render
+ Edit
 ==================================*/
 
-function render() {
+function editContract(id){
 
-  let monthTotal = 0;
-  let remain = 0;
-  let paid = 0;
-  let total = 0;
+    const item = contracts.find(
 
-  if (contracts.length === 0) {
+        c => c.id === id
 
-    contractsBox.innerHTML = `
-      <div class="empty-state">
-        <span class="material-symbols-rounded">inventory_2</span>
-        <h3>ยังไม่มีรายการผ่อน</h3>
-        <p>กดปุ่ม + เพื่อเพิ่มรายการแรก</p>
-      </div>
-    `;
+    );
 
-    totalPay.textContent = "฿0";
-    remainTotal.textContent = "฿0";
-    paidPercent.textContent = "0%";
-    contractCount.textContent = "0 สัญญา";
-    remainInstallments.textContent = "เหลือ 0 งวด";
-    heroProgress.style.width = "0%";
+    if(!item){
 
-    return;
-  }
+        return;
 
-  contractsBox.innerHTML = "";
+    }
 
-  contracts.forEach(item => {
+    editingId = item.id;
 
-    monthTotal += item.monthly;
-    remain += item.remain;
-    paid += item.paid;
-    total += item.total;
+    productName.value =
+    item.productName;
+
+    storeName.value =
+    item.storeName;
+
+    monthlyPay.value =
+    item.monthlyPay;
+
+    remainPay.value =
+    item.remainPay;
+
+    totalInstallments.value =
+    item.totalInstallments;
+
+    paidInstallments.value =
+    item.paidInstallments;
+
+    firstPayDate.value =
+    item.firstPayDate;
+
+    payCycle.value =
+    item.payCycle;
+
+    openSheet();
+
+}
+
+/*==================================
+ Summary
+==================================*/
+
+function updateSummary(
+
+    monthTotal,
+
+    remain,
+
+    paid,
+
+    total
+
+){
 
     const percent =
-      item.total > 0
-        ? Math.round((item.paid / item.total) * 100)
-        : 0;
 
-    const card = document.createElement("div");
-
-    card.className = "contract-card";
-
-    card.innerHTML = `
-      <h3>${item.product}</h3>
-
-      <p>${item.store}</p>
-
-      <p>ค่างวด ${item.monthly.toLocaleString()} บาท / เดือน</p>
-
-      <p>ยอดคงเหลือ ${item.remain.toLocaleString()} บาท</p>
-
-      <div class="hero-progress">
-        <div
-          class="hero-progress-bar"
-          style="width:${percent}%">
-        </div>
-      </div>
-
-      <p style="margin-top:10px">
-        ${item.paid} / ${item.total} งวด
-      </p>
-    `;
-
-    contractsBox.appendChild(card);
-
-  });
-
-  const allPercent =
     total > 0
-      ? Math.round((paid / total) * 100)
-      : 0;
 
-  totalPay.textContent =
-    "฿" + monthTotal.toLocaleString();
+    ?
 
-  remainTotal.textContent =
-    "฿" + remain.toLocaleString();
+    Math.round(
 
-  paidPercent.textContent =
-    allPercent + "%";
+    (paid / total) * 100
 
-  contractCount.textContent =
+    )
+
+    :
+
+    0;
+
+    totalPay.textContent =
+    "฿" +
+    monthTotal.toLocaleString();
+
+    remainTotal.textContent =
+    "฿" +
+    remain.toLocaleString();
+
+    paidPercent.textContent =
+    percent + "%";
+
+    contractCount.textContent =
     contracts.length + " สัญญา";
 
-  remainInstallments.textContent =
-    "เหลือ " + (total - paid) + " งวด";
+    remainInstallments.textContent =
+    "เหลือ " +
+    (total - paid) +
+    " งวด";
 
-  heroProgress.style.width =
-    allPercent + "%";
+    heroProgress.style.width =
+    percent + "%";
 
 }
-
-/*==================================
- Start
-==================================*/
-
-render();
-  contracts.push(item);
-
-  localStorage.setItem(
-    STORAGE_KEY,
-    JSON.stringify(contracts)
-  );
-
-  productName.value = "";
-  storeName.value = "";
-  monthlyPay.value = "";
-  remainPay.value = "";
-  totalInstallments.value = "";
-  paidInstallments.value = "0";
-  firstPayDate.value = "";
-  payCycle.value = "30";
-
-  closeSheetUI();
-
-  render();
-
-});
 /*==================================
  Render
 ==================================*/
 
 function render(){
 
-    let monthTotal=0;
-    let remain=0;
-    let paid=0;
-    let total=0;
+    let monthTotal = 0;
+    let remain = 0;
+    let paid = 0;
+    let total = 0;
 
-    contractsBox.innerHTML="";
-    alertBox.innerHTML="";
+    contractsBox.innerHTML = "";
+    alertBox.innerHTML = "";
 
-    if(contracts.length===0){
+    if(contracts.length === 0){
 
-        contractsBox.innerHTML=`
+        contractsBox.innerHTML = `
         <div class="empty-state">
             <span class="material-symbols-rounded">
                 inventory_2
             </span>
+
             <h3>ยังไม่มีรายการผ่อน</h3>
+
             <p>กดปุ่ม + เพื่อเพิ่มรายการแรก</p>
         </div>`;
 
-        totalPay.textContent="฿0";
-        remainTotal.textContent="฿0";
-        paidPercent.textContent="0%";
-        contractCount.textContent="0 สัญญา";
-        remainInstallments.textContent="เหลือ 0 งวด";
-        heroProgress.style.width="0%";
+        updateSummary(0,0,0,0);
 
         return;
+
     }
 
     contracts.forEach(item=>{
 
-        monthTotal+=item.monthlyPay;
-        remain+=item.remainPay;
-        paid+=item.paidInstallments;
-        total+=item.totalInstallments;
+        monthTotal += item.monthlyPay;
+        remain += item.remainPay;
+        paid += item.paidInstallments;
+        total += item.totalInstallments;
 
-        const percent=
-        item.totalInstallments
+        const percent =
+        item.totalInstallments > 0
         ?
         Math.round(
-        (item.paidInstallments/item.totalInstallments)*100
+        (item.paidInstallments /
+        item.totalInstallments)*100
         )
         :
         0;
 
-        const card=document.createElement("div");
+        const card =
+        document.createElement("div");
 
-        card.className="contract-card";
+        card.className =
+        "contract-card";
 
-        card.innerHTML=`
+        card.innerHTML = `
 
 <h3>${item.productName}</h3>
 
@@ -329,9 +431,16 @@ ${item.monthlyPay.toLocaleString()}
 บาท / เดือน
 </p>
 
+<p>
+ยอดคงเหลือ
+${item.remainPay.toLocaleString()}
+บาท
+</p>
+
 <div class="hero-progress">
 
-<div class="hero-progress-bar"
+<div
+class="hero-progress-bar"
 style="width:${percent}%">
 
 </div>
@@ -382,89 +491,59 @@ delete
 
 `;
 
-        card.onclick=()=>{
+        card.addEventListener(
+        "click",
+        ()=>{
 
             localStorage.setItem(
                 "currentContract",
                 item.id
             );
 
-            location.href="detail.html";
+            location.href =
+            "detail.html";
 
-        };
+        });
 
-        card
-        .querySelector(".edit-btn")
-        .onclick=(e)=>{
-
-            e.stopPropagation();
-
-            editingId=item.id;
-
-            productName.value=item.productName;
-            storeName.value=item.storeName;
-            monthlyPay.value=item.monthlyPay;
-            remainPay.value=item.remainPay;
-            totalInstallments.value=item.totalInstallments;
-            paidInstallments.value=item.paidInstallments;
-            firstPayDate.value=item.firstPayDate;
-            payCycle.value=item.payCycle;
-
-            openSheet();
-
-        };
-
-        card
-        .querySelector(".delete-btn")
-        .onclick=(e)=>{
+        card.querySelector(
+        ".edit-btn"
+        ).addEventListener(
+        "click",
+        e=>{
 
             e.stopPropagation();
 
-            if(!confirm("ลบรายการนี้ ?")) return;
+            editContract(item.id);
 
-            contracts=
-            contracts.filter(
-            x=>x.id!==item.id
-            );
+        });
 
-            saveStorage();
+        card.querySelector(
+        ".delete-btn"
+        ).addEventListener(
+        "click",
+        e=>{
 
-            render();
+            e.stopPropagation();
 
-        };
+            deleteContract(item.id);
+
+        });
 
         contractsBox.appendChild(card);
 
     });
 
-    const allPercent=
-    total
-    ?
-    Math.round((paid/total)*100)
-    :
-    0;
+    updateSummary(
 
-    totalPay.textContent=
-    "฿"+
-    monthTotal.toLocaleString();
+        monthTotal,
 
-    remainTotal.textContent=
-    "฿"+
-    remain.toLocaleString();
+        remain,
 
-    paidPercent.textContent=
-    allPercent+"%";
+        paid,
 
-    contractCount.textContent=
-    contracts.length+" สัญญา";
+        total
 
-    remainInstallments.textContent=
-    "เหลือ "+
-    (total-paid)+
-    " งวด";
-
-    heroProgress.style.width=
-    allPercent+"%";
+    );
 
 }
 
