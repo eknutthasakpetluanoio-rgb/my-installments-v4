@@ -47,6 +47,11 @@ contract.totalInstallments + " งวด";
 
 const list =
 document.getElementById("installmentList");
+const startDate =
+new Date(contract.firstPayDate);
+
+const payCycle =
+Number(contract.payCycle || 7);
 
 list.innerHTML = "";
 
@@ -57,7 +62,15 @@ for (let i = 1; i <= contract.totalInstallments; i++) {
 
     const current =
         i === contract.paidInstallments + 1;
+const dueDate =
+new Date(startDate);
 
+dueDate.setDate(
+    dueDate.getDate() + ((i - 1) * payCycle)
+);
+
+const dueText =
+dueDate.toLocaleDateString("th-TH");
     list.innerHTML += `
 
     <div class="contract-card">
@@ -70,14 +83,18 @@ for (let i = 1; i <= contract.totalInstallments; i++) {
                     งวดที่ ${i}
                 </div>
 
-                <div class="contract-store">
-                    ${
-                        paid
-                        ? "✅ ชำระแล้ว"
-                        : "⌛ รอชำระ"
-                    }
-                </div>
+                
+<div class="contract-store">
 
+${paid ? "✅ ชำระแล้ว" : "⏳ รอชำระ"}
+
+<div style="margin-top:6px;font-size:13px;opacity:.8">
+
+📅 ${dueText}
+
+</div>
+
+</div>
             </div>
 
             <div>
