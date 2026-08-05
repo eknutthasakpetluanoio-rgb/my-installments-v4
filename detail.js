@@ -52,11 +52,52 @@ document.getElementById("installmentList");
 
 list.innerHTML = "";
 
-for(
-    let i = 1;
-    i <= contract.totalInstallments;
-    i++
-){
+list.innerHTML += `
+
+<div class="contract-card">
+
+    <div class="contract-header">
+
+        <div>
+
+            <div class="contract-name">
+
+                งวดที่ ${i}
+
+            </div>
+
+            <div class="contract-store">
+
+                ${paid ? "✅ ชำระแล้ว" : "⌛ รอชำระ"}
+
+            </div>
+
+        </div>
+
+        <div>
+
+            ${Number(contract.monthlyPay).toLocaleString()} บาท
+
+        </div>
+
+    </div>
+
+    ${
+        paid
+        ? ""
+        :
+        `<button
+            class="btn btn-primary"
+            onclick="payInstallment()">
+
+            ชำระงวดนี้
+
+        </button>`
+    }
+
+</div>
+
+`;
 
     const paid =
     i <= contract.paidInstallments;
