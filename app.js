@@ -345,7 +345,7 @@ function viewDetail(id){
 
     );
 
-    alert("หน้า Detail จะทำต่อในขั้นถัดไป");
+    window.location.href = "detail.html";
 
     // ภายหลังเปลี่ยนเป็น
     // window.location.href = "detail.html";
