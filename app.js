@@ -4,18 +4,15 @@
 
 const STORAGE_KEY = "installments_v2";
 
-let contracts = JSON.parse(
-localStorage.getItem(STORAGE_KEY)
-) || [];
+/* ---------- Data ---------- */
+
+let contracts =
+JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+
+/* ---------- Hero ---------- */
 
 const totalPay =
 document.getElementById("totalPay");
-
-const contractCount =
-document.getElementById("contractCount");
-
-const remainInstallments =
-document.getElementById("remainInstallments");
 
 const remainTotal =
 document.getElementById("remainTotal");
@@ -23,11 +20,24 @@ document.getElementById("remainTotal");
 const paidPercent =
 document.getElementById("paidPercent");
 
+const contractCount =
+document.getElementById("contractCount");
+
+const remainInstallments =
+document.getElementById("remainInstallments");
+
 const heroProgress =
 document.getElementById("heroProgress");
 
+/* ---------- Layout ---------- */
+
 const contractsBox =
 document.getElementById("contracts");
+
+const alertBox =
+document.getElementById("alertBox");
+
+/* ---------- Buttons ---------- */
 
 const addBtn =
 document.getElementById("addBtn");
@@ -38,8 +48,37 @@ document.getElementById("fab");
 const sheet =
 document.getElementById("sheet");
 
+const closeSheet =
+document.getElementById("closeSheet");
+
 const saveBtn =
 document.getElementById("saveContract");
+
+/* ---------- Inputs ---------- */
+
+const productName =
+document.getElementById("productName");
+
+const storeName =
+document.getElementById("storeName");
+
+const monthlyPay =
+document.getElementById("monthlyPay");
+
+const remainPay =
+document.getElementById("remainPay");
+
+const totalInstallments =
+document.getElementById("totalInstallments");
+
+const paidInstallments =
+document.getElementById("paidInstallments");
+
+const firstPayDate =
+document.getElementById("firstPayDate");
+
+const payCycle =
+document.getElementById("payCycle");
 /*==================================
  Bottom Sheet
 ==================================*/
@@ -48,179 +87,152 @@ function openSheet() {
   sheet.classList.remove("hidden");
 }
 
-function closeSheet() {
+function closeSheetUI() {
   sheet.classList.add("hidden");
 }
 
 addBtn.addEventListener("click", openSheet);
 fab.addEventListener("click", openSheet);
 
+closeSheet.addEventListener("click", closeSheetUI);
+
 sheet.addEventListener("click", (e) => {
   if (e.target === sheet) {
-    closeSheet();
+    closeSheetUI();
   }
 });
 
 /*==================================
- Save Contract
+ Save
 ==================================*/
 
 saveBtn.addEventListener("click", () => {
+
+  if (
+    productName.value.trim() === "" ||
+    monthlyPay.value === ""
+  ) {
+    alert("กรุณากรอกข้อมูลให้ครบ");
+    return;
+  }
 
   const item = {
 
     id: Date.now(),
 
-    product: document.getElementById("productName").value,
+    product: productName.value,
 
-    store: document.getElementById("storeName").value,
+    store: storeName.value,
 
-    monthly: Number(
-      document.getElementById("monthlyPay").value
-    ),
+    monthly: Number(monthlyPay.value),
 
-    remain: Number(
-      document.getElementById("remainPay").value
-    ),
+    remain: Number(remainPay.value),
 
-    total: Number(
-      document.getElementById("totalInstallments").value
-    ),
+    total: Number(totalInstallments.value),
 
-    paid: Number(
-      document.getElementById("paidInstallments").value
-    ),
+    paid: Number(paidInstallments.value),
 
-    firstDate:
-      document.getElementById("firstPayDate").value,
+    firstDate: firstPayDate.value,
 
-    cycle:
-      document.getElementById("payCycle").value
+    cycle: Number(payCycle.value)
 
   };
-
-  contracts.push(item);
-
-  localStorage.setItem(
-    STORAGE_KEY,
-    JSON.stringify(contracts)
-  );
-
-  render();
-
-  closeSheet();
-
-});
 /*==================================
  Render
 ==================================*/
 
 function render() {
 
-let monthTotal = 0;
-let remain = 0;
-let paid = 0;
-let total = 0;
+  let monthTotal = 0;
+  let remain = 0;
+  let paid = 0;
+  let total = 0;
 
-if (contracts.length === 0) {
+  if (contracts.length === 0) {
 
-contractsBox.innerHTML = `
+    contractsBox.innerHTML = `
+      <div class="empty-state">
+        <span class="material-symbols-rounded">inventory_2</span>
+        <h3>ยังไม่มีรายการผ่อน</h3>
+        <p>กดปุ่ม + เพื่อเพิ่มรายการแรก</p>
+      </div>
+    `;
 
-<div class="empty-state">
+    totalPay.textContent = "฿0";
+    remainTotal.textContent = "฿0";
+    paidPercent.textContent = "0%";
+    contractCount.textContent = "0 สัญญา";
+    remainInstallments.textContent = "เหลือ 0 งวด";
+    heroProgress.style.width = "0%";
 
-<span class="material-symbols-rounded">
+    return;
+  }
 
-inventory_2
+  contractsBox.innerHTML = "";
 
-</span>
+  contracts.forEach(item => {
 
-<h3>ยังไม่มีรายการผ่อน</h3>
+    monthTotal += item.monthly;
+    remain += item.remain;
+    paid += item.paid;
+    total += item.total;
 
-<p>กดปุ่ม + เพื่อเพิ่มรายการแรก</p>
+    const percent =
+      item.total > 0
+        ? Math.round((item.paid / item.total) * 100)
+        : 0;
 
-</div>
+    const card = document.createElement("div");
 
-`;
+    card.className = "contract-card";
 
-totalPay.textContent = "฿0";
-remainTotal.textContent = "฿0";
-contractCount.textContent = "0 สัญญา";
-remainInstallments.textContent = "เหลือ 0 งวด";
-paidPercent.textContent = "0%";
-heroProgress.style.width = "0%";
+    card.innerHTML = `
+      <h3>${item.product}</h3>
 
-return;
+      <p>${item.store}</p>
 
-}
+      <p>ค่างวด ${item.monthly.toLocaleString()} บาท / เดือน</p>
 
-contractsBox.innerHTML = "";
+      <p>ยอดคงเหลือ ${item.remain.toLocaleString()} บาท</p>
 
-contracts.forEach(item=>{
+      <div class="hero-progress">
+        <div
+          class="hero-progress-bar"
+          style="width:${percent}%">
+        </div>
+      </div>
 
-monthTotal += item.monthly;
-remain += item.remain;
-paid += item.paid;
-total += item.total;
+      <p style="margin-top:10px">
+        ${item.paid} / ${item.total} งวด
+      </p>
+    `;
 
-const percent =
-item.total === 0
-?0
-:Math.round(
-(item.paid/item.total)*100
-);
+    contractsBox.appendChild(card);
 
-contractsBox.innerHTML += `
+  });
 
-<div class="summary-card" style="margin-bottom:16px;">
+  const allPercent =
+    total > 0
+      ? Math.round((paid / total) * 100)
+      : 0;
 
-<h3>${item.product}</h3>
+  totalPay.textContent =
+    "฿" + monthTotal.toLocaleString();
 
-<p>${item.store}</p>
+  remainTotal.textContent =
+    "฿" + remain.toLocaleString();
 
-<p>ค่างวด ${item.monthly.toLocaleString()} บาท</p>
+  paidPercent.textContent =
+    allPercent + "%";
 
-<p>คงเหลือ ${item.remain.toLocaleString()} บาท</p>
+  contractCount.textContent =
+    contracts.length + " สัญญา";
 
-<p>${item.paid}/${item.total} งวด</p>
+  remainInstallments.textContent =
+    "เหลือ " + (total - paid) + " งวด";
 
-<div class="hero-progress">
-
-<div
-class="hero-progress-bar"
-style="width:${percent}%">
-
-</div>
-
-</div>
-
-</div>
-
-`;
-
-});
-
-const payPercent =
-total===0
-?0
-:Math.round((paid/total)*100);
-
-totalPay.textContent =
-"฿"+monthTotal.toLocaleString();
-
-remainTotal.textContent =
-"฿"+remain.toLocaleString();
-
-contractCount.textContent =
-contracts.length+" สัญญา";
-
-remainInstallments.textContent =
-"เหลือ "+(total-paid)+" งวด";
-
-paidPercent.textContent =
-payPercent+"%";
-
-heroProgress.style.width =
-payPercent+"%";
+  heroProgress.style.width =
+    allPercent + "%";
 
 }
 
@@ -229,3 +241,24 @@ payPercent+"%";
 ==================================*/
 
 render();
+  contracts.push(item);
+
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(contracts)
+  );
+
+  productName.value = "";
+  storeName.value = "";
+  monthlyPay.value = "";
+  remainPay.value = "";
+  totalInstallments.value = "";
+  paidInstallments.value = "0";
+  firstPayDate.value = "";
+  payCycle.value = "30";
+
+  closeSheetUI();
+
+  render();
+
+});
