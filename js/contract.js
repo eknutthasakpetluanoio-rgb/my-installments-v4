@@ -43,39 +43,55 @@ function createContract(data) {
 
 /* ---------- Read ---------- */
 
-function getContract(id) {
+function getStatus(contract) {
 
-    return findContract(id);
+    if (
+        contract.due &&
+        contract.due < today() &&
+        contract.paidMonths < contract.months
+    ) {
 
-}
+        return {
 
-/* ---------- Update ---------- */
+            text: "เลยกำหนด",
 
-function editContract(id, data) {
+            className: "danger"
 
-    const contract = getContract(id);
-
-    if (!contract) {
-
-        return false;
+        };
 
     }
 
-    contract.name = safeText(data.name);
+    if (contract.paidMonths >= contract.months) {
 
-    contract.shop = safeText(data.shop);
+        return {
 
-    contract.price = toNumber(data.price);
+            text: "ชำระครบ",
 
-    contract.down = toNumber(data.down);
+            className: "success"
 
-    contract.months = toNumber(data.months);
+        };
 
-    contract.monthly = toNumber(data.monthly);
+    }
 
-    contract.due = data.due;
+    if (contract.paidMonths >= Math.ceil(contract.months * 0.8)) {
 
-    return updateContract(id, contract);
+        return {
+
+            text: "ใกล้ครบ",
+
+            className: "warning"
+
+        };
+
+    }
+
+    return {
+
+        text: "กำลังผ่อน",
+
+        className: "primary"
+
+    };
 
 }
 
@@ -209,6 +225,12 @@ function getDashboardData() {
 
     let totalAmount = 0;
 
+    let lateContracts = 0;
+
+    let todayContracts = 0;
+
+    const currentDate = today();
+
     contracts.forEach(contract => {
 
         monthlyTotal += contract.monthly;
@@ -218,6 +240,29 @@ function getDashboardData() {
         paidAmount += contract.paidAmount;
 
         totalAmount += (contract.price - contract.down);
+
+        if (
+            contract.paidMonths < contract.months
+        ) {
+
+            if (
+                contract.due &&
+                contract.due < currentDate
+            ) {
+
+                lateContracts++;
+
+            }
+
+            if (
+                contract.due === currentDate
+            ) {
+
+                todayContracts++;
+
+            }
+
+        }
 
     });
 
@@ -235,11 +280,17 @@ function getDashboardData() {
 
         totalAmount,
 
+        lateContracts,
+
+        todayContracts,
+
         paidPercent:
 
             totalAmount > 0
 
-                ? Math.round((paidAmount / totalAmount) * 100)
+                ? Math.round(
+                    (paidAmount / totalAmount) * 100
+                )
 
                 : 0
 
@@ -248,3 +299,16 @@ function getDashboardData() {
 }
 
 console.log("✅ contract.js loaded");
+function getRemainingMonths(contract){
+
+    return Math.max(
+
+        contract.months -
+
+        contract.paidMonths,
+
+        0
+
+    );
+
+}
