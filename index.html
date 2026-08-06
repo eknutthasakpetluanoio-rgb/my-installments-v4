@@ -1,396 +1,173 @@
 <!DOCTYPE html>
 <html lang="th">
-
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PayNest</title>
 
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="style.css">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-<meta name="theme-color" content="#050608">
-<meta name="color-scheme" content="dark">
-
-<meta name="description"
-content="PayNest ระบบจัดการรายการผ่อน ช่วยติดตามค่างวด ยอดคงเหลือ และสรุปรายเดือน">
-
-<meta name="keywords"
-content="PayNest,Installment,ผ่อน,ค่างวด,Tracker">
-
-<meta name="author" content="PayNest">
-
-<title>PayNest</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link
-href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap"
-rel="stylesheet">
-
-<link
-href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded"
-rel="stylesheet">
-
-<link rel="stylesheet" href="style.css">
-
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
 </head>
 
 <body>
 
-<div class="background-blur"></div>
+<div class="background"></div>
 
-<header class="topbar">
+<div class="container">
 
-<div class="brand">
+<header>
 
 <div class="logo">
+<h1>PayNest</h1>
+<p>Track Every Installment</p>
+</div>
 
+<button class="profile">
 <span class="material-symbols-rounded">
-account_balance_wallet
+account_circle
 </span>
+</button>
+
+</header>
+
+<section class="hero">
+
+<p class="label">
+ยอดที่ต้องชำระเดือนนี้
+</p>
+
+<h2 id="monthlyTotal">
+฿0
+</h2>
+
+<div class="progress">
+
+<div class="progress-bar" id="progressBar"></div>
+
+</div>
+
+<div class="hero-info">
+
+<div>
+
+<span>ยอดคงเหลือ</span>
+
+<strong id="remainMoney">
+฿0
+</strong>
 
 </div>
 
 <div>
 
-<h1>PayNest</h1>
+<span>สัญญา</span>
 
-<p>Luxury Installments Tracker</p>
+<strong id="contractCount">
+0
+</strong>
 
 </div>
 
 </div>
 
-<button
-id="addBtn"
-class="glass-btn"
-type="button"
-aria-label="เพิ่มรายการผ่อน">
+</section>
+
+<section class="insight">
+
+<h3>
 
 <span class="material-symbols-rounded">
+
+lightbulb
+
+</span>
+
+Smart Insight
+
+</h3>
+
+<p id="insight">
+
+ยังไม่มีข้อมูล
+
+</p>
+
+</section>
+
+<section>
+
+<h3 class="title">
+
+รายการผ่อน
+
+</h3>
+
+<div id="contractList">
+
+</div>
+
+</section>
+
+<button class="fab">
+
+<span class="material-symbols-rounded">
+
 add
+
 </span>
 
 </button>
 
-</header>
+<nav class="bottom-nav">
 
-<main id="homePage">
-<section class="hero glass">
+<button class="active">
 
-    <p class="hero-title">ยอดที่ต้องชำระเดือนนี้</p>
+<span class="material-symbols-rounded">
 
-    <h1 id="totalPay">฿0</h1>
+home
 
-    <div class="progress">
-        <div id="progressBar"></div>
-    </div>
-
-    <div class="hero-bottom">
-
-        <div>
-            <strong id="contractCount">0</strong>
-            <span>สัญญา</span>
-        </div>
-
-        <div>
-            <strong id="remainCount">0</strong>
-            <span>งวดคงเหลือ</span>
-        </div>
-
-    </div>
-
-</section>
-
-
-<section class="summary">
-
-    <article class="summary-card glass">
-
-        <p>ยอดคงเหลือ</p>
-
-        <h2 id="remainMoney">฿0</h2>
-
-        <small>รวมทุกสัญญา</small>
-
-    </article>
-
-    <article class="summary-card glass">
-
-        <p>ชำระแล้ว</p>
-
-        <h2 id="paidPercent">0%</h2>
-
-        <small>ความคืบหน้า</small>
-
-    </article>
-
-</section>
-
-
-<section class="actions">
-
-    <button
-        id="quickAdd"
-        class="action glass"
-        type="button"
-        aria-label="เพิ่มรายการ">
-
-        <span class="material-symbols-rounded">
-            add_circle
-        </span>
-
-        <h3>เพิ่ม</h3>
-
-        <p>สร้างรายการผ่อนใหม่</p>
-
-    </button>
-
-
-    <button
-        id="searchBtn"
-        class="action glass"
-        type="button"
-        aria-label="ค้นหารายการ">
-
-        <span class="material-symbols-rounded">
-            search
-        </span>
-
-        <h3>ค้นหา</h3>
-
-        <p>ค้นหารายการทั้งหมด</p>
-
-    </button>
-
-
-    <button
-        id="calendarBtn"
-        class="action glass"
-        type="button"
-        aria-label="ปฏิทิน">
-
-        <span class="material-symbols-rounded">
-            calendar_month
-        </span>
-
-        <h3>ปฏิทิน</h3>
-
-        <p>ดูรอบชำระ</p>
-
-    </button>
-
-
-    <button
-        id="statBtn"
-        class="action glass"
-        type="button"
-        aria-label="สถิติ">
-
-        <span class="material-symbols-rounded">
-            bar_chart
-        </span>
-
-        <h3>สถิติ</h3>
-
-        <p>วิเคราะห์การผ่อน</p>
-
-    </button>
-
-</section>
-
-
-<section class="contracts">
-
-    <div class="section-header">
-
-        <h2>รายการผ่อนทั้งหมด</h2>
-
-        <span id="listCount">0 รายการ</span>
-
-    </div>
-
-    <div id="contracts">
-
-        <div
-            class="empty-state glass"
-            id="emptyState">
-
-            <span class="material-symbols-rounded">
-                inventory_2
-            </span>
-
-            <h3>ยังไม่มีรายการผ่อน</h3>
-
-            <p>กดปุ่ม + เพื่อเพิ่มรายการแรกของคุณ</p>
-
-        </div>
-
-    </div>
-
-</section>
-
-</main>
-<!-- Floating Action Button -->
-
-<button
-    class="fab"
-    id="fab"
-    type="button"
-    aria-label="เพิ่มรายการผ่อน">
-
-    <span class="material-symbols-rounded">
-        add
-    </span>
+</span>
 
 </button>
 
+<button>
 
-<!-- Bottom Navigation -->
+<span class="material-symbols-rounded">
 
-<nav
-    class="bottom-nav glass"
-    aria-label="เมนูหลัก">
+calendar_month
 
-    <button
-        id="navHome"
-        class="active"
-        type="button">
+</span>
 
-        <span class="material-symbols-rounded">
-            home
-        </span>
+</button>
 
-        <p>หน้าหลัก</p>
+<button>
 
-    </button>
+<span class="material-symbols-rounded">
 
+bar_chart
 
-    <button
-        id="navCalendar"
-        type="button">
+</span>
 
-        <span class="material-symbols-rounded">
-            calendar_month
-        </span>
+</button>
 
-        <p>ปฏิทิน</p>
+<button>
 
-    </button>
+<span class="material-symbols-rounded">
 
+settings
 
-    <button
-        id="navStats"
-        type="button">
+</span>
 
-        <span class="material-symbols-rounded">
-            bar_chart
-        </span>
-
-        <p>สถิติ</p>
-
-    </button>
-
-
-    <button
-        id="navSettings"
-        type="button">
-
-        <span class="material-symbols-rounded">
-            settings
-        </span>
-
-        <p>ตั้งค่า</p>
-
-    </button>
+</button>
 
 </nav>
 
-
-<!-- Bottom Sheet -->
-
-<div
-    id="sheet"
-    class="sheet hidden">
-
-    <div class="sheet-content">
-
-        <div class="sheet-header">
-
-            <h2>เพิ่มรายการผ่อน</h2>
-
-            <button
-                id="closeSheet"
-                class="icon-btn"
-                type="button">
-
-                <span class="material-symbols-rounded">
-                    close
-                </span>
-
-            </button>
-
-        </div>
-
-        <div id="sheetBody"></div>
-
-    </div>
-
 </div>
-
-
-<!-- Search -->
-
-<div
-    id="searchModal"
-    class="sheet hidden">
-
-    <div class="sheet-content">
-
-        <div class="sheet-header">
-
-            <h2>ค้นหารายการ</h2>
-
-            <button
-                id="closeSearch"
-                class="icon-btn"
-                type="button">
-
-                <span class="material-symbols-rounded">
-                    close
-                </span>
-
-            </button>
-
-        </div>
-
-        <input
-            id="searchInput"
-            type="text"
-            placeholder="ค้นหาชื่อร้าน หรือ รายการผ่อน">
-
-        <div id="searchResult"></div>
-
-    </div>
-
-</div>
-
-
-<!-- Toast -->
-
-<div
-    id="toast"
-    class="toast hide">
-
-    <span id="toastText"></span>
-
-</div>
-
 
 <script src="app.js"></script>
 
 </body>
-
 </html>
