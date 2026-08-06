@@ -1,6 +1,20 @@
+/* ===================================
+   PayNest v3.1
+   Main Stylesheet
+=================================== */
+
+/* Foundation */
 @import url("variables.css");
+@import url("base.css");
+
+/* Layout */
 @import url("layout.css");
+
+/* Components */
 @import url("components.css");
-@import url("sheet.css");
-@import url("navigation.css");
-@import url("animation.css");
+
+/* Pages */
+@import url("pages.css");
+
+/* Animations */
+@import url("animations.css");
