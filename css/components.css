@@ -1,33 +1,46 @@
 /* ===================================
    PayNest Premium v4
-   Components - Part 1
+   Components
 =================================== */
 
-/* ---------- Hero Card ---------- */
+/* ===========================
+   Hero Card
+=========================== */
 
 .hero-card{
     position:relative;
     overflow:hidden;
 
-    padding:26px;
+    display:flex;
+    flex-direction:column;
+    gap:24px;
 
-    border-radius:var(--radius-lg);
-
-    background:var(--glass);
+    margin-bottom:24px;
+    padding:28px;
 
     border:1px solid var(--glass-border);
+    border-radius:32px;
 
-    backdrop-filter:blur(var(--blur));
-    -webkit-backdrop-filter:blur(var(--blur));
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.08),
+            rgba(255,255,255,.03)
+        );
+
+    backdrop-filter:blur(28px);
+    -webkit-backdrop-filter:blur(28px);
 
     box-shadow:
-        var(--shadow-lg),
-        var(--glow-soft);
+        0 20px 50px rgba(0,0,0,.45),
+        inset 0 1px 0 rgba(255,255,255,.08);
 
     isolation:isolate;
 }
 
-/* Reflection */
+/* ===========================
+   Hero Reflection
+=========================== */
 
 .hero-card::before{
 
@@ -35,52 +48,82 @@
 
     position:absolute;
 
-    left:-35%;
-    top:-45%;
+    top:-60%;
+    right:-18%;
 
-    width:170px;
-    height:280px;
+    width:240px;
+    height:240px;
 
-    background:linear-gradient(
-        180deg,
-        rgba(255,255,255,.20),
-        rgba(255,255,255,0)
-    );
-
-    transform:rotate(28deg);
-
-    pointer-events:none;
-
-    opacity:.7;
-
-}
-
-/* Gradient */
-
-.hero-gradient{
-
-    position:absolute;
-
-    inset:0;
+    border-radius:50%;
 
     background:
         radial-gradient(
-            circle at top right,
-            rgba(79,124,255,.22),
-            transparent 45%
-        ),
-
-        radial-gradient(
-            circle at bottom left,
-            rgba(124,108,255,.16),
-            transparent 40%
+            rgba(255,255,255,.18),
+            transparent 70%
         );
 
     pointer-events:none;
 
+    filter:blur(10px);
+
 }
 
-/* Content */
+.hero-card::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:-25%;
+    top:-45%;
+
+    width:180px;
+    height:320px;
+
+    background:linear-gradient(
+        180deg,
+        rgba(255,255,255,.18),
+        rgba(255,255,255,0)
+    );
+
+    transform:rotate(25deg);
+
+    opacity:.55;
+
+    pointer-events:none;
+
+}
+
+/* ===========================
+   Hero Gradient
+=========================== */
+
+.hero-gradient{
+
+    position:absolute;
+    inset:0;
+
+    background:
+
+    radial-gradient(
+        circle at top right,
+        rgba(59,130,246,.22),
+        transparent 45%
+    ),
+
+    radial-gradient(
+        circle at bottom left,
+        rgba(139,92,246,.16),
+        transparent 40%
+    );
+
+    z-index:0;
+
+}
+
+/* ===========================
+   Hero Content
+=========================== */
 
 .hero-content{
 
@@ -90,37 +133,54 @@
 
 }
 
-/* Label */
-
 .hero-label{
 
-    display:block;
+    display:inline-flex;
+
+    align-items:center;
+
+    padding:8px 14px;
+
+    border-radius:999px;
+
+    background:rgba(255,255,255,.06);
+
+    border:1px solid rgba(255,255,255,.08);
 
     color:var(--text-secondary);
 
-    font-size:14px;
+    font-size:13px;
 
-    margin-bottom:8px;
+    margin-bottom:18px;
 
 }
 
-/* Amount */
+/* ===========================
+   Monthly Amount
+=========================== */
 
 #monthlyTotal{
 
-    font-size:48px;
+    font-size:52px;
 
     font-weight:700;
 
     line-height:1;
 
-    letter-spacing:-1px;
+    letter-spacing:-2px;
 
-    margin-bottom:22px;
+    color:var(--text);
+
+    margin-bottom:24px;
+
+    text-shadow:
+        0 4px 20px rgba(59,130,246,.25);
 
 }
 
-/* Stats */
+/* ===========================
+   Hero Stats
+=========================== */
 
 .hero-stats{
 
@@ -136,11 +196,21 @@
 
     padding:18px;
 
-    border-radius:20px;
+    border-radius:22px;
 
     background:rgba(255,255,255,.05);
 
-    border:1px solid rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.08);
+
+    transition:var(--transition-normal);
+
+}
+
+.hero-item:hover{
+
+    transform:translateY(-2px);
+
+    background:rgba(255,255,255,.08);
 
 }
 
@@ -148,9 +218,9 @@
 
     display:block;
 
-    color:var(--muted);
-
     font-size:13px;
+
+    color:var(--text-secondary);
 
     margin-bottom:8px;
 
@@ -158,21 +228,23 @@
 
 .hero-item strong{
 
-    font-size:20px;
+    font-size:22px;
 
-    color:white;
+    color:var(--text);
 
 }
 
-/* ---------- Progress ---------- */
+/* ===========================
+   Progress
+=========================== */
 
 .progress{
-
-    margin-top:22px;
 
     width:100%;
 
     height:12px;
+
+    margin-top:8px;
 
     overflow:hidden;
 
@@ -184,9 +256,9 @@
 
 .progress-bar{
 
-    height:100%;
+    width:0;
 
-    width:0%;
+    height:100%;
 
     border-radius:999px;
 
@@ -197,41 +269,54 @@
     );
 
     box-shadow:
-        0 0 18px rgba(79,124,255,.35);
+        0 0 18px rgba(59,130,246,.45);
 
     transition:width .6s ease;
 
 }
-
-/* ---------- Insight ---------- */
+/* ===========================
+   Smart Insight
+=========================== */
 
 .insight-card{
 
     display:flex;
-
+    align-items:center;
     gap:16px;
 
-    align-items:flex-start;
+    margin-bottom:24px;
+    padding:18px 20px;
 
-    padding:18px;
+    border-radius:24px;
 
-    margin-bottom:20px;
+    background:rgba(255,255,255,.05);
 
-    border-radius:22px;
+    border:1px solid rgba(255,255,255,.08);
 
-    background:var(--glass);
+    backdrop-filter:blur(24px);
+    -webkit-backdrop-filter:blur(24px);
 
-    border:1px solid var(--glass-border);
+    box-shadow:var(--shadow-sm);
 
-    backdrop-filter:blur(var(--blur));
+    transition:var(--transition-normal);
 
 }
 
-.insight-card span{
+.insight-card:hover{
 
-    font-size:28px;
+    transform:translateY(-2px);
+
+    background:rgba(255,255,255,.08);
+
+}
+
+.insight-card .material-symbols-rounded{
+
+    font-size:30px;
 
     color:#FFD54A;
+
+    flex-shrink:0;
 
 }
 
@@ -241,51 +326,78 @@
 
     line-height:1.6;
 
+    font-size:15px;
+
 }
 
-/* ---------- Search ---------- */
+/* ===========================
+   Search
+=========================== */
+
+.search-section{
+
+    margin-bottom:24px;
+
+}
 
 .search-box{
 
     display:flex;
-
     align-items:center;
-
     gap:14px;
 
-    padding:16px 20px;
+    height:60px;
+
+    padding:0 20px;
 
     border-radius:22px;
 
-    background:var(--glass);
+    background:rgba(255,255,255,.05);
 
-    border:1px solid var(--glass-border);
+    border:1px solid rgba(255,255,255,.08);
 
-    backdrop-filter:blur(var(--blur));
+    backdrop-filter:blur(24px);
+    -webkit-backdrop-filter:blur(24px);
 
-    box-shadow:var(--shadow-sm);
+    transition:var(--transition-normal);
 
 }
 
 .search-box:hover{
 
-    border-color:rgba(255,255,255,.18);
+    border-color:rgba(255,255,255,.16);
+
+    background:rgba(255,255,255,.07);
 
 }
 
-.search-box span{
+.search-box:focus-within{
 
-    color:var(--muted);
+    border-color:var(--primary);
+
+    box-shadow:0 0 0 4px rgba(59,130,246,.15);
+
+}
+
+.search-box .material-symbols-rounded{
+
+    color:var(--text-secondary);
+
+    font-size:22px;
 
 }
 
 .search-box input{
+
+    flex:1;
 
     padding:0;
 
     border:none;
 
     background:transparent;
+
+    color:var(--text);
 
     box-shadow:none;
 
@@ -296,12 +408,32 @@
     box-shadow:none;
 
 }
-/* ===================================
-   Components - Part 2
-   Contract Card / Buttons / Badge
-=================================== */
 
-/* ---------- Contract Card ---------- */
+.search-box input::placeholder{
+
+    color:var(--text-secondary);
+
+}
+
+/* ===========================
+   Contract List
+=========================== */
+
+.contract-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+    padding-bottom:120px;
+
+}
+
+/* ===========================
+   Contract Card
+=========================== */
 
 .contract-card{
 
@@ -311,18 +443,27 @@
 
     padding:22px;
 
-    border-radius:26px;
+    border-radius:28px;
 
-    background:var(--glass);
+    background:rgba(255,255,255,.05);
 
-    border:1px solid var(--glass-border);
+    border:1px solid rgba(255,255,255,.08);
 
-    backdrop-filter:blur(var(--blur));
-    -webkit-backdrop-filter:blur(var(--blur));
+    backdrop-filter:blur(24px);
 
     box-shadow:var(--shadow-md);
 
-    transition:var(--normal);
+    transition:all .3s ease;
+
+}
+
+.contract-card:hover{
+
+    transform:translateY(-4px);
+
+    border-color:rgba(255,255,255,.15);
+
+    box-shadow:var(--shadow-lg);
 
 }
 
@@ -335,30 +476,36 @@
     inset:0;
 
     background:linear-gradient(
-        180deg,
-        rgba(255,255,255,.08),
-        transparent 35%
-    );
 
-    opacity:.8;
+        180deg,
+
+        rgba(255,255,255,.08),
+
+        transparent 35%
+
+    );
 
     pointer-events:none;
 
 }
 
-.contract-card:hover{
+/* ===========================
+   Contract Header
+=========================== */
 
-    transform:translateY(-4px);
+.contract-header{
 
-    box-shadow:
+    display:flex;
 
-        var(--shadow-lg),
+    justify-content:space-between;
 
-        var(--glow-soft);
+    align-items:flex-start;
+
+    margin-bottom:18px;
 
 }
 
-.contract-card h4{
+.contract-title{
 
     font-size:22px;
 
@@ -366,23 +513,33 @@
 
     color:var(--text);
 
-    margin-bottom:4px;
-
 }
 
-.contract-card small{
+.contract-subtitle{
 
-    display:block;
-
-    color:var(--muted);
-
-    margin-bottom:18px;
+    margin-top:4px;
 
     font-size:13px;
 
+    color:var(--text-secondary);
+
 }
 
-.contract-card p{
+/* ===========================
+   Contract Info
+=========================== */
+
+.contract-info{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+}
+
+.contract-row{
 
     display:flex;
 
@@ -390,53 +547,47 @@
 
     align-items:center;
 
-    margin:10px 0;
+}
+
+.contract-label{
 
     color:var(--text-secondary);
 
+    font-size:14px;
+
 }
 
-.contract-card p strong{
+.contract-value{
+
+    font-weight:600;
 
     color:var(--text);
 
 }
+/* ===========================
+   Buttons
+=========================== */
 
-/* ---------- Action ---------- */
+.btn-primary,
+.btn-secondary{
 
-.card-actions{
-
-    display:flex;
-
-    gap:10px;
-
-    margin-top:18px;
-
-}
-
-.card-actions .btn{
-
-    flex:1;
-
-}
-
-/* ---------- Buttons ---------- */
-
-.btn{
-
-    height:50px;
+    height:54px;
 
     border:none;
 
     border-radius:18px;
 
+    font-size:15px;
+
     font-weight:600;
 
-    transition:var(--normal);
+    transition:all .25s ease;
 
 }
 
 .btn-primary{
+
+    color:#fff;
 
     background:linear-gradient(
         135deg,
@@ -444,11 +595,8 @@
         var(--accent)
     );
 
-    color:#fff;
-
     box-shadow:
-
-        0 8px 20px rgba(79,124,255,.25);
+        0 12px 30px rgba(59,130,246,.28);
 
 }
 
@@ -456,43 +604,99 @@
 
     transform:translateY(-2px);
 
+    box-shadow:
+        0 18px 38px rgba(59,130,246,.35);
+
 }
 
 .btn-secondary{
 
-    background:rgba(255,255,255,.06);
+    color:var(--text);
+
+    background:rgba(255,255,255,.05);
 
     border:1px solid rgba(255,255,255,.08);
-
-    color:var(--text);
 
 }
 
 .btn-secondary:hover{
 
-    background:rgba(255,255,255,.10);
+    background:rgba(255,255,255,.08);
 
 }
 
-.btn-danger{
+.btn-primary:active,
+.btn-secondary:active{
+
+    transform:scale(.97);
+
+}
+
+/* ===========================
+   Floating Action Button
+=========================== */
+
+.fab{
+
+    position:fixed;
+
+    right:24px;
+
+    bottom:108px;
+
+    width:64px;
+    height:64px;
+
+    border:none;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:#fff;
 
     background:linear-gradient(
         135deg,
-        #EF4444,
-        #DC2626
+        var(--primary),
+        var(--accent)
     );
 
-    color:white;
+    box-shadow:
+        0 18px 40px rgba(59,130,246,.35);
+
+    z-index:450;
+
+    transition:all .3s ease;
 
 }
 
-.btn:active{
+.fab:hover{
 
-    transform:scale(.96);
+    transform:
+        translateY(-3px)
+        scale(1.03);
 
 }
 
-/* ---------- Badge ---------- */
+.fab:active{
+
+    transform:scale(.94);
+
+}
+
+.fab .material-symbols-rounded{
+
+    font-size:30px;
+
+}
+
+/* ===========================
+   Badge
+=========================== */
 
 .badge{
 
@@ -502,7 +706,7 @@
 
     justify-content:center;
 
-    padding:6px 14px;
+    padding:6px 12px;
 
     border-radius:999px;
 
@@ -514,15 +718,15 @@
 
 .badge.success{
 
-    background:rgba(34,197,94,.18);
+    background:rgba(34,197,94,.15);
 
-    color:#6EE7B7;
+    color:#86EFAC;
 
 }
 
 .badge.warning{
 
-    background:rgba(245,158,11,.18);
+    background:rgba(245,158,11,.15);
 
     color:#FCD34D;
 
@@ -530,248 +734,37 @@
 
 .badge.danger{
 
-    background:rgba(239,68,68,.18);
+    background:rgba(239,68,68,.15);
 
     color:#FCA5A5;
 
 }
-/* ===================================
-   Components - Part 3
-   FAB / Icon Button / Sheet / Effects
-=================================== */
 
-/* ---------- Floating Action Button ---------- */
-
-.fab{
-
-    position:fixed;
-
-    width:64px;
-    height:64px;
-
-    border-radius:50%;
-
-    background:linear-gradient(
-        135deg,
-        var(--primary),
-        var(--accent)
-    );
-
-    color:#fff;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    box-shadow:
-        0 15px 40px rgba(79,124,255,.35),
-        0 0 25px rgba(79,124,255,.18);
-
-    transition:var(--normal);
-
-    overflow:hidden;
-
-}
-
-.fab::before{
-
-    content:"";
-
-    position:absolute;
-
-    top:-55%;
-    left:-35%;
-
-    width:140%;
-    height:140%;
-
-    background:linear-gradient(
-        135deg,
-        rgba(255,255,255,.35),
-        transparent 45%
-    );
-
-    transform:rotate(25deg);
-
-    pointer-events:none;
-
-}
-
-.fab:hover{
-
-    transform:
-        translateY(-4px)
-        scale(1.03);
-
-}
-
-.fab:active{
-
-    transform:scale(.95);
-
-}
-
-.fab .material-symbols-rounded{
-
-    font-size:30px;
-
-}
-
-/* ---------- Icon Button ---------- */
-
-.icon-button{
-
-    width:48px;
-    height:48px;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    border-radius:18px;
-
-    background:var(--glass);
-
-    border:1px solid var(--glass-border);
-
-    backdrop-filter:blur(var(--blur));
-
-    color:var(--text);
-
-    transition:var(--normal);
-
-}
-
-.icon-button:hover{
-
-    background:rgba(255,255,255,.10);
-
-    transform:translateY(-2px);
-
-}
-
-.icon-button:active{
-
-    transform:scale(.95);
-
-}
-
-/* ---------- Bottom Sheet ---------- */
-
-.sheet{
-
-    background:rgba(19,26,40,.92);
-
-    backdrop-filter:blur(36px);
-
-    border-top-left-radius:30px;
-    border-top-right-radius:30px;
-
-    border-top:1px solid rgba(255,255,255,.08);
-
-    box-shadow:
-        0 -20px 60px rgba(0,0,0,.45);
-
-}
-
-.sheet input{
-
-    margin-bottom:14px;
-
-}
-
-.sheet-actions{
-
-    display:flex;
-
-    gap:12px;
-
-}
-
-.sheet-actions button{
-
-    flex:1;
-
-}
-
-/* ---------- Glass Hover ---------- */
-
-.hero-card,
-.contract-card,
-.search-box,
-.insight-card{
-
-    transition:
-        transform .28s ease,
-        box-shadow .28s ease,
-        border-color .28s ease;
-
-}
-
-.hero-card:hover,
-.contract-card:hover,
-.search-box:hover{
-
-    border-color:rgba(255,255,255,.18);
-
-}
-
-/* ---------- Scroll Animation ---------- */
-
-.contract-card{
-
-    animation:fadeUp .45s ease both;
-
-}
-
-/* ---------- Glow ---------- */
-
-.hero-card::after{
-
-    content:"";
-
-    position:absolute;
-
-    inset:-30%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(79,124,255,.12),
-            transparent 65%
-        );
-
-    pointer-events:none;
-
-}
-
-/* ---------- Divider ---------- */
-
-.divider{
-
-    height:1px;
-
-    margin:18px 0;
-
-    background:rgba(255,255,255,.08);
-
-}
-
-/* ---------- Empty State ---------- */
+/* ===========================
+   Empty State
+=========================== */
 
 .empty-state{
 
-    padding:70px 24px;
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
 
     text-align:center;
 
+    padding:72px 24px;
+
 }
 
-.empty-state span{
+.empty-state .material-symbols-rounded{
 
     font-size:64px;
 
-    opacity:.35;
+    color:rgba(255,255,255,.25);
 
     margin-bottom:18px;
 
@@ -781,21 +774,89 @@
 
     margin-bottom:10px;
 
+    color:var(--text);
+
 }
 
 .empty-state p{
 
-    color:var(--muted);
-
     max-width:260px;
 
-    margin:auto;
+    color:var(--text-secondary);
+
+    line-height:1.6;
 
 }
 
-/* ---------- Mobile ---------- */
+/* ===========================
+   Divider
+=========================== */
+
+.divider{
+
+    width:100%;
+
+    height:1px;
+
+    margin:18px 0;
+
+    background:rgba(255,255,255,.08);
+
+}
+
+/* ===========================
+   Utilities
+=========================== */
+
+.glass{
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    backdrop-filter:blur(24px);
+
+    -webkit-backdrop-filter:blur(24px);
+
+}
+
+.shadow{
+
+    box-shadow:var(--shadow-md);
+
+}
+
+.radius{
+
+    border-radius:28px;
+
+}
+
+/* ===========================
+   Responsive
+=========================== */
 
 @media (max-width:480px){
+
+    .hero-card{
+
+        padding:22px;
+
+        border-radius:28px;
+
+    }
+
+    #monthlyTotal{
+
+        font-size:42px;
+
+    }
+
+    .hero-stats{
+
+        grid-template-columns:1fr;
+
+    }
 
     .contract-card{
 
@@ -803,22 +864,14 @@
 
     }
 
-    #monthlyTotal{
-
-        font-size:40px;
-
-    }
-
-    .hero-item{
-
-        padding:15px;
-
-    }
-
     .fab{
 
         width:58px;
         height:58px;
+
+        right:18px;
+
+        bottom:94px;
 
     }
 
