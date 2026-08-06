@@ -1,0 +1,128 @@
+/* ===================================
+   PayNest v1.0
+   Bottom Navigation
+=================================== */
+
+.bottom-nav{
+
+    position:fixed;
+
+    left:50%;
+    bottom:18px;
+
+    transform:translateX(-50%);
+
+    width:min(calc(100% - 32px),430px);
+
+    height:72px;
+
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(var(--blur));
+    -webkit-backdrop-filter:blur(var(--blur));
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:24px;
+
+    box-shadow:var(--shadow-lg);
+
+    z-index:500;
+
+}
+
+/* ---------- Button ---------- */
+
+.bottom-nav button{
+
+    width:56px;
+    height:56px;
+
+    border:none;
+    outline:none;
+
+    background:transparent;
+
+    color:var(--text-secondary);
+
+    border-radius:18px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    cursor:pointer;
+
+    transition:var(--normal);
+
+}
+
+/* ---------- Icon ---------- */
+
+.bottom-nav button .material-symbols-rounded{
+
+    font-size:28px;
+
+    transition:var(--normal);
+
+}
+
+/* ---------- Hover ---------- */
+
+.bottom-nav button:hover{
+
+    background:rgba(255,255,255,.08);
+
+    color:var(--text);
+
+    transform:translateY(-2px);
+
+}
+
+/* ---------- Active ---------- */
+
+.bottom-nav button.active{
+
+    background:linear-gradient(
+        135deg,
+        var(--primary),
+        var(--secondary)
+    );
+
+    color:#fff;
+
+    box-shadow:0 8px 20px rgba(59,130,246,.35);
+
+}
+
+.bottom-nav button.active .material-symbols-rounded{
+
+    transform:scale(1.1);
+
+}
+
+/* ---------- Press ---------- */
+
+.bottom-nav button:active{
+
+    transform:scale(.95);
+
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width:480px){
+
+    .bottom-nav{
+
+        width:calc(100% - 24px);
+
+        bottom:12px;
+
+    }
+
+}
