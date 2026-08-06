@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="theme-color" content="#3B82F6">
-<meta name="description" content="PayNest v4">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
-<title>PayNest</title>
+<title>PayNest v4</title>
+
+<meta name="theme-color" content="#2563eb">
 
 <link rel="manifest" href="manifest.json">
 
@@ -16,7 +17,7 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
 
 <link rel="stylesheet" href="css/style.css">
 
@@ -24,28 +25,246 @@
 
 <body>
 
-<div id="app">
+<div class="background"></div>
 
-<header id="header"></header>
+<div class="app">
 
-<main id="dashboard"></main>
+<header class="topbar">
 
-<nav id="bottomNavigation"></nav>
+<div>
 
-<div id="sheet"></div>
+<h1>PayNest</h1>
+
+<p>Smart Installment Manager</p>
 
 </div>
+
+<button id="themeButton" class="iconButton">
+
+<span class="material-symbols-rounded">
+
+dark_mode
+
+</span>
+
+</button>
+
+</header>
+
+<section class="hero">
+
+<p>ยอดที่ต้องชำระเดือนนี้</p>
+
+<h2 id="monthlyTotal">
+
+฿0
+
+</h2>
+
+<div class="progress">
+
+<div id="progressBar"></div>
+
+</div>
+
+<div class="heroFooter">
+
+<span id="contractCount">
+
+0 สัญญา
+
+</span>
+
+<span id="remainMoney">
+
+฿0
+
+</span>
+
+</div>
+
+</section>
+
+<section class="summaryGrid">
+
+<div class="card">
+
+<p>ยอดคงเหลือ</p>
+
+<h3 id="remainCard">
+
+฿0
+
+</h3>
+
+</div>
+
+<div class="card">
+
+<p>ชำระแล้ว</p>
+
+<h3 id="paidPercent">
+
+0%
+
+</h3>
+
+</div>
+
+<div class="card">
+
+<p>งวดค้าง</p>
+
+<h3 id="lateCount">
+
+0
+
+</h3>
+
+</div>
+
+<div class="card">
+
+<p>ครบกำหนดวันนี้</p>
+
+<h3 id="todayCount">
+
+0
+
+</h3>
+
+</div>
+
+</section>
+
+<section class="searchArea">
+
+<input
+
+id="searchInput"
+
+type="search"
+
+placeholder="ค้นหารายการ...">
+
+</section>
+
+<section id="contractList" class="contractList">
+
+</section>
+
+<button id="addButton" class="fab">
+
+<span class="material-symbols-rounded">
+
+add
+
+</span>
+
+</button>
+
+</div>
+
+<div id="sheet" class="sheetOverlay">
+
+<div class="sheet">
+
+<h2 id="sheetTitle">
+
+เพิ่มสัญญา
+
+</h2>
+
+<input id="name" placeholder="ชื่อสินค้า">
+
+<input id="shop" placeholder="ร้านค้า">
+
+<input id="price" type="number" placeholder="ราคาสินค้า">
+
+<input id="down" type="number" placeholder="เงินดาวน์">
+
+<input id="months" type="number" placeholder="จำนวนงวด">
+
+<input id="monthly" type="number" placeholder="ค่างวด">
+
+<input id="due" type="date">
+
+<div class="sheetButtons">
+
+<button id="cancelBtn">
+
+ยกเลิก
+
+</button>
+
+<button id="saveBtn">
+
+บันทึก
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<nav class="bottomNav">
+
+<button class="active">
+
+<span class="material-symbols-rounded">
+
+home
+
+</span>
+
+<p>หน้าแรก</p>
+
+</button>
+
+<button>
+
+<span class="material-symbols-rounded">
+
+calendar_month
+
+</span>
+
+<p>ปฏิทิน</p>
+
+</button>
+
+<button>
+
+<span class="material-symbols-rounded">
+
+analytics
+
+</span>
+
+<p>สถิติ</p>
+
+</button>
+
+<button>
+
+<span class="material-symbols-rounded">
+
+settings
+
+</span>
+
+<p>ตั้งค่า</p>
+
+</button>
+
+</nav>
 
 <script src="js/utils.js"></script>
 <script src="js/storage.js"></script>
 <script src="js/contract.js"></script>
 <script src="js/dashboard.js"></script>
-<script src="js/sheet.js"></script>
-<script src="js/calendar.js"></script>
-<script src="js/statistics.js"></script>
-<script src="js/backup.js"></script>
-<script src="js/export.js"></script>
-<script src="js/settings.js"></script>
 <script src="js/ui.js"></script>
 <script src="js/app.js"></script>
 
