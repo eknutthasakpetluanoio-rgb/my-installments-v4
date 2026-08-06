@@ -1,12 +1,19 @@
 /* ===================================
-   PayNest v4
+   PayNest Ultimate v1.0
    UI Manager
 =================================== */
 
-const sheet = document.getElementById("sheet");
-const addButton = document.getElementById("addButton");
-const cancelBtn = document.getElementById("cancelBtn");
-const saveBtn = document.getElementById("saveBtn");
+const sheet =
+document.getElementById("sheet");
+
+const addButton =
+document.getElementById("addButton");
+
+const cancelBtn =
+document.getElementById("cancelBtn");
+
+const saveBtn =
+document.getElementById("saveBtn");
 
 let editingId = null;
 
@@ -15,6 +22,9 @@ let editingId = null;
 function openSheet() {
 
     editingId = null;
+
+    document.getElementById("sheetTitle").textContent =
+        "เพิ่มสัญญา";
 
     clearForm();
 
@@ -36,7 +46,14 @@ function closeSheet() {
 
 function clearForm() {
 
-    document.getElementById("contractForm").reset();
+    const form =
+        document.getElementById("contractForm");
+
+    if (form) {
+
+        form.reset();
+
+    }
 
     document.getElementById("down").value = 0;
 
@@ -46,18 +63,40 @@ function clearForm() {
 
 function editItem(id) {
 
-    const contract = getContract(id);
+    const contract =
+        getContract(id);
 
-    if (!contract) return;
+    if (!contract) {
+
+        return;
+
+    }
 
     editingId = id;
 
-    document.getElementById("name").value = contract.name;
-    document.getElementById("price").value = contract.price;
-    document.getElementById("down").value = contract.down;
-    document.getElementById("months").value = contract.months;
-    document.getElementById("monthly").value = contract.monthly;
-    document.getElementById("due").value = contract.due;
+    document.getElementById("sheetTitle").textContent =
+        "แก้ไขสัญญา";
+
+    document.getElementById("name").value =
+        contract.name;
+
+    document.getElementById("shop").value =
+        contract.shop || "";
+
+    document.getElementById("price").value =
+        contract.price;
+
+    document.getElementById("down").value =
+        contract.down;
+
+    document.getElementById("months").value =
+        contract.months;
+
+    document.getElementById("monthly").value =
+        contract.monthly;
+
+    document.getElementById("due").value =
+        contract.due;
 
     sheet.classList.add("show");
 
@@ -69,17 +108,38 @@ function saveForm() {
 
     const data = {
 
-        name: document.getElementById("name").value.trim(),
+        name:
+            safeText(
+                document.getElementById("name").value
+            ),
 
-        price: Number(document.getElementById("price").value),
+        shop:
+            safeText(
+                document.getElementById("shop").value
+            ),
 
-        down: Number(document.getElementById("down").value),
+        price:
+            toNumber(
+                document.getElementById("price").value
+            ),
 
-        months: Number(document.getElementById("months").value),
+        down:
+            toNumber(
+                document.getElementById("down").value
+            ),
 
-        monthly: Number(document.getElementById("monthly").value),
+        months:
+            toNumber(
+                document.getElementById("months").value
+            ),
 
-        due: document.getElementById("due").value
+        monthly:
+            toNumber(
+                document.getElementById("monthly").value
+            ),
+
+        due:
+            document.getElementById("due").value
 
     };
 
@@ -91,11 +151,40 @@ function saveForm() {
 
     }
 
+    if (!data.price) {
+
+        alert("กรุณากรอกราคา");
+
+        return;
+
+    }
+
+    if (!data.months) {
+
+        alert("กรุณากรอกจำนวนงวด");
+
+        return;
+
+    }
+
+    if (!data.monthly) {
+
+        alert("กรุณากรอกค่างวด");
+
+        return;
+
+    }
+
     if (editingId) {
 
-        editContract(editingId, data);
+        editContract(
+            editingId,
+            data
+        );
 
-    } else {
+    }
+
+    else {
 
         createContract(data);
 
@@ -109,28 +198,60 @@ function saveForm() {
 
 /* ---------- Events ---------- */
 
-addButton?.addEventListener("click", openSheet);
+addButton?.addEventListener(
 
-cancelBtn?.addEventListener("click", closeSheet);
+    "click",
 
-saveBtn?.addEventListener("click", saveForm);
+    openSheet
 
-sheet?.addEventListener("click", e => {
+);
 
-    if (e.target === sheet) {
+cancelBtn?.addEventListener(
 
-        closeSheet();
+    "click",
+
+    closeSheet
+
+);
+
+saveBtn?.addEventListener(
+
+    "click",
+
+    saveForm
+
+);
+
+sheet?.addEventListener(
+
+    "click",
+
+    event => {
+
+        if (event.target === sheet) {
+
+            closeSheet();
+
+        }
 
     }
 
-});
+);
 
-document.addEventListener("keydown", e => {
+document.addEventListener(
 
-    if (e.key === "Escape") {
+    "keydown",
 
-        closeSheet();
+    event => {
+
+        if (event.key === "Escape") {
+
+            closeSheet();
+
+        }
 
     }
 
-});
+);
+
+console.log("✅ ui.js loaded");
