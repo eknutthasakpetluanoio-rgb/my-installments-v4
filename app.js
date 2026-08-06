@@ -1,141 +1,74 @@
-// =========================
-// PayNest v2.0.0 Alpha
-// =========================
+// ===============================
+// PayNest v3 - app.js
+// ===============================
 
+// ข้อมูลเริ่มต้น
 const contracts = [
-{
-id:1,
-name:"vivo V70",
-store:"SABAIRENTAL",
-monthly:2230,
-total:16,
-paid:2,
-remaining:31220,
-icon:"smartphone"
-},
-
-{
-id:2,
-name:"Anker Soundcore R50i NC",
-store:"Pay House",
-monthly:130,
-total:12,
-paid:2,
-remaining:1300,
-icon:"headphones"
-},
-
-{
-id:3,
-name:"Redmi Watch 5 Lite",
-store:"ป้าบุ๋ม",
-monthly:265,
-total:12,
-paid:4,
-remaining:2120,
-icon:"watch"
-}
-
+  {
+    id: 1,
+    name: "vivo V70",
+    monthly: 2230,
+    remain: 31220,
+    progress: 42
+  },
+  {
+    id: 2,
+    name: "Anker Soundcore R50i NC",
+    monthly: 130,
+    remain: 1560,
+    progress: 18
+  },
+  {
+    id: 3,
+    name: "Redmi Watch 5 Lite",
+    monthly: 265,
+    remain: 1860,
+    progress: 34
+  }
 ];
 
-const list = document.getElementById("contracts");
+// อ้างอิง Element
+const totalPay = document.getElementById("monthlyTotal");
+const remainMoney = document.getElementById("remainMoney");
+const contractCount = document.getElementById("contractCount");
+const contractList = document.getElementById("contractList");
+const progressBar = document.getElementById("progressBar");
+const insight = document.getElementById("insight");
 
-let totalMonthly = 0;
-let remainMoney = 0;
-let paidInstallments = 0;
-let totalInstallments = 0;
+// คำนวณข้อมูล
+function updateSummary() {
+  const monthlyTotal = contracts.reduce((sum, item) => sum + item.monthly, 0);
+  const remainTotal = contracts.reduce((sum, item) => sum + item.remain, 0);
 
-contracts.forEach(item=>{
+  totalPay.textContent = `฿${monthlyTotal.toLocaleString()}`;
+  remainMoney.textContent = `฿${remainTotal.toLocaleString()}`;
+  contractCount.textContent = contracts.length;
 
-totalMonthly += item.monthly;
+  progressBar.style.width = "31%";
 
-remainMoney += item.remaining;
+  insight.textContent = `${contracts[0].name} ครบกำหนดชำระในอีก 3 วัน`;
+}
 
-paidInstallments += item.paid;
+// แสดงรายการผ่อน
+function renderContracts() {
+  contractList.innerHTML = "";
 
-totalInstallments += item.total;
+  contracts.forEach(item => {
+    contractList.innerHTML += `
+      <div class="contract-card">
+        <h4>${item.name}</h4>
+        <p>ค่างวด ${item.monthly.toLocaleString()} บาท / เดือน</p>
 
-const percent =
-(item.paid/item.total)*100;
+        <div class="progress">
+          <div class="progress-bar" style="width:${item.progress}%"></div>
+        </div>
 
-list.innerHTML += `
+        <p>ชำระแล้ว ${item.progress}%</p>
+      </div>
+    `;
+  });
+}
 
-<div class="contract-card glass">
-
-<div style="
-display:flex;
-align-items:center;
-gap:16px;
-">
-
-<div class="logo">
-
-<span class="material-symbols-rounded">
-
-${item.icon}
-
-</span>
-
-</div>
-
-<div>
-
-<h3>${item.name}</h3>
-
-<p>${item.store}</p>
-
-</div>
-
-</div>
-
-<div class="progress"
-style="margin-top:18px;">
-
-<div
-style="
-width:${percent}%;
-height:100%;
-background:white;
-border-radius:20px;
-">
-</div>
-
-</div>
-
-<div
-style="
-display:flex;
-justify-content:space-between;
-margin-top:14px;
-font-size:14px;
-">
-
-<span>฿${item.monthly}/เดือน</span>
-
-<span>${item.paid}/${item.total} งวด</span>
-
-</div>
-
-</div>
-
-`;
-
-});
-
-document.getElementById("totalPay").textContent =
-"฿"+totalMonthly.toLocaleString();
-
-document.getElementById("remainMoney").textContent =
-"฿"+remainMoney.toLocaleString();
-
-document.getElementById("contractCount").textContent =
-contracts.length+" สัญญา";
-
-document.getElementById("remainCount").textContent =
-"เหลือ "+(totalInstallments-paidInstallments)+" งวด";
-
-document.getElementById("paidPercent").textContent =
-Math.round((paidInstallments/totalInstallments)*100)+"%";
-
-document.getElementById("progressBar").style.width =
-Math.round((paidInstallments/totalInstallments)*100)+"%";
+// เริ่มต้น
+updateSummary();
+renderContracts();
