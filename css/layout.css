@@ -1,96 +1,174 @@
 /* ===================================
-   PayNest v1.0
+   PayNest v3.1
    Layout
 =================================== */
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+/* ---------- App ---------- */
 
-html{
-    scroll-behavior:smooth;
-}
+.app{
 
-body{
-    font-family:var(--font);
-    background:var(--bg);
-    color:var(--text);
+    width:100%;
+
     min-height:100vh;
-    overflow-x:hidden;
-    position:relative;
+
 }
 
-/* Aurora Background */
-
-.background{
-    position:fixed;
-    inset:0;
-    z-index:-1;
-
-    background:
-        radial-gradient(circle at top left,#3B82F633 0%,transparent 45%),
-        radial-gradient(circle at top right,#8B5CF633 0%,transparent 40%),
-        radial-gradient(circle at bottom,#0EA5E922 0%,transparent 45%),
-        var(--bg);
-}
-
-/* Container */
+/* ---------- Main Container ---------- */
 
 .container{
+
     width:min(100%,430px);
-    margin:auto;
-    padding:24px 18px 120px;
+
+    margin:0 auto;
+
+    padding:24px 18px calc(120px + env(safe-area-inset-bottom));
+
 }
 
-/* Header */
+/* ---------- Header ---------- */
 
 header{
+
     display:flex;
+
     justify-content:space-between;
+
     align-items:center;
+
     margin-bottom:28px;
+
 }
 
-.logo h1{
-    font-size:30px;
-    font-weight:700;
+.logo{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:4px;
+
 }
 
-.logo p{
-    font-size:14px;
-    color:var(--text-secondary);
+/* ---------- Hero ---------- */
+
+.hero{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
 }
 
-/* Section */
+.hero-info{
 
-section{
-    margin-bottom:20px;
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:16px;
+
 }
+
+/* ---------- Insight ---------- */
+
+.insight{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+}
+
+/* ---------- Section Title ---------- */
 
 .title{
-    margin-bottom:14px;
-    font-size:20px;
-    font-weight:600;
+
+    margin:24px 0 14px;
+
 }
 
-/* Responsive */
+/* ---------- Contract List ---------- */
 
-img{
-    max-width:100%;
-    display:block;
+.contract-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:14px;
+
+    padding-bottom:120px;
+
 }
 
-button,
-input{
-    font-family:inherit;
+/* ---------- Floating Button ---------- */
+
+.fab{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:100;
+
 }
 
-button{
-    cursor:pointer;
+/* ---------- Bottom Navigation ---------- */
+
+.bottom-nav{
+
+    z-index:99;
+
 }
 
-.hidden{
-    display:none !important;
+.bottom-nav button{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:4px;
+
+    min-width:64px;
+
+}
+
+.bottom-nav span:last-child{
+
+    font-size:12px;
+
+}
+
+/* ---------- Tablet ---------- */
+
+@media (min-width:768px){
+
+    .container{
+
+        width:min(100%,720px);
+
+    }
+
+}
+
+/* ---------- Desktop ---------- */
+
+@media (min-width:1024px){
+
+    .container{
+
+        width:min(100%,960px);
+
+    }
+
 }
