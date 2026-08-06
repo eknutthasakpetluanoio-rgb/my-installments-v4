@@ -304,3 +304,18 @@
     flex:1;
 
 }
+.card-actions{
+
+    display:flex;
+
+    gap:10px;
+
+    margin-top:16px;
+
+}
+
+.card-actions .btn{
+
+    flex:1;
+
+}
