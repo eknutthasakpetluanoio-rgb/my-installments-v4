@@ -72,3 +72,44 @@ function renderContracts() {
 // เริ่มต้น
 updateSummary();
 renderContracts();
+const fab = document.querySelector(".fab");
+const modal = document.getElementById("addModal");
+const saveBtn = document.getElementById("saveBtn");
+
+fab.onclick = () => {
+    modal.classList.add("show");
+};
+
+modal.onclick = (e) => {
+    if (e.target === modal) {
+        modal.classList.remove("show");
+    }
+};
+
+saveBtn.onclick = () => {
+
+    const name = document.getElementById("name").value;
+    const price = Number(document.getElementById("price").value);
+    const down = Number(document.getElementById("down").value);
+    const months = Number(document.getElementById("months").value);
+
+    if (!name || !price || !months) return;
+
+    contracts.push({
+        id: Date.now(),
+        name,
+        monthly: Math.round((price - down) / months),
+        remain: price - down,
+        progress: 0
+    });
+
+    updateSummary();
+    renderContracts();
+
+    modal.classList.remove("show");
+
+    document.getElementById("name").value = "";
+    document.getElementById("price").value = "";
+    document.getElementById("down").value = "";
+    document.getElementById("months").value = "";
+};
