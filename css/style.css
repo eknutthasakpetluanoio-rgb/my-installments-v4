@@ -1039,3 +1039,10 @@ body{
     }
 
 }
+.badge.danger{
+
+    background:#ef444422;
+
+    color:#fca5a5;
+
+}
