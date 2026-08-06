@@ -190,3 +190,120 @@ settings
 
 </body>
 </html>
+    <!-- Floating Add Button -->
+
+    <button class="fab" id="addButton">
+
+        <span class="material-symbols-rounded">
+            add
+        </span>
+
+    </button>
+
+    <!-- Bottom Navigation -->
+
+    <nav class="bottom-nav">
+
+        <button class="active">
+
+            <span class="material-symbols-rounded">
+                home
+            </span>
+
+        </button>
+
+        <button>
+
+            <span class="material-symbols-rounded">
+                calendar_month
+            </span>
+
+        </button>
+
+        <button>
+
+            <span class="material-symbols-rounded">
+                bar_chart
+            </span>
+
+        </button>
+
+        <button>
+
+            <span class="material-symbols-rounded">
+                settings
+            </span>
+
+        </button>
+
+    </nav>
+
+</div>
+
+<!-- Bottom Sheet -->
+
+<div class="sheet" id="sheet">
+
+    <div class="sheet-content">
+
+        <div class="sheet-handle"></div>
+
+        <h2>เพิ่มรายการผ่อน</h2>
+
+        <input
+            id="name"
+            type="text"
+            placeholder="ชื่อสินค้า">
+
+        <input
+            id="price"
+            type="number"
+            placeholder="ราคาสินค้า">
+
+        <input
+            id="down"
+            type="number"
+            placeholder="เงินดาวน์">
+
+        <input
+            id="months"
+            type="number"
+            placeholder="จำนวนงวด">
+
+        <input
+            id="monthly"
+            type="number"
+            placeholder="ค่างวดต่อเดือน (ไม่บังคับ)">
+
+        <input
+            id="due"
+            type="date">
+
+        <div class="sheet-buttons">
+
+            <button
+                class="cancel"
+                id="cancelBtn">
+
+                ยกเลิก
+
+            </button>
+
+            <button
+                class="save"
+                id="saveBtn">
+
+                บันทึก
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>
