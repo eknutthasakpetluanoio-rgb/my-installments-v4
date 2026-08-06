@@ -1,82 +1,98 @@
 /* ===================================
-   PayNest v1.0
-   Design Tokens
+   PayNest v3.1
+   Variables
 =================================== */
 
 :root{
 
-  /* ===== Colors ===== */
+    /* Colors */
 
-  --bg:#09090B;
-  --surface:#111114;
-  --surface-2:#17171C;
+    --background:#09090B;
+    --bg:#09090B;
 
-  --glass:rgba(255,255,255,.08);
-  --glass-border:rgba(255,255,255,.10);
+    --surface:#161616;
+    --surface-2:#202020;
 
-  --primary:#3B82F6;
-  --primary-light:#60A5FA;
+    --card:rgba(255,255,255,.08);
+    --card-hover:rgba(255,255,255,.12);
 
-  --secondary:#8B5CF6;
-  --secondary-light:#A78BFA;
+    --glass:rgba(255,255,255,.08);
+    --glass-border:rgba(255,255,255,.10);
 
-  --success:#22C55E;
-  --warning:#F59E0B;
-  --danger:#EF4444;
+    --border:rgba(255,255,255,.10);
 
-  --text:#FFFFFF;
-  --text-secondary:#A1A1AA;
+    --primary:#3B82F6;
+    --accent:#8B5CF6;
+    --secondary:#8B5CF6;
 
-  /* ===== Radius ===== */
+    --success:#22C55E;
+    --warning:#F59E0B;
+    --danger:#EF4444;
 
-  --radius-xs:8px;
-  --radius-sm:12px;
-  --radius-md:18px;
-  --radius-lg:24px;
-  --radius-xl:32px;
+    --text:#FFFFFF;
+    --text-secondary:#A1A1AA;
+    --muted:#A1A1AA;
 
-  /* ===== Shadow ===== */
+    /* Dark */
 
-  --shadow-sm:
-      0 6px 12px rgba(0,0,0,.25);
+    --dark-background:#09090B;
+    --dark-surface:#161616;
+    --dark-border:rgba(255,255,255,.10);
+    --dark-text:#FFFFFF;
+    --dark-text-secondary:#A1A1AA;
 
-  --shadow-md:
-      0 12px 28px rgba(0,0,0,.35);
+    /* Radius */
 
-  --shadow-lg:
-      0 18px 45px rgba(0,0,0,.45);
+    --radius:24px;
 
-  /* ===== Blur ===== */
+    --radius-xs:8px;
+    --radius-sm:12px;
+    --radius-md:18px;
+    --radius-lg:24px;
+    --radius-xl:32px;
 
-  --blur:20px;
+    /* Blur */
 
-  /* ===== Transition ===== */
+    --blur:20px;
 
-  --fast:.2s ease;
-  --normal:.3s ease;
-  --slow:.5s ease;
+    /* Shadow */
 
-  /* ===== Spacing ===== */
+    --shadow:0 16px 40px rgba(0,0,0,.45);
 
-  --space-1:4px;
-  --space-2:8px;
-  --space-3:12px;
-  --space-4:16px;
-  --space-5:20px;
-  --space-6:24px;
-  --space-7:32px;
-  --space-8:40px;
+    --shadow-sm:0 6px 12px rgba(0,0,0,.25);
+    --shadow-md:0 12px 28px rgba(0,0,0,.35);
+    --shadow-lg:0 18px 45px rgba(0,0,0,.45);
 
-  /* ===== Font ===== */
+    /* Typography */
 
-  --font:"Prompt",sans-serif;
+    --font-family:"Prompt",sans-serif;
+    --font:"Prompt",sans-serif;
 
-  --fs-xs:12px;
-  --fs-sm:14px;
-  --fs-md:16px;
-  --fs-lg:20px;
-  --fs-xl:28px;
-  --fs-xxl:42px;
+    --font-normal:400;
+    --font-semibold:600;
+
+    --font-xs:12px;
+    --font-sm:14px;
+    --font-md:16px;
+    --font-lg:20px;
+    --font-xl:28px;
+    --font-xxl:42px;
+
+    --fs-xs:12px;
+    --fs-sm:14px;
+    --fs-md:16px;
+    --fs-lg:20px;
+    --fs-xl:28px;
+    --fs-xxl:42px;
+
+    /* Transition */
+
+    --transition-fast:.2s ease;
+    --transition-normal:.3s ease;
+    --transition-slow:.5s ease;
+
+    --fast:.2s ease;
+    --normal:.3s ease;
+    --slow:.5s ease;
 
 }
-
