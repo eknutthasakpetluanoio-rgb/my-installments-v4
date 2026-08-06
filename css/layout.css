@@ -1,0 +1,96 @@
+/* ===================================
+   PayNest v1.0
+   Layout
+=================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:var(--font);
+    background:var(--bg);
+    color:var(--text);
+    min-height:100vh;
+    overflow-x:hidden;
+    position:relative;
+}
+
+/* Aurora Background */
+
+.background{
+    position:fixed;
+    inset:0;
+    z-index:-1;
+
+    background:
+        radial-gradient(circle at top left,#3B82F633 0%,transparent 45%),
+        radial-gradient(circle at top right,#8B5CF633 0%,transparent 40%),
+        radial-gradient(circle at bottom,#0EA5E922 0%,transparent 45%),
+        var(--bg);
+}
+
+/* Container */
+
+.container{
+    width:min(100%,430px);
+    margin:auto;
+    padding:24px 18px 120px;
+}
+
+/* Header */
+
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:28px;
+}
+
+.logo h1{
+    font-size:30px;
+    font-weight:700;
+}
+
+.logo p{
+    font-size:14px;
+    color:var(--text-secondary);
+}
+
+/* Section */
+
+section{
+    margin-bottom:20px;
+}
+
+.title{
+    margin-bottom:14px;
+    font-size:20px;
+    font-weight:600;
+}
+
+/* Responsive */
+
+img{
+    max-width:100%;
+    display:block;
+}
+
+button,
+input{
+    font-family:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+.hidden{
+    display:none !important;
+}
