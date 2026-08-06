@@ -1,5 +1,5 @@
 /* ===================================
-   PayNest v4
+   PayNest Ultimate v1.0
    Contract Manager
 =================================== */
 
@@ -11,15 +11,17 @@ function createContract(data) {
 
         id: generateId(),
 
-        name: data.name,
+        name: safeText(data.name),
 
-        price: Number(data.price),
+        shop: safeText(data.shop),
 
-        down: Number(data.down || 0),
+        price: toNumber(data.price),
 
-        months: Number(data.months),
+        down: toNumber(data.down),
 
-        monthly: Number(data.monthly),
+        months: toNumber(data.months),
+
+        monthly: toNumber(data.monthly),
 
         due: data.due || today(),
 
@@ -39,38 +41,49 @@ function createContract(data) {
 
 }
 
+/* ---------- Read ---------- */
+
+function getContract(id) {
+
+    return findContract(id);
+
+}
+
 /* ---------- Update ---------- */
 
 function editContract(id, data) {
 
-    const contract = findContract(id);
+    const contract = getContract(id);
 
-    if (!contract) return false;
+    if (!contract) {
 
-    contract.name = data.name;
-    contract.price = Number(data.price);
-    contract.down = Number(data.down);
-    contract.months = Number(data.months);
-    contract.monthly = Number(data.monthly);
+        return false;
+
+    }
+
+    contract.name = safeText(data.name);
+
+    contract.shop = safeText(data.shop);
+
+    contract.price = toNumber(data.price);
+
+    contract.down = toNumber(data.down);
+
+    contract.months = toNumber(data.months);
+
+    contract.monthly = toNumber(data.monthly);
+
     contract.due = data.due;
 
     return updateContract(id, contract);
 
 }
 
-/* ---------- Remove ---------- */
+/* ---------- Delete ---------- */
 
 function removeContract(id) {
 
     deleteContract(id);
-
-}
-
-/* ---------- Get ---------- */
-
-function getContract(id) {
-
-    return findContract(id);
 
 }
 
@@ -80,11 +93,15 @@ function payInstallment(id) {
 
     const contract = getContract(id);
 
-    if (!contract) return false;
+    if (!contract) {
+
+        return false;
+
+    }
 
     if (contract.paidMonths >= contract.months) {
 
-        alert("รายการนี้ชำระครบแล้ว");
+        alert("ชำระครบแล้ว");
 
         return false;
 
@@ -96,7 +113,7 @@ function payInstallment(id) {
 
     contract.history.push({
 
-        month: contract.paidMonths,
+        installment: contract.paidMonths,
 
         amount: contract.monthly,
 
@@ -156,7 +173,7 @@ function getStatus(contract) {
 
     }
 
-    if (contract.paidMonths >= contract.months * 0.8) {
+    if (contract.paidMonths >= Math.ceil(contract.months * 0.8)) {
 
         return {
 
@@ -188,11 +205,19 @@ function getDashboardData() {
 
     let remainingTotal = 0;
 
+    let paidAmount = 0;
+
+    let totalAmount = 0;
+
     contracts.forEach(contract => {
 
         monthlyTotal += contract.monthly;
 
         remainingTotal += getRemaining(contract);
+
+        paidAmount += contract.paidAmount;
+
+        totalAmount += (contract.price - contract.down);
 
     });
 
@@ -204,8 +229,22 @@ function getDashboardData() {
 
         monthlyTotal,
 
-        remainingTotal
+        remainingTotal,
+
+        paidAmount,
+
+        totalAmount,
+
+        paidPercent:
+
+            totalAmount > 0
+
+                ? Math.round((paidAmount / totalAmount) * 100)
+
+                : 0
 
     };
 
 }
+
+console.log("✅ contract.js loaded");
