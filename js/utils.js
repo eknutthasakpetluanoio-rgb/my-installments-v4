@@ -1,98 +1,97 @@
 /* ===================================
-   PayNest v1.0
+   PayNest v3.1
    Utils
 =================================== */
 
-/**
- * แปลงตัวเลขเป็นสกุลเงินบาท
- * ตัวอย่าง: 12500 -> ฿12,500
- */
-function formatCurrency(amount) {
-    const value = Number(amount) || 0;
+/* ---------- Currency ---------- */
+
+function formatCurrency(value) {
+
+    const number = Number(value || 0);
 
     return new Intl.NumberFormat("th-TH", {
         style: "currency",
         currency: "THB",
         maximumFractionDigits: 0
-    }).format(value);
+    }).format(number);
+
 }
 
-/**
- * สร้าง ID ไม่ซ้ำ
- */
+/* ---------- Number ---------- */
+
+function formatNumber(value) {
+
+    return new Intl.NumberFormat("th-TH").format(Number(value || 0));
+
+}
+
+/* ---------- Date ---------- */
+
+function formatDate(date) {
+
+    if (!date) return "-";
+
+    return new Date(date).toLocaleDateString("th-TH", {
+        day: "numeric",
+        month: "short",
+        year: "numeric"
+    });
+
+}
+
+/* ---------- Generate ID ---------- */
+
 function generateId() {
-    return Date.now().toString(36) +
-           Math.random().toString(36).substring(2, 8);
-}
 
-/**
- * คำนวณค่างวด
- */
-function calculateMonthly(price, down, months) {
-
-    price = Number(price);
-    down = Number(down);
-    months = Number(months);
-
-    if (months <= 0) return 0;
-
-    return Math.ceil((price - down) / months);
+    return crypto.randomUUID
+        ? crypto.randomUUID()
+        : Date.now().toString(36) +
+          Math.random().toString(36).slice(2);
 
 }
 
-/**
- * จำกัดค่า
- */
-function clamp(value, min, max) {
+/* ---------- Progress ---------- */
+
+function calculateProgress(paid, total) {
+
+    if (!total || total <= 0) return 0;
 
     return Math.min(
-        Math.max(value, min),
-        max
+        100,
+        Math.round((paid / total) * 100)
     );
 
 }
 
-/**
- * เปอร์เซ็นต์ Progress
- */
-function calculateProgress(total, remain) {
+/* ---------- Remaining ---------- */
 
-    if (total <= 0) return 0;
+function calculateRemaining(price, down, paid) {
 
-    const paid = total - remain;
-
-    return clamp(
-        (paid / total) * 100,
+    return Math.max(
         0,
-        100
+        Number(price) - Number(down) - Number(paid)
     );
 
 }
 
-/**
- * วันที่ปัจจุบัน
- */
+/* ---------- Today's Date ---------- */
+
 function today() {
 
-    return new Date()
-        .toISOString()
-        .split("T")[0];
+    return new Date().toISOString().split("T")[0];
 
 }
 
-/**
- * เพิ่มจำนวนเดือน
- */
-function addMonths(dateString, months) {
+/* ---------- Query ---------- */
 
-    const date = new Date(dateString);
+function $(selector) {
 
-    date.setMonth(
-        date.getMonth() + months
-    );
+    return document.querySelector(selector);
 
-    return date
-        .toISOString()
-        .split("T")[0];
+}
+
+function $$(selector) {
+
+    return document.querySelectorAll(selector);
 
 }
