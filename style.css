@@ -252,3 +252,44 @@ button{
 button:hover{
   transform:translateY(-2px);
 }
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.6);
+    display:none;
+    align-items:center;
+    justify-content:center;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-content{
+    width:90%;
+    max-width:380px;
+    background:#161616;
+    border-radius:24px;
+    padding:20px;
+}
+
+.modal-content input{
+    width:100%;
+    margin:10px 0;
+    padding:14px;
+    border:none;
+    border-radius:14px;
+    background:#262626;
+    color:#fff;
+}
+
+.modal-content button{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:14px;
+    background:#3B82F6;
+    color:#fff;
+    font-size:16px;
+    margin-top:10px;
+}
