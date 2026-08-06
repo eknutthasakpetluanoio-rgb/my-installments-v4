@@ -1,0 +1,216 @@
+/* ===================================
+   PayNest v4
+   Layout
+=================================== */
+
+/* App Container */
+
+.app{
+
+    width:min(100%,430px);
+
+    margin:0 auto;
+
+    min-height:100vh;
+
+    padding:24px 18px 120px;
+
+}
+
+/* Header */
+
+.header{
+
+    margin-bottom:24px;
+
+}
+
+.header-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.subtitle{
+
+    color:var(--text-secondary);
+
+    font-size:var(--fs-sm);
+
+}
+
+.header h1{
+
+    font-size:34px;
+
+    margin-top:4px;
+
+}
+
+.header-description{
+
+    margin-top:8px;
+
+    color:var(--text-secondary);
+
+}
+
+/* Hero */
+
+.hero-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:var(--glass);
+
+    border:1px solid var(--glass-border);
+
+    border-radius:var(--radius-lg);
+
+    backdrop-filter:blur(var(--blur));
+
+    box-shadow:var(--shadow-lg);
+
+    padding:24px;
+
+    margin-bottom:20px;
+
+}
+
+.hero-gradient{
+
+    position:absolute;
+
+    inset:0;
+
+    background:linear-gradient(
+        135deg,
+        rgba(59,130,246,.18),
+        rgba(139,92,246,.12)
+    );
+
+    pointer-events:none;
+
+}
+
+.hero-content{
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+.hero-label{
+
+    color:var(--text-secondary);
+
+}
+
+.hero-card h2{
+
+    font-size:var(--fs-xxl);
+
+    margin:12px 0;
+
+}
+
+.hero-stats{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin:20px 0;
+
+}
+
+.hero-item{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:6px;
+
+}
+
+.hero-item span{
+
+    color:var(--text-secondary);
+
+    font-size:13px;
+
+}
+
+.hero-item strong{
+
+    font-size:20px;
+
+}
+
+/* Insight */
+
+.insight-card{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:18px;
+
+    background:var(--glass);
+
+    border:1px solid var(--glass-border);
+
+    backdrop-filter:blur(var(--blur));
+
+    border-radius:20px;
+
+    margin-bottom:20px;
+
+}
+
+/* Contract List */
+
+.contract-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:16px;
+
+    margin-top:16px;
+
+}
+
+/* Empty */
+
+.empty-state{
+
+    text-align:center;
+
+    padding:60px 20px;
+
+    color:var(--text-secondary);
+
+}
+
+.empty-state span{
+
+    font-size:64px;
+
+    display:block;
+
+    margin-bottom:12px;
+
+}
