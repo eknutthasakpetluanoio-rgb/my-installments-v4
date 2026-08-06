@@ -1,0 +1,81 @@
+/* ===================================
+   PayNest v1.0
+   Design Tokens
+=================================== */
+
+:root{
+
+  /* ===== Colors ===== */
+
+  --bg:#09090B;
+  --surface:#111114;
+  --surface-2:#17171C;
+
+  --glass:rgba(255,255,255,.08);
+  --glass-border:rgba(255,255,255,.10);
+
+  --primary:#3B82F6;
+  --primary-light:#60A5FA;
+
+  --secondary:#8B5CF6;
+  --secondary-light:#A78BFA;
+
+  --success:#22C55E;
+  --warning:#F59E0B;
+  --danger:#EF4444;
+
+  --text:#FFFFFF;
+  --text-secondary:#A1A1AA;
+
+  /* ===== Radius ===== */
+
+  --radius-xs:8px;
+  --radius-sm:12px;
+  --radius-md:18px;
+  --radius-lg:24px;
+  --radius-xl:32px;
+
+  /* ===== Shadow ===== */
+
+  --shadow-sm:
+      0 6px 12px rgba(0,0,0,.25);
+
+  --shadow-md:
+      0 12px 28px rgba(0,0,0,.35);
+
+  --shadow-lg:
+      0 18px 45px rgba(0,0,0,.45);
+
+  /* ===== Blur ===== */
+
+  --blur:20px;
+
+  /* ===== Transition ===== */
+
+  --fast:.2s ease;
+  --normal:.3s ease;
+  --slow:.5s ease;
+
+  /* ===== Spacing ===== */
+
+  --space-1:4px;
+  --space-2:8px;
+  --space-3:12px;
+  --space-4:16px;
+  --space-5:20px;
+  --space-6:24px;
+  --space-7:32px;
+  --space-8:40px;
+
+  /* ===== Font ===== */
+
+  --font:"Prompt",sans-serif;
+
+  --fs-xs:12px;
+  --fs-sm:14px;
+  --fs-md:16px;
+  --fs-lg:20px;
+  --fs-xl:28px;
+  --fs-xxl:42px;
+
+}
