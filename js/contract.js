@@ -1,14 +1,13 @@
 /* ===================================
-   PayNest v1.0
+   PayNest v1.1
    Contract Manager
 =================================== */
 
-/**
- * สร้างรายการผ่อนใหม่
- */
+/* ---------- Create ---------- */
+
 function createContract(data) {
 
-    const monthly = data.monthly && Number(data.monthly) > 0
+    const monthly = data.monthly > 0
         ? Number(data.monthly)
         : calculateMonthly(
             data.price,
@@ -36,15 +35,16 @@ function createContract(data) {
 
         due: data.due || today(),
 
-        createdAt: today()
+        createdAt: today(),
+
+        history: []
 
     };
 
 }
 
-/**
- * เพิ่มรายการใหม่
- */
+/* ---------- Add ---------- */
+
 function createNewContract(data) {
 
     const contract = createContract(data);
@@ -55,27 +55,24 @@ function createNewContract(data) {
 
 }
 
-/**
- * แก้ไขข้อมูล
- */
-function editContract(id, data) {
+/* ---------- Edit ---------- */
 
-    return updateContract(id, data);
+function editContract(id, newData) {
+
+    return updateContract(id, newData);
 
 }
 
-/**
- * ลบรายการ
- */
+/* ---------- Delete ---------- */
+
 function removeContract(id) {
 
     deleteContract(id);
 
 }
 
-/**
- * ชำระ 1 งวด
- */
+/* ---------- Pay ---------- */
+
 function payInstallment(id) {
 
     const contract = getContract(id);
@@ -94,13 +91,28 @@ function payInstallment(id) {
 
     contract.paidMonths++;
 
+    contract.history.push({
+
+        date: today(),
+
+        amount: contract.monthly
+
+    });
+
+    contract.due = addMonths(
+
+        contract.due,
+
+        1
+
+    );
+
     updateContract(id, contract);
 
 }
 
-/**
- * จำนวนงวดที่เหลือ
- */
+/* ---------- Remaining Months ---------- */
+
 function remainingMonths(contract) {
 
     if (contract.monthly <= 0) return 0;
@@ -115,9 +127,8 @@ function remainingMonths(contract) {
 
 }
 
-/**
- * เปอร์เซ็นต์ความคืบหน้า
- */
+/* ---------- Progress ---------- */
+
 function progress(contract) {
 
     return calculateProgress(
@@ -130,50 +141,38 @@ function progress(contract) {
 
 }
 
-/**
- * ยอดที่ต้องจ่ายเดือนนี้
- */
+/* ---------- Dashboard Summary ---------- */
+
 function monthlySummary() {
 
-    const contracts = loadContracts();
+    return loadContracts()
 
-    return contracts.reduce(
+        .filter(item => item.remain > 0)
 
-        (sum, item) => {
+        .reduce(
 
-            if (item.remain > 0) {
+            (sum, item) =>
 
-                sum += item.monthly;
+                sum + item.monthly,
 
-            }
+            0
 
-            return sum;
-
-        },
-
-        0
-
-    );
+        );
 
 }
 
-/**
- * ยอดคงเหลือทั้งหมด
- */
 function remainSummary() {
 
-    const contracts = loadContracts();
+    return loadContracts()
 
-    return contracts.reduce(
+        .reduce(
 
-        (sum, item) => {
+            (sum, item) =>
 
-            return sum + item.remain;
+                sum + item.remain,
 
-        },
+            0
 
-        0
-
-    );
+        );
 
 }
