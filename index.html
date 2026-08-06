@@ -6,9 +6,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
-<title>PayNest v4</title>
+<title>PayNest Ultimate v1.0</title>
 
 <meta name="theme-color" content="#2563eb">
+<meta name="description" content="PayNest Ultimate">
 
 <link rel="manifest" href="manifest.json">
 
@@ -35,7 +36,7 @@
 
 <h1>PayNest</h1>
 
-<p>Smart Installment Manager</p>
+<p>Ultimate v1.0</p>
 
 </div>
 
@@ -140,20 +141,21 @@ dark_mode
 <section class="searchArea">
 
 <input
-
 id="searchInput"
-
 type="search"
-
 placeholder="ค้นหารายการ...">
 
 </section>
 
-<section id="contractList" class="contractList">
+<section
+id="contractList"
+class="contractList">
 
 </section>
 
-<button id="addButton" class="fab">
+<button
+id="addButton"
+class="fab">
 
 <span class="material-symbols-rounded">
 
@@ -162,102 +164,124 @@ add
 </span>
 
 </button>
-
 </div>
 
 <div id="sheet" class="sheetOverlay">
 
-<div class="sheet">
+    <div class="sheet">
 
-<h2 id="sheetTitle">
+        <h2 id="sheetTitle">
+            เพิ่มสัญญา
+        </h2>
 
-เพิ่มสัญญา
+        <form id="contractForm">
 
-</h2>
+            <input
+                id="name"
+                type="text"
+                placeholder="ชื่อสินค้า"
+                required>
 
-<input id="name" placeholder="ชื่อสินค้า">
+            <input
+                id="shop"
+                type="text"
+                placeholder="ร้านค้า">
 
-<input id="shop" placeholder="ร้านค้า">
+            <input
+                id="price"
+                type="number"
+                placeholder="ราคาสินค้า"
+                required>
 
-<input id="price" type="number" placeholder="ราคาสินค้า">
+            <input
+                id="down"
+                type="number"
+                value="0"
+                placeholder="เงินดาวน์">
 
-<input id="down" type="number" placeholder="เงินดาวน์">
+            <input
+                id="months"
+                type="number"
+                placeholder="จำนวนงวด"
+                required>
 
-<input id="months" type="number" placeholder="จำนวนงวด">
+            <input
+                id="monthly"
+                type="number"
+                placeholder="ค่างวด"
+                required>
 
-<input id="monthly" type="number" placeholder="ค่างวด">
+            <input
+                id="due"
+                type="date">
 
-<input id="due" type="date">
+            <div class="sheetButtons">
 
-<div class="sheetButtons">
+                <button
+                    type="button"
+                    id="cancelBtn">
 
-<button id="cancelBtn">
+                    ยกเลิก
 
-ยกเลิก
+                </button>
 
-</button>
+                <button
+                    type="button"
+                    id="saveBtn">
 
-<button id="saveBtn">
+                    บันทึก
 
-บันทึก
+                </button>
 
-</button>
+            </div>
 
-</div>
+        </form>
 
-</div>
+    </div>
 
 </div>
 
 <nav class="bottomNav">
 
-<button class="active">
+    <button class="active">
 
-<span class="material-symbols-rounded">
+        <span class="material-symbols-rounded">
+            home
+        </span>
 
-home
+        <p>หน้าแรก</p>
 
-</span>
+    </button>
 
-<p>หน้าแรก</p>
+    <button>
 
-</button>
+        <span class="material-symbols-rounded">
+            calendar_month
+        </span>
 
-<button>
+        <p>ปฏิทิน</p>
 
-<span class="material-symbols-rounded">
+    </button>
 
-calendar_month
+    <button>
 
-</span>
+        <span class="material-symbols-rounded">
+            analytics
+        </span>
 
-<p>ปฏิทิน</p>
+        <p>สถิติ</p>
 
-</button>
+    </button>
 
-<button>
+    <button>
 
-<span class="material-symbols-rounded">
+        <span class="material-symbols-rounded">
+            settings
+        </span>
 
-analytics
+        <p>ตั้งค่า</p>
 
-</span>
-
-<p>สถิติ</p>
-
-</button>
-
-<button>
-
-<span class="material-symbols-rounded">
-
-settings
-
-</span>
-
-<p>ตั้งค่า</p>
-
-</button>
+    </button>
 
 </nav>
 
@@ -266,7 +290,4 @@ settings
 <script src="js/contract.js"></script>
 <script src="js/dashboard.js"></script>
 <script src="js/ui.js"></script>
-<script src="js/app.js"></script>
-
-</body>
-</html>
+<script src="js/app.js"></
