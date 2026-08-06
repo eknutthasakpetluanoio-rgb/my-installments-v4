@@ -1,66 +1,83 @@
 /* ===================================
-   PayNest v1.1
+   PayNest v3.1
    Dashboard
 =================================== */
 
-/* ---------- Dashboard ---------- */
+/* ---------- Elements ---------- */
 
-function renderDashboard() {
+const contractList = document.getElementById("contractList");
+const monthlyTotal = document.getElementById("monthlyTotal");
+const remainMoney = document.getElementById("remainMoney");
+const contractCount = document.getElementById("contractCount");
+const progressBar = document.getElementById("progressBar");
+const insight = document.getElementById("insight");
+const searchInput = document.getElementById("searchInput");
 
-    const contracts = loadContracts();
+/* ---------- Render ---------- */
 
-    updateSummary(contracts);
+function renderDashboard(keyword = "") {
 
-    updateInsight(contracts);
+    const dashboard = getDashboardData();
 
-    renderContractList(contracts);
+    let contracts = dashboard.contracts;
+
+    if (keyword) {
+
+        contracts = contracts.filter(contract =>
+            contract.name
+                .toLowerCase()
+                .includes(keyword.toLowerCase())
+        );
+
+    }
+
+    monthlyTotal.textContent =
+        formatCurrency(dashboard.monthlyTotal);
+
+    remainMoney.textContent =
+        formatCurrency(dashboard.remainingTotal);
+
+    contractCount.textContent =
+        dashboard.totalContracts;
+
+    renderProgress(dashboard);
+
+    renderInsight(dashboard);
+
+    renderContracts(contracts);
 
 }
 
-/* ---------- Summary ---------- */
+/* ---------- Progress ---------- */
 
-function updateSummary(contracts) {
+function renderProgress(data) {
 
-    const monthly = monthlySummary();
+    if (!data.totalContracts) {
 
-    const remain = remainSummary();
+        progressBar.style.width = "0%";
 
-    document.getElementById("monthlyTotal").textContent =
-        formatCurrency(monthly);
+        return;
 
-    document.getElementById("remainMoney").textContent =
-        formatCurrency(remain);
+    }
 
-    document.getElementById("contractCount").textContent =
-        contracts.length;
+    let total = 0;
 
-    const totalDebt = contracts.reduce((sum, item) => {
+    data.contracts.forEach(contract => {
 
-        return sum + (item.price - item.down);
+        total += getProgress(contract);
 
-    }, 0);
+    });
 
-    const percent = calculateProgress(
-
-        totalDebt,
-
-        remain
-
-    );
-
-    document.getElementById("progressBar").style.width =
-        percent + "%";
+    progressBar.style.width =
+        (total / data.totalContracts) + "%";
 
 }
 
 /* ---------- Insight ---------- */
 
-function updateInsight(contracts) {
+function renderInsight(data) {
 
-    const insight =
-        document.getElementById("insight");
-
-    if (!contracts.length) {
+    if (!data.totalContracts) {
 
         insight.textContent =
             "เริ่มเพิ่มรายการผ่อนของคุณได้เลย";
@@ -69,267 +86,98 @@ function updateInsight(contracts) {
 
     }
 
-    const nearest = [...contracts].sort(
-
-        (a, b) =>
-
-            new Date(a.due) -
-
-            new Date(b.due)
-
-    )[0];
-
     insight.textContent =
-        `รายการ "${nearest.name}" ครบกำหนด ${nearest.due}`;
-
-}
-
-/* ---------- Contract List ---------- */
-
-function renderContractList(contracts) {
-
-    const list =
-        document.getElementById("contractList");
-
-    list.innerHTML = "";
-
-    if (!contracts.length) {
-
-        list.innerHTML = `
-
-            <div class="contract-card">
-
-                <p>ยังไม่มีรายการผ่อน</p>
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-    contracts.forEach(contract => {
-
-        list.appendChild(
-
-            createContractCard(contract)
-
-        );
-
-    });
+        `คุณมี ${data.totalContracts} รายการที่กำลังผ่อน`;
 
 }
 
 /* ---------- Card ---------- */
 
-function createContractCard(contract) {
+function createCard(contract) {
 
-    const card =
-        document.createElement("div");
+    const status = getStatus(contract);
 
-    card.className =
-        "contract-card slide-up";
+    return `
 
-    const percent =
-        Math.round(progress(contract));
+<div class="contract-card slide-up">
 
-    const remainMonth =
-        remainingMonths(contract);
+    <h4>${contract.name}</h4>
 
-    const badge =
-        getStatusBadge(contract);
+    <p>
 
-    card.innerHTML = `
+        <span>ค่างวด</span>
 
-        <div class="card-header">
+        <strong>${formatCurrency(contract.monthly)}</strong>
 
-            <div>
+    </p>
 
-                <h4>${contract.name}</h4>
+    <p>
 
-                <span class="badge ${badge.class}">
+        <span>คงเหลือ</span>
 
-                    ${badge.text}
+        <strong>${formatCurrency(getRemaining(contract))}</strong>
 
-                </span>
+    </p>
 
-            </div>
+    <p>
 
-        </div>
+        <span>งวด</span>
 
-        <div class="progress">
+        <strong>${contract.paidMonths}/${contract.months}</strong>
 
-            <div
-                class="progress-bar"
-                style="width:${percent}%">
-            </div>
+    </p>
 
-        </div>
+    <div class="badge ${status.className}">
+        ${status.text}
+    </div>
 
-        <p>
+</div>
 
-            ความคืบหน้า
-
-            <strong>${percent}%</strong>
-
-        </p>
-
-        <p>
-
-            💰 คงเหลือ
-
-            <strong>
-
-                ${formatCurrency(contract.remain)}
-
-            </strong>
-
-        </p>
-
-        <p>
-
-            📅 ครบกำหนด
-
-            <strong>
-
-                ${contract.due}
-
-            </strong>
-
-        </p>
-
-        <p>
-
-            งวดที่เหลือ
-
-            <strong>
-
-                ${remainMonth}
-
-            </strong>
-
-        </p>
-
-        <div class="card-actions">
-
-            <button
-                class="edit-btn"
-                data-id="${contract.id}">
-
-                ✏️
-
-            </button>
-
-            <button
-                class="pay-btn"
-                data-id="${contract.id}">
-
-                ✅
-
-            </button>
-
-            <button
-                class="delete-btn"
-                data-id="${contract.id}">
-
-                🗑️
-
-            </button>
-
-        </div>
-
-    `;
-
-    return card;
+`;
 
 }
-/* ---------- Status Badge ---------- */
 
-function getStatusBadge(contract) {
+/* ---------- Render Cards ---------- */
 
-    if (contract.remain <= 0) {
-        return {
-            class: "success",
-            text: "ชำระครบ"
-        };
+function renderContracts(contracts) {
+
+    if (!contracts.length) {
+
+        contractList.innerHTML = `
+
+<div class="empty-state">
+
+<span class="material-symbols-rounded">
+
+inventory_2
+
+</span>
+
+<h3>ยังไม่มีรายการ</h3>
+
+<p>กดปุ่ม + เพื่อเริ่มสร้างรายการผ่อน</p>
+
+</div>
+
+`;
+
+        return;
+
     }
 
-    const todayDate = new Date();
-    const dueDate = new Date(contract.due);
-
-    const diffDays = Math.ceil(
-        (dueDate - todayDate) / (1000 * 60 * 60 * 24)
-    );
-
-    if (diffDays <= 3) {
-        return {
-            class: "danger",
-            text: "ใกล้ครบกำหนด"
-        };
-    }
-
-    return {
-        class: "warning",
-        text: "กำลังผ่อน"
-    };
+    contractList.innerHTML =
+        contracts.map(createCard).join("");
 
 }
 
-/* ---------- Card Events ---------- */
+/* ---------- Search ---------- */
 
-function bindCardEvents() {
+if (searchInput) {
 
-    document.querySelectorAll(".pay-btn").forEach(button => {
+    searchInput.addEventListener("input", event => {
 
-        button.addEventListener("click", () => {
-
-            const id = button.dataset.id;
-
-            payInstallment(id);
-
-            refreshDashboard();
-
-        });
+        renderDashboard(event.target.value);
 
     });
-
-    document.querySelectorAll(".delete-btn").forEach(button => {
-
-        button.addEventListener("click", () => {
-
-            const id = button.dataset.id;
-
-            if (confirm("ลบรายการนี้ใช่หรือไม่?")) {
-
-                removeContract(id);
-
-                refreshDashboard();
-
-            }
-
-        });
-
-    });
-
-    document.querySelectorAll(".edit-btn").forEach(button => {
-
-        button.addEventListener("click", () => {
-
-            editForm(id);
-
-        });
-
-    });
-
-}
-
-/* ---------- Refresh ---------- */
-
-function refreshDashboard() {
-
-    renderDashboard();
-
-    bindCardEvents();
 
 }
