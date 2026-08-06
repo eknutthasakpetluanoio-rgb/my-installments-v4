@@ -340,3 +340,155 @@ button{
     border:none;
 
 }
+/* ===================================
+   PayNest v1.1
+   Contract Card Upgrade
+=================================== */
+
+/* ---------- Card Header ---------- */
+
+.card-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    margin-bottom:16px;
+}
+
+.card-header h4{
+    margin:0 0 8px;
+    font-size:20px;
+    font-weight:600;
+    color:var(--text);
+}
+
+/* ---------- Badge ---------- */
+
+.badge{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:90px;
+    padding:6px 12px;
+    border-radius:999px;
+    font-size:12px;
+    font-weight:600;
+}
+
+.badge.success{
+    background:rgba(34,197,94,.18);
+    color:var(--success);
+}
+
+.badge.warning{
+    background:rgba(245,158,11,.18);
+    color:var(--warning);
+}
+
+.badge.danger{
+    background:rgba(239,68,68,.18);
+    color:var(--danger);
+}
+
+/* ---------- Card Detail ---------- */
+
+.contract-card p{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin:12px 0;
+    color:var(--text-secondary);
+}
+
+.contract-card p strong{
+    color:var(--text);
+    font-weight:600;
+}
+
+/* ---------- Action Buttons ---------- */
+
+.card-actions{
+    display:flex;
+    gap:10px;
+    margin-top:18px;
+}
+
+.card-actions button{
+
+    flex:1;
+
+    height:46px;
+
+    border:none;
+
+    border-radius:14px;
+
+    font-size:18px;
+
+    cursor:pointer;
+
+    transition:var(--fast);
+
+}
+
+/* Edit */
+
+.edit-btn{
+    background:#2A2A32;
+    color:#ffffff;
+}
+
+/* Pay */
+
+.pay-btn{
+    background:linear-gradient(
+        135deg,
+        var(--success),
+        #16A34A
+    );
+    color:#ffffff;
+}
+
+/* Delete */
+
+.delete-btn{
+    background:linear-gradient(
+        135deg,
+        var(--danger),
+        #DC2626
+    );
+    color:#ffffff;
+}
+
+.card-actions button:hover{
+    transform:translateY(-2px);
+}
+
+.card-actions button:active{
+    transform:scale(.95);
+}
+
+/* ---------- Progress ---------- */
+
+.progress{
+    margin:14px 0;
+}
+
+.progress-bar{
+    transition:width .45s ease;
+}
+
+/* ---------- Responsive ---------- */
+
+@media(max-width:480px){
+
+    .card-actions{
+        gap:8px;
+    }
+
+    .card-actions button{
+        height:42px;
+        font-size:16px;
+    }
+
+}
+
