@@ -1,28 +1,25 @@
 /* ===================================
-   PayNest v1.0
-   Storage
+   PayNest v3.1
+   Storage Manager
 =================================== */
 
-const STORAGE_KEY = "paynest_contracts";
+const STORAGE_KEY = "paynest.contracts";
 
-/**
- * โหลดข้อมูลทั้งหมด
- */
-function loadContracts() {
+/* ---------- Get All ---------- */
+
+function getContracts() {
+
+    const data = localStorage.getItem(STORAGE_KEY);
+
+    if (!data) return [];
 
     try {
-
-        const data = localStorage.getItem(STORAGE_KEY);
-
-        if (!data) {
-            return [];
-        }
 
         return JSON.parse(data);
 
     } catch (error) {
 
-        console.error("Load Error :", error);
+        console.error("Storage Error:", error);
 
         return [];
 
@@ -30,36 +27,22 @@ function loadContracts() {
 
 }
 
-/**
- * บันทึกข้อมูลทั้งหมด
- */
+/* ---------- Save All ---------- */
+
 function saveContracts(contracts) {
 
-    try {
-
-        localStorage.setItem(
-            STORAGE_KEY,
-            JSON.stringify(contracts)
-        );
-
-        return true;
-
-    } catch (error) {
-
-        console.error("Save Error :", error);
-
-        return false;
-
-    }
+    localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(contracts)
+    );
 
 }
 
-/**
- * เพิ่มรายการใหม่
- */
+/* ---------- Add ---------- */
+
 function addContract(contract) {
 
-    const contracts = loadContracts();
+    const contracts = getContracts();
 
     contracts.push(contract);
 
@@ -67,22 +50,34 @@ function addContract(contract) {
 
 }
 
-/**
- * อัปเดตรายการ
- */
+/* ---------- Find ---------- */
+
+function findContract(id) {
+
+    return getContracts().find(
+        contract => contract.id === id
+    );
+
+}
+
+/* ---------- Update ---------- */
+
 function updateContract(id, newData) {
 
-    const contracts = loadContracts();
+    const contracts = getContracts();
 
     const index = contracts.findIndex(
-        item => item.id === id
+        contract => contract.id === id
     );
 
     if (index === -1) return false;
 
     contracts[index] = {
+
         ...contracts[index],
+
         ...newData
+
     };
 
     saveContracts(contracts);
@@ -91,37 +86,20 @@ function updateContract(id, newData) {
 
 }
 
-/**
- * ลบรายการ
- */
+/* ---------- Delete ---------- */
+
 function deleteContract(id) {
 
-    const contracts = loadContracts();
-
-    const filtered = contracts.filter(
-        item => item.id !== id
+    const contracts = getContracts().filter(
+        contract => contract.id !== id
     );
 
-    saveContracts(filtered);
+    saveContracts(contracts);
 
 }
 
-/**
- * ค้นหารายการ
- */
-function getContract(id) {
+/* ---------- Clear ---------- */
 
-    const contracts = loadContracts();
-
-    return contracts.find(
-        item => item.id === id
-    );
-
-}
-
-/**
- * ล้างข้อมูลทั้งหมด
- */
 function clearContracts() {
 
     localStorage.removeItem(STORAGE_KEY);
