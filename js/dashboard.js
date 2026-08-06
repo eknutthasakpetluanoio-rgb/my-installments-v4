@@ -188,3 +188,14 @@ if (searchInput) {
     });
 
 }
+function removeItem(id){
+
+    if(confirm("ต้องการลบรายการนี้ใช่หรือไม่?")){
+
+        removeContract(id);
+
+        renderDashboard();
+
+    }
+
+}
