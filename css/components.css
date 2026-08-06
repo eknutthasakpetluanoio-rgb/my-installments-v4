@@ -1,85 +1,305 @@
 /* ===================================
-   PayNest v3.1
-   Components
+   PayNest Premium v4
+   Components - Part 1
 =================================== */
 
 /* ---------- Hero Card ---------- */
 
-.hero{
+.hero-card{
     position:relative;
     overflow:hidden;
+
+    padding:26px;
+
+    border-radius:var(--radius-lg);
+
+    background:var(--glass);
+
+    border:1px solid var(--glass-border);
+
+    backdrop-filter:blur(var(--blur));
+    -webkit-backdrop-filter:blur(var(--blur));
+
+    box-shadow:
+        var(--shadow-lg),
+        var(--glow-soft);
+
+    isolation:isolate;
 }
 
-.hero::before{
+/* Reflection */
+
+.hero-card::before{
+
     content:"";
+
     position:absolute;
-    inset:0;
-    background:
-        linear-gradient(
-            135deg,
-            rgba(59,130,246,.15),
-            rgba(139,92,246,.08)
-        );
+
+    left:-35%;
+    top:-45%;
+
+    width:170px;
+    height:280px;
+
+    background:linear-gradient(
+        180deg,
+        rgba(255,255,255,.20),
+        rgba(255,255,255,0)
+    );
+
+    transform:rotate(28deg);
+
     pointer-events:none;
+
+    opacity:.7;
+
+}
+
+/* Gradient */
+
+.hero-gradient{
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(79,124,255,.22),
+            transparent 45%
+        ),
+
+        radial-gradient(
+            circle at bottom left,
+            rgba(124,108,255,.16),
+            transparent 40%
+        );
+
+    pointer-events:none;
+
+}
+
+/* Content */
+
+.hero-content{
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+/* Label */
+
+.hero-label{
+
+    display:block;
+
+    color:var(--text-secondary);
+
+    font-size:14px;
+
+    margin-bottom:8px;
+
+}
+
+/* Amount */
+
+#monthlyTotal{
+
+    font-size:48px;
+
+    font-weight:700;
+
+    line-height:1;
+
+    letter-spacing:-1px;
+
+    margin-bottom:22px;
+
+}
+
+/* Stats */
+
+.hero-stats{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:14px;
+
+}
+
+.hero-item{
+
+    padding:18px;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.06);
+
+}
+
+.hero-item span{
+
+    display:block;
+
+    color:var(--muted);
+
+    font-size:13px;
+
+    margin-bottom:8px;
+
+}
+
+.hero-item strong{
+
+    font-size:20px;
+
+    color:white;
+
 }
 
 /* ---------- Progress ---------- */
 
 .progress{
+
+    margin-top:22px;
+
     width:100%;
-    height:10px;
-    border-radius:999px;
-    background:rgba(255,255,255,.08);
+
+    height:12px;
+
     overflow:hidden;
+
+    border-radius:999px;
+
+    background:rgba(255,255,255,.08);
+
 }
 
 .progress-bar{
-    width:0%;
+
     height:100%;
+
+    width:0%;
+
     border-radius:999px;
-    background:
-        linear-gradient(
-            90deg,
-            var(--primary),
-            var(--accent)
-        );
-    transition:width .45s ease;
+
+    background:linear-gradient(
+        90deg,
+        var(--primary),
+        var(--accent)
+    );
+
+    box-shadow:
+        0 0 18px rgba(79,124,255,.35);
+
+    transition:width .6s ease;
+
+}
+
+/* ---------- Insight ---------- */
+
+.insight-card{
+
+    display:flex;
+
+    gap:16px;
+
+    align-items:flex-start;
+
+    padding:18px;
+
+    margin-bottom:20px;
+
+    border-radius:22px;
+
+    background:var(--glass);
+
+    border:1px solid var(--glass-border);
+
+    backdrop-filter:blur(var(--blur));
+
+}
+
+.insight-card span{
+
+    font-size:28px;
+
+    color:#FFD54A;
+
+}
+
+.insight-card p{
+
+    color:var(--text);
+
+    line-height:1.6;
+
 }
 
 /* ---------- Search ---------- */
 
 .search-box{
+
     display:flex;
+
     align-items:center;
-    gap:12px;
 
-    padding:14px 18px;
+    gap:14px;
 
-    margin:18px 0;
+    padding:16px 20px;
 
-    background:var(--card);
+    border-radius:22px;
 
-    border-radius:18px;
+    background:var(--glass);
+
+    border:1px solid var(--glass-border);
 
     backdrop-filter:blur(var(--blur));
 
-    border:1px solid rgba(255,255,255,.08);
+    box-shadow:var(--shadow-sm);
+
 }
 
-.search-box input{
-    background:transparent;
-    border:none;
-    color:var(--text);
-    flex:1;
-}
+.search-box:hover{
 
-.search-box input:focus{
-    outline:none;
+    border-color:rgba(255,255,255,.18);
+
 }
 
 .search-box span{
+
     color:var(--muted);
+
 }
+
+.search-box input{
+
+    padding:0;
+
+    border:none;
+
+    background:transparent;
+
+    box-shadow:none;
+
+}
+
+.search-box input:focus{
+
+    box-shadow:none;
+
+}
+/* ===================================
+   Components - Part 2
+   Contract Card / Buttons / Badge
+=================================== */
 
 /* ---------- Contract Card ---------- */
 
@@ -89,11 +309,24 @@
 
     overflow:hidden;
 
-    cursor:pointer;
+    padding:22px;
+
+    border-radius:26px;
+
+    background:var(--glass);
+
+    border:1px solid var(--glass-border);
+
+    backdrop-filter:blur(var(--blur));
+    -webkit-backdrop-filter:blur(var(--blur));
+
+    box-shadow:var(--shadow-md);
+
+    transition:var(--normal);
 
 }
 
-.contract-card::after{
+.contract-card::before{
 
     content:"";
 
@@ -101,30 +334,51 @@
 
     inset:0;
 
-    opacity:0;
+    background:linear-gradient(
+        180deg,
+        rgba(255,255,255,.08),
+        transparent 35%
+    );
 
-    transition:.25s;
+    opacity:.8;
 
-    background:
-        linear-gradient(
-            135deg,
-            rgba(59,130,246,.08),
-            rgba(139,92,246,.08)
-        );
+    pointer-events:none;
 
 }
 
-.contract-card:hover::after{
+.contract-card:hover{
 
-    opacity:1;
+    transform:translateY(-4px);
+
+    box-shadow:
+
+        var(--shadow-lg),
+
+        var(--glow-soft);
 
 }
 
 .contract-card h4{
 
-    font-size:20px;
+    font-size:22px;
 
-    margin-bottom:8px;
+    font-weight:700;
+
+    color:var(--text);
+
+    margin-bottom:4px;
+
+}
+
+.contract-card small{
+
+    display:block;
+
+    color:var(--muted);
+
+    margin-bottom:18px;
+
+    font-size:13px;
 
 }
 
@@ -134,51 +388,35 @@
 
     justify-content:space-between;
 
-    margin:8px 0;
-
-}
-
-/* ---------- Badge ---------- */
-
-.badge{
-
-    display:inline-flex;
-
     align-items:center;
 
-    justify-content:center;
+    margin:10px 0;
 
-    padding:5px 12px;
-
-    border-radius:999px;
-
-    font-size:12px;
-
-    font-weight:600;
+    color:var(--text-secondary);
 
 }
 
-.badge.success{
+.contract-card p strong{
 
-    background:rgba(34,197,94,.18);
-
-    color:#4ADE80;
+    color:var(--text);
 
 }
 
-.badge.warning{
+/* ---------- Action ---------- */
 
-    background:rgba(245,158,11,.18);
+.card-actions{
 
-    color:#FBBF24;
+    display:flex;
+
+    gap:10px;
+
+    margin-top:18px;
 
 }
 
-.badge.danger{
+.card-actions .btn{
 
-    background:rgba(239,68,68,.18);
-
-    color:#F87171;
+    flex:1;
 
 }
 
@@ -186,38 +424,53 @@
 
 .btn{
 
-    height:46px;
+    height:50px;
 
     border:none;
 
-    border-radius:14px;
-
-    font-size:15px;
+    border-radius:18px;
 
     font-weight:600;
 
-    transition:.25s;
+    transition:var(--normal);
 
 }
 
 .btn-primary{
 
-    background:
-        linear-gradient(
-            135deg,
-            var(--primary),
-            var(--accent)
-        );
+    background:linear-gradient(
+        135deg,
+        var(--primary),
+        var(--accent)
+    );
 
-    color:white;
+    color:#fff;
+
+    box-shadow:
+
+        0 8px 20px rgba(79,124,255,.25);
+
+}
+
+.btn-primary:hover{
+
+    transform:translateY(-2px);
 
 }
 
 .btn-secondary{
 
-    background:rgba(255,255,255,.08);
+    background:rgba(255,255,255,.06);
 
-    color:white;
+    border:1px solid rgba(255,255,255,.08);
+
+    color:var(--text);
+
+}
+
+.btn-secondary:hover{
+
+    background:rgba(255,255,255,.10);
 
 }
 
@@ -233,15 +486,173 @@
 
 }
 
-.btn:hover{
+.btn:active{
+
+    transform:scale(.96);
+
+}
+
+/* ---------- Badge ---------- */
+
+.badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:6px 14px;
+
+    border-radius:999px;
+
+    font-size:12px;
+
+    font-weight:600;
+
+}
+
+.badge.success{
+
+    background:rgba(34,197,94,.18);
+
+    color:#6EE7B7;
+
+}
+
+.badge.warning{
+
+    background:rgba(245,158,11,.18);
+
+    color:#FCD34D;
+
+}
+
+.badge.danger{
+
+    background:rgba(239,68,68,.18);
+
+    color:#FCA5A5;
+
+}
+/* ===================================
+   Components - Part 3
+   FAB / Icon Button / Sheet / Effects
+=================================== */
+
+/* ---------- Floating Action Button ---------- */
+
+.fab{
+
+    position:fixed;
+
+    width:64px;
+    height:64px;
+
+    border-radius:50%;
+
+    background:linear-gradient(
+        135deg,
+        var(--primary),
+        var(--accent)
+    );
+
+    color:#fff;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    box-shadow:
+        0 15px 40px rgba(79,124,255,.35),
+        0 0 25px rgba(79,124,255,.18);
+
+    transition:var(--normal);
+
+    overflow:hidden;
+
+}
+
+.fab::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:-55%;
+    left:-35%;
+
+    width:140%;
+    height:140%;
+
+    background:linear-gradient(
+        135deg,
+        rgba(255,255,255,.35),
+        transparent 45%
+    );
+
+    transform:rotate(25deg);
+
+    pointer-events:none;
+
+}
+
+.fab:hover{
+
+    transform:
+        translateY(-4px)
+        scale(1.03);
+
+}
+
+.fab:active{
+
+    transform:scale(.95);
+
+}
+
+.fab .material-symbols-rounded{
+
+    font-size:30px;
+
+}
+
+/* ---------- Icon Button ---------- */
+
+.icon-button{
+
+    width:48px;
+    height:48px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    border-radius:18px;
+
+    background:var(--glass);
+
+    border:1px solid var(--glass-border);
+
+    backdrop-filter:blur(var(--blur));
+
+    color:var(--text);
+
+    transition:var(--normal);
+
+}
+
+.icon-button:hover{
+
+    background:rgba(255,255,255,.10);
 
     transform:translateY(-2px);
 
 }
 
-.btn:active{
+.icon-button:active{
 
-    transform:scale(.96);
+    transform:scale(.95);
 
 }
 
@@ -249,43 +660,23 @@
 
 .sheet{
 
-    position:fixed;
+    background:rgba(19,26,40,.92);
 
-    left:0;
+    backdrop-filter:blur(36px);
 
-    right:0;
+    border-top-left-radius:30px;
+    border-top-right-radius:30px;
 
-    bottom:-100%;
+    border-top:1px solid rgba(255,255,255,.08);
 
-    background:#161616;
-
-    border-radius:28px 28px 0 0;
-
-    padding:24px;
-
-    transition:.35s;
-
-    z-index:1000;
+    box-shadow:
+        0 -20px 60px rgba(0,0,0,.45);
 
 }
 
-.sheet.show{
+.sheet input{
 
-    bottom:0;
-
-}
-
-.sheet-handle{
-
-    width:60px;
-
-    height:6px;
-
-    border-radius:999px;
-
-    background:#555;
-
-    margin:0 auto 18px;
+    margin-bottom:14px;
 
 }
 
@@ -295,8 +686,6 @@
 
     gap:12px;
 
-    margin-top:20px;
-
 }
 
 .sheet-actions button{
@@ -304,18 +693,133 @@
     flex:1;
 
 }
-.card-actions{
 
-    display:flex;
+/* ---------- Glass Hover ---------- */
 
-    gap:10px;
+.hero-card,
+.contract-card,
+.search-box,
+.insight-card{
 
-    margin-top:16px;
+    transition:
+        transform .28s ease,
+        box-shadow .28s ease,
+        border-color .28s ease;
 
 }
 
-.card-actions .btn{
+.hero-card:hover,
+.contract-card:hover,
+.search-box:hover{
 
-    flex:1;
+    border-color:rgba(255,255,255,.18);
+
+}
+
+/* ---------- Scroll Animation ---------- */
+
+.contract-card{
+
+    animation:fadeUp .45s ease both;
+
+}
+
+/* ---------- Glow ---------- */
+
+.hero-card::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:-30%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(79,124,255,.12),
+            transparent 65%
+        );
+
+    pointer-events:none;
+
+}
+
+/* ---------- Divider ---------- */
+
+.divider{
+
+    height:1px;
+
+    margin:18px 0;
+
+    background:rgba(255,255,255,.08);
+
+}
+
+/* ---------- Empty State ---------- */
+
+.empty-state{
+
+    padding:70px 24px;
+
+    text-align:center;
+
+}
+
+.empty-state span{
+
+    font-size:64px;
+
+    opacity:.35;
+
+    margin-bottom:18px;
+
+}
+
+.empty-state h3{
+
+    margin-bottom:10px;
+
+}
+
+.empty-state p{
+
+    color:var(--muted);
+
+    max-width:260px;
+
+    margin:auto;
+
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width:480px){
+
+    .contract-card{
+
+        padding:18px;
+
+    }
+
+    #monthlyTotal{
+
+        font-size:40px;
+
+    }
+
+    .hero-item{
+
+        padding:15px;
+
+    }
+
+    .fab{
+
+        width:58px;
+        height:58px;
+
+    }
 
 }
