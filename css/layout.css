@@ -172,3 +172,30 @@ header{
     }
 
 }
+/* ===== New Layout ===== */
+
+.header{
+    margin-bottom:24px;
+}
+
+.header-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+}
+
+.header-description{
+    margin-top:8px;
+    max-width:260px;
+    line-height:1.5;
+}
+
+.hero-card{
+    margin-bottom:20px;
+}
+
+.hero-content{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+}
