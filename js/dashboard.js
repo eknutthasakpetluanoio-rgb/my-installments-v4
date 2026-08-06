@@ -1,15 +1,31 @@
 /* ===================================
-   PayNest v4
+   PayNest Ultimate v1.0
    Dashboard
 =================================== */
 
-const contractList = document.getElementById("contractList");
-const monthlyTotal = document.getElementById("monthlyTotal");
-const remainMoney = document.getElementById("remainMoney");
-const contractCount = document.getElementById("contractCount");
-const progressBar = document.getElementById("progressBar");
-const insight = document.getElementById("insight");
-const searchInput = document.getElementById("searchInput");
+const contractList =
+document.getElementById("contractList");
+
+const monthlyTotal =
+document.getElementById("monthlyTotal");
+
+const remainMoney =
+document.getElementById("remainMoney");
+
+const remainCard =
+document.getElementById("remainCard");
+
+const paidPercent =
+document.getElementById("paidPercent");
+
+const contractCount =
+document.getElementById("contractCount");
+
+const progressBar =
+document.getElementById("progressBar");
+
+const searchInput =
+document.getElementById("searchInput");
 
 /* ---------- Render ---------- */
 
@@ -21,21 +37,40 @@ function renderDashboard(keyword = "") {
 
     if (keyword) {
 
-        contracts = contracts.filter(contract =>
-            contract.name.toLowerCase().includes(keyword.toLowerCase())
+        contracts = contracts.filter(item =>
+
+            item.name
+            .toLowerCase()
+            .includes(
+                keyword.toLowerCase()
+            )
+
         );
 
     }
 
-    monthlyTotal.textContent = formatCurrency(dashboard.monthlyTotal);
+    monthlyTotal.textContent =
+        formatCurrency(
+            dashboard.monthlyTotal
+        );
 
-    remainMoney.textContent = formatCurrency(dashboard.remainingTotal);
+    remainMoney.textContent =
+        formatCurrency(
+            dashboard.remainingTotal
+        );
 
-    contractCount.textContent = dashboard.totalContracts;
+    remainCard.textContent =
+        formatCurrency(
+            dashboard.remainingTotal
+        );
+
+    paidPercent.textContent =
+        dashboard.paidPercent + "%";
+
+    contractCount.textContent =
+        dashboard.totalContracts + " สัญญา";
 
     renderProgress(dashboard);
-
-    renderInsight(dashboard);
 
     renderContracts(contracts);
 
@@ -61,78 +96,118 @@ function renderProgress(data) {
 
     });
 
-    progressBar.style.width = (total / data.totalContracts) + "%";
+    progressBar.style.width =
+
+        (total / data.totalContracts) + "%";
 
 }
 
-/* ---------- Insight ---------- */
-
-function renderInsight(data) {
-
-    if (!data.totalContracts) {
-
-        insight.textContent = "เริ่มเพิ่มรายการผ่อนของคุณได้เลย";
-
-        return;
-
-    }
-
-    insight.textContent =
-        `คุณมี ${data.totalContracts} รายการที่กำลังผ่อน`;
-
-}
-
-/* ---------- Card ---------- */
+/* ---------- Contract Card ---------- */
 
 function createCard(contract) {
 
-    const status = getStatus(contract);
+    const status =
+        getStatus(contract);
 
     return `
-    <div class="contract-card slide-up">
 
-        <h4>${contract.name}</h4>
+<div class="contract-card slide-up">
 
-        <p>
-            <span>ค่างวด</span>
-            <strong>${formatCurrency(contract.monthly)}</strong>
-        </p>
+<h4>${contract.name}</h4>
 
-        <p>
-            <span>คงเหลือ</span>
-            <strong>${formatCurrency(getRemaining(contract))}</strong>
-        </p>
+<p>
 
-        <p>
-            <span>งวด</span>
-            <strong>${contract.paidMonths}/${contract.months}</strong>
-        </p>
+<span>ร้านค้า</span>
 
-        <div class="badge ${status.className}">
-            ${status.text}
-        </div>
+<strong>${contract.shop || "-"}</strong>
 
-        <div class="card-actions">
+</p>
 
-            <button class="btn btn-primary"
-                onclick="payItem('${contract.id}')">
-                ชำระ
-            </button>
+<p>
 
-            <button class="btn btn-secondary"
-                onclick="editItem('${contract.id}')">
-                แก้ไข
-            </button>
+<span>ค่างวด</span>
 
-            <button class="btn btn-danger"
-                onclick="removeItem('${contract.id}')">
-                ลบ
-            </button>
+<strong>
 
-        </div>
+${formatCurrency(contract.monthly)}
 
-    </div>
-    `;
+</strong>
+
+</p>
+
+<p>
+
+<span>คงเหลือ</span>
+
+<strong>
+
+${formatCurrency(
+getRemaining(contract)
+)}
+
+</strong>
+
+</p>
+
+<p>
+
+<span>งวด</span>
+
+<strong>
+
+${contract.paidMonths}
+
+/
+
+${contract.months}
+
+</strong>
+
+</p>
+
+<div class="badge ${status.className}">
+
+${status.text}
+
+</div>
+
+<div class="card-actions">
+
+<button
+
+class="btn btn-primary"
+
+onclick="payItem('${contract.id}')">
+
+ชำระ
+
+</button>
+
+<button
+
+class="btn btn-secondary"
+
+onclick="editItem('${contract.id}')">
+
+แก้ไข
+
+</button>
+
+<button
+
+class="btn btn-danger"
+
+onclick="removeItem('${contract.id}')">
+
+ลบ
+
+</button>
+
+</div>
+
+</div>
+
+`;
 
 }
 
@@ -142,25 +217,43 @@ function renderContracts(contracts) {
 
     if (!contracts.length) {
 
-        contractList.innerHTML = `
-        <div class="empty-state">
+        contractList.innerHTML =
 
-            <span class="material-symbols-rounded">
-                inventory_2
-            </span>
+`
 
-            <h3>ยังไม่มีรายการ</h3>
+<div class="empty-state">
 
-            <p>กดปุ่ม + เพื่อเริ่มสร้างรายการผ่อน</p>
+<span class="material-symbols-rounded">
 
-        </div>
-        `;
+inventory_2
+
+</span>
+
+<h3>
+
+ยังไม่มีรายการ
+
+</h3>
+
+<p>
+
+กดปุ่ม + เพื่อเพิ่มสัญญา
+
+</p>
+
+</div>
+
+`;
 
         return;
 
     }
 
-    contractList.innerHTML = contracts.map(createCard).join("");
+    contractList.innerHTML =
+
+        contracts
+        .map(createCard)
+        .join("");
 
 }
 
@@ -178,7 +271,11 @@ function payItem(id) {
 
 function removeItem(id) {
 
-    if (confirm("ต้องการลบรายการนี้ใช่หรือไม่?")) {
+    if (
+
+        confirm("ลบรายการนี้ใช่หรือไม่?")
+
+    ) {
 
         removeContract(id);
 
@@ -190,12 +287,16 @@ function removeItem(id) {
 
 /* ---------- Search ---------- */
 
-if (searchInput) {
+searchInput?.addEventListener(
 
-    searchInput.addEventListener("input", e => {
+"input",
 
-        renderDashboard(e.target.value);
+event => {
 
-    });
+renderDashboard(event.target.value);
 
 }
+
+);
+
+console.log("✅ dashboard.js loaded");
