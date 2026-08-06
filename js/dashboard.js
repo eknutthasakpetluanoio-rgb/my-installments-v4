@@ -17,7 +17,11 @@ document.getElementById("remainCard");
 
 const paidPercent =
 document.getElementById("paidPercent");
+const lateCount =
+document.getElementById("lateCount");
 
+const todayCount =
+document.getElementById("todayCount");
 const contractCount =
 document.getElementById("contractCount");
 
@@ -66,7 +70,11 @@ function renderDashboard(keyword = "") {
 
     paidPercent.textContent =
         dashboard.paidPercent + "%";
+lateCount.textContent =
+dashboard.lateContracts ?? 0;
 
+todayCount.textContent =
+dashboard.todayContracts ?? 0;
     contractCount.textContent =
         dashboard.totalContracts + " สัญญา";
 
@@ -164,7 +172,26 @@ ${contract.months}
 </strong>
 
 </p>
+<div class="progress mini-progress">
 
+    <div
+        class="mini-progress-bar"
+        style="width:${getProgress(contract)}%">
+    </div>
+
+</div>
+
+<p>
+
+    <span>ความคืบหน้า</span>
+
+    <strong>
+
+        ${getProgress(contract)}%
+
+    </strong>
+
+</p>
 <div class="badge ${status.className}">
 
 ${status.text}
@@ -231,13 +258,13 @@ inventory_2
 
 <h3>
 
-ยังไม่มีรายการ
+ยังไม่มีรายการผ่อน
 
 </h3>
 
 <p>
 
-กดปุ่ม + เพื่อเพิ่มสัญญา
+กดปุ่ม ➕ เพื่อเพิ่มสัญญาแรกของคุณ
 
 </p>
 
