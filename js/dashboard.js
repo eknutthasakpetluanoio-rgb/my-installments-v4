@@ -98,43 +98,50 @@ function createCard(contract) {
     const status = getStatus(contract);
 
     return `
+    <div class="contract-card slide-up">
 
-<div class="contract-card slide-up">
+        <h4>${contract.name}</h4>
 
-    <h4>${contract.name}</h4>
+        <p>
+            <span>ค่างวด</span>
+            <strong>${formatCurrency(contract.monthly)}</strong>
+        </p>
 
-    <p>
+        <p>
+            <span>คงเหลือ</span>
+            <strong>${formatCurrency(getRemaining(contract))}</strong>
+        </p>
 
-        <span>ค่างวด</span>
+        <p>
+            <span>งวด</span>
+            <strong>${contract.paidMonths}/${contract.months}</strong>
+        </p>
 
-        <strong>${formatCurrency(contract.monthly)}</strong>
+        <div class="badge ${status.className}">
+            ${status.text}
+        </div>
 
-    </p>
+        <div class="card-actions">
 
-    <p>
+            <button class="btn btn-primary"
+                onclick="payInstallment('${contract.id}');renderDashboard();">
+                ชำระ
+            </button>
 
-        <span>คงเหลือ</span>
+            <button class="btn btn-secondary"
+                onclick="openEdit('${contract.id}')">
+                แก้ไข
+            </button>
 
-        <strong>${formatCurrency(getRemaining(contract))}</strong>
+            <button class="btn btn-danger"
+                onclick="removeItem('${contract.id}')">
+                ลบ
+            </button>
 
-    </p>
+        </div>
 
-    <p>
-
-        <span>งวด</span>
-
-        <strong>${contract.paidMonths}/${contract.months}</strong>
-
-    </p>
-
-    <div class="badge ${status.className}">
-        ${status.text}
     </div>
-
-</div>
-
-`;
-
+    `;
 }
 
 /* ---------- Render Cards ---------- */
