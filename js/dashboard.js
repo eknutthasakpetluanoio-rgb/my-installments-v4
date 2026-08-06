@@ -316,7 +316,7 @@ function bindCardEvents() {
 
         button.addEventListener("click", () => {
 
-            alert("ระบบแก้ไขจะเพิ่มในเวอร์ชันถัดไป");
+            editForm(id);
 
         });
 
