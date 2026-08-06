@@ -1,5 +1,5 @@
 /* ===================================
-   PayNest v1.1
+   PayNest v3.1
    Contract Manager
 =================================== */
 
@@ -7,15 +7,7 @@
 
 function createContract(data) {
 
-    const monthly = data.monthly > 0
-        ? Number(data.monthly)
-        : calculateMonthly(
-            data.price,
-            data.down,
-            data.months
-        );
-
-    return {
+    const contract = {
 
         id: generateId(),
 
@@ -23,31 +15,23 @@ function createContract(data) {
 
         price: Number(data.price),
 
-        down: Number(data.down),
+        down: Number(data.down || 0),
 
         months: Number(data.months),
 
-        monthly: monthly,
-
-        remain: Number(data.price) - Number(data.down),
-
-        paidMonths: 0,
+        monthly: Number(data.monthly),
 
         due: data.due || today(),
 
-        createdAt: today(),
+        paidMonths: 0,
 
-        history: []
+        paidAmount: 0,
+
+        history: [],
+
+        createdAt: new Date().toISOString()
 
     };
-
-}
-
-/* ---------- Add ---------- */
-
-function createNewContract(data) {
-
-    const contract = createContract(data);
 
     addContract(contract);
 
@@ -57,17 +41,39 @@ function createNewContract(data) {
 
 /* ---------- Edit ---------- */
 
-function editContract(id, newData) {
+function editContract(id, data) {
 
-    return updateContract(id, newData);
+    return updateContract(id, {
+
+        name: data.name,
+
+        price: Number(data.price),
+
+        down: Number(data.down),
+
+        months: Number(data.months),
+
+        monthly: Number(data.monthly),
+
+        due: data.due
+
+    });
 
 }
 
-/* ---------- Delete ---------- */
+/* ---------- Remove ---------- */
 
 function removeContract(id) {
 
     deleteContract(id);
+
+}
+
+/* ---------- Get ---------- */
+
+function getContract(id) {
+
+    return findContract(id);
 
 }
 
@@ -77,51 +83,45 @@ function payInstallment(id) {
 
     const contract = getContract(id);
 
-    if (!contract) return;
+    if (!contract) return false;
 
-    if (contract.remain <= 0) return;
+    if (contract.paidMonths >= contract.months) {
 
-    contract.remain -= contract.monthly;
-
-    if (contract.remain < 0) {
-
-        contract.remain = 0;
+        return false;
 
     }
 
     contract.paidMonths++;
 
+    contract.paidAmount += contract.monthly;
+
     contract.history.push({
 
-        date: today(),
+        month: contract.paidMonths,
 
-        amount: contract.monthly
+        amount: contract.monthly,
+
+        date: today()
 
     });
 
-    contract.due = addMonths(
-
-        contract.due,
-
-        1
-
-    );
-
     updateContract(id, contract);
+
+    return true;
 
 }
 
-/* ---------- Remaining Months ---------- */
+/* ---------- Remaining ---------- */
 
-function remainingMonths(contract) {
+function getRemaining(contract) {
 
-    if (contract.monthly <= 0) return 0;
+    return calculateRemaining(
 
-    return Math.ceil(
+        contract.price,
 
-        contract.remain /
+        contract.down,
 
-        contract.monthly
+        contract.paidAmount
 
     );
 
@@ -129,50 +129,84 @@ function remainingMonths(contract) {
 
 /* ---------- Progress ---------- */
 
-function progress(contract) {
+function getProgress(contract) {
 
     return calculateProgress(
 
-        contract.price - contract.down,
+        contract.paidMonths,
 
-        contract.remain
+        contract.months
 
     );
 
 }
 
-/* ---------- Dashboard Summary ---------- */
+/* ---------- Status ---------- */
 
-function monthlySummary() {
+function getStatus(contract) {
 
-    return loadContracts()
+    if (contract.paidMonths >= contract.months) {
 
-        .filter(item => item.remain > 0)
+        return {
 
-        .reduce(
+            text: "ชำระครบ",
 
-            (sum, item) =>
+            className: "success"
 
-                sum + item.monthly,
+        };
 
-            0
+    }
 
-        );
+    if (contract.paidMonths >= contract.months * 0.8) {
+
+        return {
+
+            text: "ใกล้ครบ",
+
+            className: "warning"
+
+        };
+
+    }
+
+    return {
+
+        text: "กำลังผ่อน",
+
+        className: "primary"
+
+    };
 
 }
 
-function remainSummary() {
+/* ---------- Dashboard ---------- */
 
-    return loadContracts()
+function getDashboardData() {
 
-        .reduce(
+    const contracts = getContracts();
 
-            (sum, item) =>
+    let monthly = 0;
 
-                sum + item.remain,
+    let remaining = 0;
 
-            0
+    contracts.forEach(contract => {
 
-        );
+        monthly += contract.monthly;
+
+        remaining += getRemaining(contract);
+
+    });
+
+    return {
+
+        contracts,
+
+        totalContracts: contracts.length,
+
+        monthlyTotal: monthly,
+
+        remainingTotal: remaining
+
+    };
 
 }
