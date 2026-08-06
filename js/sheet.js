@@ -6,6 +6,9 @@
 const sheet = document.getElementById("sheet");
 const addButton = document.getElementById("addButton");
 const cancelBtn = document.getElementById("cancelBtn");
+/* ---------- Edit Mode ---------- */
+
+let editingId = null;
 const saveBtn = document.getElementById("saveBtn");
 
 /* ---------- Open ---------- */
@@ -56,9 +59,31 @@ function clearForm() {
     document.getElementById("months").value = "";
     document.getElementById("monthly").value = "";
     document.getElementById("due").value = "";
+editingId = null;
+}
+function editForm(id){
+
+    const contract = getContract(id);
+
+    if(!contract) return;
+
+    editingId = id;
+
+    document.getElementById("name").value = contract.name;
+
+    document.getElementById("price").value = contract.price;
+
+    document.getElementById("down").value = contract.down;
+
+    document.getElementById("months").value = contract.months;
+
+    document.getElementById("monthly").value = contract.monthly;
+
+    document.getElementById("due").value = contract.due;
+
+    openSheet();
 
 }
-
 /* ---------- Save ---------- */
 
 function saveForm() {
@@ -89,11 +114,21 @@ function saveForm() {
 
     }
 
+    if(editingId){
+
+    editContract(editingId,data);
+
+    editingId = null;
+
+}else{
+
     createNewContract(data);
 
-    refreshDashboard();
+}
 
-    closeSheet();
+refreshDashboard();
+
+closeSheet();
 
 }
 
