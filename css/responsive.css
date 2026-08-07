@@ -1,0 +1,123 @@
+/* ==========================================
+   PayNest v1
+   File : responsive.css
+   Version : 1.0.0
+   Description : Responsive Layout
+========================================== */
+
+/* ---------- Small Mobile ---------- */
+
+@media (max-width:360px){
+
+    .app{
+
+        padding:var(--space-4);
+
+        padding-top:
+            calc(
+                var(--space-4)
+                + var(--safe-top)
+            );
+
+        padding-bottom:
+            calc(
+                var(--bottom-nav-height)
+                + var(--space-5)
+                + var(--safe-bottom)
+            );
+
+    }
+
+    .summary-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .hero-content h2{
+
+        font-size:2rem;
+
+    }
+
+    .hero-card{
+
+        min-height:190px;
+
+    }
+
+    .fab{
+
+        width:54px;
+
+        height:54px;
+
+        right:16px;
+
+    }
+
+}
+
+/* ---------- Mobile ---------- */
+
+@media (min-width:361px) and (max-width:767px){
+
+    .summary-grid{
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+    }
+
+}
+
+/* ---------- Tablet ---------- */
+
+@media (min-width:768px){
+
+    .app{
+
+        padding-left:32px;
+
+        padding-right:32px;
+
+    }
+
+    .summary-grid{
+
+        grid-template-columns:
+            repeat(4,1fr);
+
+    }
+
+    .contract-list{
+
+        gap:20px;
+
+    }
+
+}
+
+/* ---------- Desktop ---------- */
+
+@media (min-width:1024px){
+
+    .app{
+
+        max-width:720px;
+
+    }
+
+}
+
+/* ---------- Large Desktop ---------- */
+
+@media (min-width:1440px){
+
+    .app{
+
+        max-width:760px;
+
+    }
+
+}
