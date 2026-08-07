@@ -5,6 +5,8 @@
    Description : Dashboard Summary
 ========================================== */
 
+import { formatCurrency } from "./utils.js";
+
 /* ---------- Update Summary ---------- */
 
 export function updateSummary(contracts = []) {
@@ -66,14 +68,4 @@ export function updateSummary(contracts = []) {
 
 }
 
-/* ---------- Currency ---------- */
 
-function formatCurrency(value) {
-
-    return new Intl.NumberFormat("th-TH", {
-        style: "currency",
-        currency: "THB",
-        minimumFractionDigits: 0
-    }).format(value);
-
-}
