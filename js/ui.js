@@ -31,8 +31,8 @@ export function renderContracts(contracts = []) {
     contracts.forEach(contract => {
 
         const progress = calculatePercentage(
-    contract.paidInstallments,
-    contract.totalInstallments
+    0,
+    Number(contract.months)
 );
 
         const card = document.createElement("article");
@@ -40,7 +40,7 @@ export function renderContracts(contracts = []) {
         card.className = "contract-card fade-in";
 
         card.innerHTML = `
-            <h3>${contract.customerName}</h3>
+            <h3>${contract.shop ?? "-"}</h3>
 
             <p>${contract.product}</p>
 
@@ -52,10 +52,7 @@ export function renderContracts(contracts = []) {
             </div>
 
             <p>
-                ${contract.paidInstallments}
-                /
-                ${contract.totalInstallments}
-                งวด
+                0 / ${contract.months ?? 0} งวด
             </p>
         `;
 
