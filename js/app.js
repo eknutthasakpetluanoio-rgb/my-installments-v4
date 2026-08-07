@@ -1,7 +1,7 @@
 /* ==========================================
    PayNest v1
    File : app.js
-   Version : 1.0.1
+   Version : 1.0.2
    Description : Application Bootstrap
 ========================================== */
 
@@ -34,6 +34,9 @@ function setupModal() {
     const close =
         document.getElementById("closeModal");
 
+    const form =
+        document.getElementById("contractForm");
+
     if (
         !fab ||
         !modal ||
@@ -43,6 +46,8 @@ function setupModal() {
         return;
 
     }
+
+    /* ---------- Open ---------- */
 
     fab.addEventListener(
 
@@ -60,6 +65,8 @@ function setupModal() {
 
     );
 
+    /* ---------- Close ---------- */
+
     close.addEventListener(
 
         "click",
@@ -75,6 +82,8 @@ function setupModal() {
         }
 
     );
+
+    /* ---------- Click Outside ---------- */
 
     modal.addEventListener(
 
@@ -100,12 +109,36 @@ function setupModal() {
 
     );
 
+    /* ---------- Form ---------- */
+
+    if (form) {
+
+        form.addEventListener(
+
+            "submit",
+
+            event => {
+
+                event.preventDefault();
+
+                alert(
+
+                    "Sprint 1B ขั้นต่อไปจะเชื่อมระบบบันทึกข้อมูล"
+
+                );
+
+            }
+
+        );
+
+    }
+
 }
 
 /* ---------- Init ---------- */
 
 async function init() {
-console.log("init ทำงานแล้ว");
+
     console.log(
 
         "PayNest v1 Starting..."
@@ -113,19 +146,14 @@ console.log("init ทำงานแล้ว");
     );
 
     const contracts =
-
         loadContracts();
 
     updateSummary(
-
         contracts
-
     );
 
     renderContracts(
-
         contracts
-
     );
 
     setupModal();
