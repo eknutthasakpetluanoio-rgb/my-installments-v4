@@ -1,16 +1,14 @@
 /* ==========================================
    PayNest v1
    File : ui.js
-   Version : 1.0.0
+   Version : 1.0.1
    Description : User Interface Engine
 ========================================== */
 
 import {
-
     calculatePercentage,
     formatCurrency,
     formatDate
-
 } from "./utils.js";
 
 /* ---------- Render Contracts ---------- */
@@ -28,16 +26,12 @@ export function renderContracts(contracts = []) {
 
     contractList.innerHTML = "";
 
-    if (contracts.length === 0) {
+    if (!Array.isArray(contracts) || contracts.length === 0) {
 
         contractList.innerHTML = `
-
             <div class="empty-state">
-
                 ยังไม่มีสัญญา
-
             </div>
-
         `;
 
         return;
@@ -66,25 +60,56 @@ function createContractCard(contract) {
     card.className =
         "contract-card fade-in";
 
-    const progress = calculatePercentage(
+    const customerName =
+        contract.customerName ??
+        contract.shop ??
+        "-";
 
-        contract.paidInstallments,
+    const product =
+        contract.product ?? "-";
 
-        contract.totalInstallments
+    const paidInstallments =
+        Number(
+            contract.paidInstallments ?? 0
+        );
 
-    );
+    const totalInstallments =
+        Number(
+            contract.totalInstallments ??
+            contract.months ??
+            0
+        );
+
+    const installmentPerMonth =
+        Number(
+            contract.installmentPerMonth ??
+            contract.monthly ??
+            0
+        );
+
+    const nextDueDate =
+        contract.nextDueDate ?? "";
+
+    const progress =
+        calculatePercentage(
+
+            paidInstallments,
+
+            totalInstallments
+
+        );
 
     card.innerHTML = `
 
         <h3>
 
-            ${escapeHtml(contract.customerName)}
+            ${escapeHtml(customerName)}
 
         </h3>
 
         <p>
 
-            ${escapeHtml(contract.product)}
+            ${escapeHtml(product)}
 
         </p>
 
@@ -100,12 +125,10 @@ function createContractCard(contract) {
         <p>
 
             งวด
-
-            ${contract.paidInstallments}
-
+            ${paidInstallments}
             /
-
-            ${contract.totalInstallments}
+            ${totalInstallments}
+            งวด
 
         </p>
 
@@ -114,7 +137,7 @@ function createContractCard(contract) {
             ผ่อน / เดือน
 
             ${formatCurrency(
-                contract.installmentPerMonth
+                installmentPerMonth
             )}
 
         </p>
@@ -123,9 +146,11 @@ function createContractCard(contract) {
 
             ครบกำหนด
 
-            ${formatDate(
-                contract.nextDueDate
-            )}
+            ${
+                nextDueDate
+                    ? formatDate(nextDueDate)
+                    : "-"
+            }
 
         </p>
 
@@ -141,15 +166,14 @@ function escapeHtml(value = "") {
 
     return String(value)
 
-        .replace(/&/g,"&amp;")
+        .replace(/&/g, "&amp;")
 
-        .replace(/</g,"&lt;")
+        .replace(/</g, "&lt;")
 
-        .replace(/>/g,"&gt;")
+        .replace(/>/g, "&gt;")
 
-        .replace(/"/g,"&quot;")
+        .replace(/"/g, "&quot;")
 
-        .replace(/'/g,"&#039;");
+        .replace(/'/g, "&#039;");
 
 }
-
