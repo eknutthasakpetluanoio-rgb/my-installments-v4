@@ -1,7 +1,7 @@
 /* ==========================================
    PayNest v1
    File : contracts.js
-   Version : 1.0.1
+   Version : 1.1.0
    Description : Contract Engine
 ========================================== */
 
@@ -170,6 +170,7 @@ export function createContract(data) {
 
 /* ---------- Update ---------- */
 
+
 export function updateContract(id, data) {
 
     const contracts = loadContracts();
@@ -217,6 +218,79 @@ export function deleteContract(id) {
     saveData(filtered);
 
     return filtered;
+
+}
+
+/* ---------- Pay Installment ---------- */
+
+export function payInstallment(id) {
+
+    const contracts = loadContracts();
+
+    const index = contracts.findIndex(
+
+        contract => contract.id === id
+
+    );
+
+    if (index === -1) {
+
+        return null;
+
+    }
+
+    const contract = contracts[index];
+
+    if (contract.status === "completed") {
+
+        return contract;
+
+    }
+
+    contract.paidInstallments += 1;
+
+    if (
+
+        contract.paidInstallments >=
+
+        contract.totalInstallments
+
+    ) {
+
+        contract.paidInstallments =
+            contract.totalInstallments;
+
+        contract.status =
+            "completed";
+
+    }
+
+    else if (contract.nextDueDate) {
+
+        const next = new Date(
+            contract.nextDueDate
+        );
+
+        next.setMonth(
+            next.getMonth() + 1
+        );
+
+        contract.nextDueDate =
+            next
+                .toISOString()
+                .split("T")[0];
+
+    }
+
+    contract.updatedAt =
+        getToday();
+
+    contracts[index] =
+        contract;
+
+    saveData(contracts);
+
+    return contract;
 
 }
 
