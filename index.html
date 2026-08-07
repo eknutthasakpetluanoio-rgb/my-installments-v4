@@ -1,306 +1,64 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PayNest</title>
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+<div class="app">
 <header class="topbar">
-
-    <div class="logo">
-
-        <h1>PayNest</h1>
-
-        <p>Smart Payment Tracker</p>
-
-    </div>
-
-    <div class="top-actions">
-
-        <button class="glass">
-            <i class="fa-regular fa-bell"></i>
-        </button>
-
-        <button class="glass">
-            <i class="fa-regular fa-user"></i>
-        </button>
-
-    </div>
-
+<div class="logo"><h1>PayNest</h1><p>Smart Payment Tracker</p></div>
+<div class="top-actions">
+<button class="glass"><i class="fa-regular fa-bell"></i></button>
+<button class="glass"><i class="fa-regular fa-user"></i></button>
+</div>
 </header>
 
-<!-- HERO -->
-
 <section class="hero-card">
-
-    <div class="glass hero">
-
-        <div class="hero-top">
-
-            <div class="hero-icon">
-
-                <i class="fa-solid fa-wallet"></i>
-
-            </div>
-
-            <button class="hero-action">
-
-                <i class="fa-regular fa-calendar"></i>
-
-            </button>
-
-        </div>
-
-        <div class="hero-content">
-
-            <span>ยอดที่ต้องชำระเดือนนี้</span>
-
-            <h2>฿12,750.00</h2>
-
-            <p>ครบกำหนดชำระ 3 รายการ</p>
-
-        </div>
-
-    </div>
-
+<div class="glass hero">
+<div class="hero-content">
+<span>ยอดที่ต้องชำระเดือนนี้</span>
+<h2>฿12,750.00</h2>
+<p>ครบกำหนดชำระ 3 รายการ</p>
+</div>
+</div>
 </section>
-<!-- SUMMARY -->
 
 <section class="summary">
-
-    <article class="glass card">
-
-        <span>ยอดคงเหลือ</span>
-
-        <h3>฿45,250</h3>
-
-    </article>
-
-    <article class="glass card">
-
-        <span>ชำระแล้ว</span>
-
-        <h3>38%</h3>
-
-    </article>
-
+<article class="glass card"><span>ยอดคงเหลือ</span><h3>฿45,250</h3></article>
+<article class="glass card"><span>ชำระแล้ว</span><h3>38%</h3></article>
 </section>
-
-<!-- QUICK MENU -->
 
 <section class="quick-menu">
-
-    <button class="glass menu-card">
-
-        <i class="fa-solid fa-plus"></i>
-
-        <span>เพิ่มสัญญา</span>
-
-    </button>
-
-    <button class="glass menu-card">
-
-        <i class="fa-solid fa-magnifying-glass"></i>
-
-        <span>ค้นหา</span>
-
-    </button>
-
-    <button class="glass menu-card">
-
-        <i class="fa-regular fa-calendar"></i>
-
-        <span>ปฏิทิน</span>
-
-    </button>
-
-    <button class="glass menu-card">
-
-        <i class="fa-solid fa-chart-column"></i>
-
-        <span>สถิติ</span>
-
-    </button>
-
+<button class="glass menu-card"><i class="fa-solid fa-plus"></i><span>เพิ่มสัญญา</span></button>
+<button class="glass menu-card"><i class="fa-solid fa-magnifying-glass"></i><span>ค้นหา</span></button>
+<button class="glass menu-card"><i class="fa-regular fa-calendar"></i><span>ปฏิทิน</span></button>
+<button class="glass menu-card"><i class="fa-solid fa-chart-column"></i><span>สถิติ</span></button>
 </section>
-<!-- CONTRACT LIST -->
 
 <section class="contract-list">
-
-    <h2>รายการผ่อนทั้งหมด</h2>
-
-    <!-- Contract 1 -->
-
-    <article class="glass contract-card">
-
-        <div class="contract-left">
-
-            <div class="product-icon">
-
-                <i class="fa-solid fa-mobile-screen-button"></i>
-
-            </div>
-
-            <div class="contract-info">
-
-                <h3>vivo V70</h3>
-
-                <p>งวดที่ 5 จาก 10</p>
-
-                <div class="progress">
-
-                    <div class="progress-bar" style="width:50%;"></div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="contract-right">
-
-            <strong>฿12,500</strong>
-
-            <small>คงเหลือ 5 งวด</small>
-
-            <i class="fa-solid fa-chevron-right"></i>
-
-        </div>
-
-    </article>
-
-    <!-- Contract 2 -->
-
-    <article class="glass contract-card">
-
-        <div class="contract-left">
-
-            <div class="product-icon">
-
-                <i class="fa-solid fa-headphones"></i>
-
-            </div>
-
-            <div class="contract-info">
-
-                <h3>Anker Soundcore R60i NC</h3>
-
-                <p>งวดที่ 2 จาก 8</p>
-
-                <div class="progress">
-
-                    <div class="progress-bar" style="width:25%;"></div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="contract-right">
-
-            <strong>฿2,190</strong>
-
-            <small>คงเหลือ 6 งวด</small>
-
-            <i class="fa-solid fa-chevron-right"></i>
-
-        </div>
-
-    </article>
-
-    <!-- Contract 3 -->
-
-    <article class="glass contract-card">
-
-        <div class="contract-left">
-
-            <div class="product-icon">
-
-                <i class="fa-solid fa-clock"></i>
-
-            </div>
-
-            <div class="contract-info">
-
-                <h3>Redmi Watch 5 Lite</h3>
-
-                <p>งวดที่ 1 จาก 6</p>
-
-                <div class="progress">
-
-                    <div class="progress-bar" style="width:16%;"></div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="contract-right">
-
-            <strong>฿1,990</strong>
-
-            <small>คงเหลือ 5 งวด</small>
-
-            <i class="fa-solid fa-chevron-right"></i>
-
-        </div>
-
-    </article>
-
+<h2>รายการผ่อนทั้งหมด</h2>
+<article class="glass contract-card"><div class="contract-info"><h3>vivo V70</h3><p>งวดที่ 5 จาก 10</p></div><div class="contract-price"><strong>฿12,500</strong></div></article>
+<article class="glass contract-card"><div class="contract-info"><h3>Anker Soundcore R60i NC</h3><p>งวดที่ 2 จาก 8</p></div><div class="contract-price"><strong>฿2,190</strong></div></article>
+<article class="glass contract-card"><div class="contract-info"><h3>Redmi Watch 5 Lite</h3><p>งวดที่ 1 จาก 6</p></div><div class="contract-price"><strong>฿1,990</strong></div></article>
 </section>
 
-<!-- Floating Button -->
-
-<button class="fab">
-
-    <i class="fa-solid fa-plus"></i>
-
-</button>
-
-<!-- Bottom Navigation -->
+<button class="fab"><i class="fa-solid fa-plus"></i></button>
 
 <nav class="bottom-nav">
-
-    <a class="active">
-
-        <i class="fa-solid fa-house"></i>
-
-        <span>หน้าหลัก</span>
-
-    </a>
-
-    <a>
-
-        <i class="fa-solid fa-file-lines"></i>
-
-        <span>สัญญา</span>
-
-    </a>
-
-    <a>
-
-        <i class="fa-regular fa-calendar"></i>
-
-        <span>ปฏิทิน</span>
-
-    </a>
-
-    <a>
-
-        <i class="fa-solid fa-chart-column"></i>
-
-        <span>สถิติ</span>
-
-    </a>
-
-    <a>
-
-        <i class="fa-solid fa-user"></i>
-
-        <span>โปรไฟล์</span>
-
-    </a>
-
+<a class="active"><i class="fa-solid fa-house"></i><span>หน้าหลัก</span></a>
+<a><i class="fa-solid fa-file-lines"></i><span>สัญญา</span></a>
+<a><i class="fa-regular fa-calendar"></i><span>ปฏิทิน</span></a>
+<a><i class="fa-solid fa-chart-column"></i><span>สถิติ</span></a>
+<a><i class="fa-solid fa-user"></i><span>โปรไฟล์</span></a>
 </nav>
-
 </div>
-
 <script src="app.js"></script>
-
 </body>
 </html>
