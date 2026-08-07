@@ -1,0 +1,109 @@
+/* ==========================================
+   PayNest v1
+   File : responsive.css
+   Version : 1.0.0
+   Description : Responsive Layout
+========================================== */
+
+/* ---------- Small Mobile ---------- */
+
+@media (max-width:360px){
+
+    .app{
+
+        padding:var(--space-4);
+
+        padding-top:
+            calc(var(--space-4) + var(--safe-top));
+
+        padding-bottom:
+            calc(
+                var(--bottom-nav-height)
+                + var(--space-5)
+                + var(--safe-bottom)
+            );
+
+    }
+
+    .summary-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .hero-content h2{
+
+        font-size:calc(var(--font-size-hero) - .5rem);
+
+    }
+
+    .fab{
+
+        right:var(--space-4);
+
+        bottom:
+            calc(
+                var(--fab-bottom)
+                + var(--safe-bottom)
+            );
+
+    }
+
+}
+
+/* ---------- Mobile ---------- */
+
+@media (min-width:361px){
+
+    .app{
+
+        padding-top:
+            calc(var(--space-5) + var(--safe-top));
+
+        padding-bottom:
+            calc(
+                var(--bottom-nav-height)
+                + var(--space-6)
+                + var(--safe-bottom)
+            );
+
+    }
+
+    .bottom-nav{
+
+        padding-bottom:var(--safe-bottom);
+
+    }
+
+}
+
+/* ---------- Tablet ---------- */
+
+@media (min-width:768px){
+
+    .summary-grid{
+
+        grid-template-columns:
+            repeat(4,1fr);
+
+    }
+
+    .contract-list{
+
+        gap:var(--space-5);
+
+    }
+
+}
+
+/* ---------- Desktop ---------- */
+
+@media (min-width:1024px){
+
+    .app{
+
+        max-width:680px;
+
+    }
+
+}
