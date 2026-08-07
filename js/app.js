@@ -105,7 +105,7 @@ function setupModal() {
 /* ---------- Init ---------- */
 
 async function init() {
-
+console.log("init ทำงานแล้ว");
     console.log(
 
         "PayNest v1 Starting..."
