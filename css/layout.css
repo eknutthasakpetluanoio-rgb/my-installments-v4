@@ -1,0 +1,191 @@
+/* ==========================================
+   PayNest v1
+   File : layout.css
+   Version : 1.0.0
+   Description : Application Layout
+========================================== */
+
+/* ---------- App ---------- */
+
+.app{
+
+    width:100%;
+    max-width:var(--container-width);
+
+    min-height:100vh;
+
+    margin:0 auto;
+
+    padding:var(--space-5);
+
+    padding-top:
+        calc(
+            var(--space-5)
+            + var(--safe-top)
+        );
+
+    padding-bottom:
+        calc(
+            var(--bottom-nav-height)
+            + var(--space-6)
+            + var(--safe-bottom)
+        );
+
+}
+
+/* ---------- Main Content ---------- */
+
+.section{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:var(--space-4);
+
+    margin-top:var(--space-6);
+
+}
+
+/* ---------- Hero ---------- */
+
+.hero-card{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:var(--space-6);
+
+}
+
+.hero-header{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    justify-content:space-between;
+
+}
+
+.hero-title{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:var(--space-2);
+
+}
+
+.hero-content{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:var(--space-2);
+
+}
+
+/* ---------- Summary ---------- */
+
+.summary-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:var(--space-4);
+
+    margin-top:var(--space-6);
+
+}
+
+/* ---------- Section Header ---------- */
+
+.section-header{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+}
+
+/* ---------- Contract List ---------- */
+
+.contract-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:var(--space-4);
+
+}
+
+/* ---------- Bottom Navigation ---------- */
+
+.bottom-nav{
+
+    position:fixed;
+
+    left:50%;
+
+    bottom:0;
+
+    transform:translateX(-50%);
+
+    width:100%;
+
+    max-width:var(--container-width);
+
+    height:calc(
+        var(--bottom-nav-height)
+        + var(--safe-bottom)
+    );
+
+    padding-bottom:var(--safe-bottom);
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(5,1fr);
+
+    align-items:center;
+
+    z-index:var(--z-navbar);
+
+}
+
+/* ---------- Floating Button ---------- */
+
+.fab{
+
+    position:fixed;
+
+    right:var(--fab-right);
+
+    bottom:
+        calc(
+            var(--fab-bottom)
+            + var(--safe-bottom)
+        );
+
+    width:var(--fab-size);
+
+    height:var(--fab-size);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    z-index:var(--z-fab);
+
+}
