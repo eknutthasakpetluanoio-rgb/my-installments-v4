@@ -4,293 +4,251 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
-<title>PayNest Ultimate v1.0</title>
+<title>PayNest Premium</title>
 
-<meta name="theme-color" content="#2563eb">
-<meta name="description" content="PayNest Ultimate">
+<link rel="stylesheet" href="style.css">
 
-<link rel="manifest" href="manifest.json">
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
-
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
 </head>
 
 <body>
 
-<div class="background"></div>
-
 <div class="app">
 
 <header class="topbar">
 
-<div>
+<div class="logo">
 
 <h1>PayNest</h1>
 
-<p>Ultimate v1.0</p>
+<p>Smart Payment Tracker</p>
 
 </div>
 
-<button id="themeButton" class="iconButton">
+<div class="top-actions">
 
-<span class="material-symbols-rounded">
+<button>
 
-dark_mode
-
-</span>
+<i class="fa-regular fa-bell"></i>
 
 </button>
+
+<button>
+
+<i class="fa-regular fa-user"></i>
+
+</button>
+
+</div>
 
 </header>
 
-<section class="hero">
+<section class="hero-card">
 
-<p>ยอดที่ต้องชำระเดือนนี้</p>
+<div class="glass">
 
-<h2 id="monthlyTotal">
+<span>
 
-฿0
+ยอดที่ต้องชำระเดือนนี้
+
+</span>
+
+<h2>
+
+฿12,750.00
 
 </h2>
 
-<div class="progress">
+<p>
 
-<div id="progressBar"></div>
+ครบกำหนด 3 รายการ
 
-</div>
-
-<div class="heroFooter">
-
-<span id="contractCount">
-
-0 สัญญา
-
-</span>
-
-<span id="remainMoney">
-
-฿0
-
-</span>
+</p>
 
 </div>
 
 </section>
 
-<section class="summaryGrid">
+<section class="summary">
 
-<div class="card">
+<div class="glass card">
 
-<p>ยอดคงเหลือ</p>
+<span>ยอดคงเหลือ</span>
 
-<h3 id="remainCard">
-
-฿0
-
-</h3>
+<h3>฿45,250</h3>
 
 </div>
 
-<div class="card">
+<div class="glass card">
 
-<p>ชำระแล้ว</p>
+<span>ชำระแล้ว</span>
 
-<h3 id="paidPercent">
-
-0%
-
-</h3>
-
-</div>
-
-<div class="card">
-
-<p>งวดค้าง</p>
-
-<h3 id="lateCount">
-
-0
-
-</h3>
-
-</div>
-
-<div class="card">
-
-<p>ครบกำหนดวันนี้</p>
-
-<h3 id="todayCount">
-
-0
-
-</h3>
+<h3>38%</h3>
 
 </div>
 
 </section>
+<!-- Quick Menu -->
 
-<section class="searchArea">
+<section class="quick-menu">
 
-<input
-id="searchInput"
-type="search"
-placeholder="ค้นหารายการ...">
+    <button class="glass menu-card">
+        <i class="fa-solid fa-plus"></i>
+        <span>เพิ่มสัญญา</span>
+    </button>
+
+    <button class="glass menu-card">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <span>ค้นหา</span>
+    </button>
+
+    <button class="glass menu-card">
+        <i class="fa-regular fa-calendar"></i>
+        <span>ปฏิทิน</span>
+    </button>
+
+    <button class="glass menu-card">
+        <i class="fa-solid fa-chart-column"></i>
+        <span>สถิติ</span>
+    </button>
 
 </section>
 
-<section
-id="contractList"
-class="contractList">
+<!-- Installment List -->
+
+<section class="contract-list">
+
+    <h2>รายการผ่อนทั้งหมด</h2>
+
+    <article class="glass contract-card">
+
+        <div class="contract-info">
+
+            <h3>vivo V70</h3>
+
+            <p>งวดที่ 5 / 10</p>
+
+        </div>
+
+        <div class="contract-price">
+
+            <strong>฿12,500</strong>
+
+        </div>
+
+    </article>
+
+    <article class="glass contract-card">
+
+        <div class="contract-info">
+
+            <h3>Anker Soundcore R60i NC</h3>
+
+            <p>งวดที่ 2 / 8</p>
+
+        </div>
+
+        <div class="contract-price">
+
+            <strong>฿2,190</strong>
+
+        </div>
+
+    </article>
+
+    <article class="glass contract-card">
+
+        <div class="contract-info">
+
+            <h3>Xiaomi Redmi Watch 5 Lite</h3>
+
+            <p>งวดที่ 1 / 6</p>
+
+        </div>
+
+        <div class="contract-price">
+
+            <strong>฿1,990</strong>
+
+        </div>
+
+    </article>
 
 </section>
 
-<button
-id="addButton"
-class="fab">
+<!-- Floating Button -->
 
-<span class="material-symbols-rounded">
+<button class="fab">
 
-add
-
-</span>
+    <i class="fa-solid fa-plus"></i>
 
 </button>
-</div>
 
-<div id="sheet" class="sheetOverlay">
+<!-- Bottom Navigation -->
 
-    <div class="sheet">
+<nav class="bottom-nav">
 
-        <h2 id="sheetTitle">
-            เพิ่มสัญญา
-        </h2>
+    <a class="active">
 
-        <form id="contractForm">
+        <i class="fa-solid fa-house"></i>
 
-            <input
-                id="name"
-                type="text"
-                placeholder="ชื่อสินค้า"
-                required>
+        <span>หน้าหลัก</span>
 
-            <input
-                id="shop"
-                type="text"
-                placeholder="ร้านค้า">
+    </a>
 
-            <input
-                id="price"
-                type="number"
-                placeholder="ราคาสินค้า"
-                required>
+    <a>
 
-            <input
-                id="down"
-                type="number"
-                value="0"
-                placeholder="เงินดาวน์">
+        <i class="fa-solid fa-file-lines"></i>
 
-            <input
-                id="months"
-                type="number"
-                placeholder="จำนวนงวด"
-                required>
+        <span>สัญญา</span>
 
-            <input
-                id="monthly"
-                type="number"
-                placeholder="ค่างวด"
-                required>
+    </a>
 
-            <input
-                id="due"
-                type="date">
+    <a>
 
-            <div class="sheetButtons">
+        <i class="fa-regular fa-calendar"></i>
 
-                <button
-                    type="button"
-                    id="cancelBtn">
+        <span>ปฏิทิน</span>
 
-                    ยกเลิก
+    </a>
 
-                </button>
+    <a>
 
-                <button
-                    type="button"
-                    id="saveBtn">
+        <i class="fa-solid fa-chart-column"></i>
 
-                    บันทึก
+        <span>สถิติ</span>
 
-                </button>
+    </a>
 
-            </div>
+    <a>
 
-        </form>
+        <i class="fa-solid fa-gear"></i>
 
-    </div>
+        <span>ตั้งค่า</span>
 
-</div>
-
-<nav class="bottomNav">
-
-    <button class="active">
-
-        <span class="material-symbols-rounded">
-            home
-        </span>
-
-        <p>หน้าแรก</p>
-
-    </button>
-
-    <button>
-
-        <span class="material-symbols-rounded">
-            calendar_month
-        </span>
-
-        <p>ปฏิทิน</p>
-
-    </button>
-
-    <button>
-
-        <span class="material-symbols-rounded">
-            analytics
-        </span>
-
-        <p>สถิติ</p>
-
-    </button>
-
-    <button>
-
-        <span class="material-symbols-rounded">
-            settings
-        </span>
-
-        <p>ตั้งค่า</p>
-
-    </button>
+    </a>
 
 </nav>
 
-<script src="js/utils.js"></script>
-<script src="js/storage.js"></script>
-<script src="js/contract.js"></script>
-<script src="js/dashboard.js"></script>
-<script src="js/ui.js"></script>
-<script src="js/app.js"></script>
+</div>
+
+<script src="app.js"></script>
 
 </body>
+
 </html>
