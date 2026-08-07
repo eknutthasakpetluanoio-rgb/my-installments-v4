@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+    <meta
+        name="theme-color"
+        content="#050505">
+
+    <meta
+        name="description"
+        content="PayNest Installment Manager">
+
+    <title>PayNest</title>
+
+    <link
+        rel="manifest"
+        href="manifest.json">
+
+    <link
+        rel="stylesheet"
+        href="css/variables.css">
+
+    <link
+        rel="stylesheet"
+        href="css/reset.css">
+
+    <link
+        rel="stylesheet"
+        href="css/layout.css">
+
+    <link
+        rel="stylesheet"
+        href="css/components.css">
+
+    <link
+        rel="stylesheet"
+        href="css/animations.css">
+
+    <link
+        rel="stylesheet"
+        href="css/responsive.css">
+
+    <link
+        rel="stylesheet"
+        href="css/style.css">
+
+</head>
+
+<body>
+
+<div class="app">
+
+<header class="hero-card">
+
+    <div class="hero-header">
+
+        <div class="hero-title">
+
+            <h1>PayNest</h1>
+
+            <p>Installment Dashboard</p>
+
+        </div>
+
+        <button
+            id="menuButton"
+            class="icon-button"
+            type="button"
+            aria-label="Menu">
+
+            ☰
+
+        </button>
+
+    </div>
+
+    <div class="hero-content">
+
+        <h2 id="monthlyIncome">
+
+            ฿0
+
+        </h2>
+
+        <span>
+
+            รายรับเดือนนี้
+
+        </span>
+
+    </div>
+
+</header>
+
+<section
+    class="summary-grid"
+    id="summaryGrid">
+
+    <article class="summary-card">
+
+        <span>วันนี้</span>
+
+        <strong id="todayIncome">
+
+            ฿0
+
+        </strong>
+
+    </article>
+
+    <article class="summary-card">
+
+        <span>ทั้งหมด</span>
+
+        <strong id="totalIncome">
+
+            ฿0
+
+        </strong>
+
+    </article>
+
+    <article class="summary-card">
+
+        <span>ค้างชำระ</span>
+
+        <strong id="overdueCount">
+
+            0
+
+        </strong>
+
+    </article>
+
+    <article class="summary-card">
+
+        <span>สัญญา</span>
+
+        <strong id="contractCount">
+
+            0
+
+        </strong>
+
+    </article>
+
+</section>
+
+<section class="section">
+
+    <div class="section-header">
+
+        <h2>Contracts</h2>
+
+    </div>
+
+    <div
+        id="contractList"
+        class="contract-list">
+
+    </div>
+
+</section>
+
+</div>
+
+<button
+    id="fab"
+    class="fab"
+    type="button"
+    aria-label="Add Contract">
+
+    +
+
+</button>
+
+<nav
+    class="bottom-nav">
+
+    <button
+        class="nav-item active"
+        type="button">
+
+        Home
+
+    </button>
+
+    <button
+        class="nav-item"
+        type="button">
+
+        Contracts
+
+    </button>
+
+    <button
+        class="nav-item"
+        type="button">
+
+        Calendar
+
+    </button>
+
+    <button
+        class="nav-item"
+        type="button">
+
+        Reports
+
+    </button>
+
+    <button
+        class="nav-item"
+        type="button">
+
+        Settings
+
+    </button>
+
+</nav>
+
+<script
+    type="module"
+    src="js/app.js"></script>
+
+</body>
+</html>
