@@ -138,23 +138,31 @@ function createContractCard(contract) {
 
         <div class="contract-actions">
 
-            <button
-                class="edit-btn"
-                data-id="${contract.id}">
+    <button
+        class="pay-btn"
+        data-id="${contract.id}">
 
-                ✏️ แก้ไข
+        💰 รับเงิน
 
-            </button>
+    </button>
 
-            <button
-                class="delete-btn"
-                data-id="${contract.id}">
+    <button
+        class="edit-btn"
+        data-id="${contract.id}">
 
-                🗑️ ลบ
+        ✏️ แก้ไข
 
-            </button>
+    </button>
 
-        </div>
+    <button
+        class="delete-btn"
+        data-id="${contract.id}">
+
+        🗑️ ลบ
+
+    </button>
+
+</div>
 
     `;
 
