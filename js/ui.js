@@ -1,7 +1,7 @@
 /* ==========================================
    PayNest v1
    File : ui.js
-   Version : 1.0.1
+   Version : 1.1.0
    Description : User Interface Engine
 ========================================== */
 
@@ -26,7 +26,10 @@ export function renderContracts(contracts = []) {
 
     contractList.innerHTML = "";
 
-    if (!Array.isArray(contracts) || contracts.length === 0) {
+    if (
+        !Array.isArray(contracts) ||
+        contracts.length === 0
+    ) {
 
         contractList.innerHTML = `
             <div class="empty-state">
@@ -62,11 +65,11 @@ function createContractCard(contract) {
 
     const customerName =
         contract.customerName ??
-        contract.shop ??
         "-";
 
     const product =
-        contract.product ?? "-";
+        contract.product ??
+        "-";
 
     const paidInstallments =
         Number(
@@ -75,20 +78,13 @@ function createContractCard(contract) {
 
     const totalInstallments =
         Number(
-            contract.totalInstallments ??
-            contract.months ??
-            0
+            contract.totalInstallments ?? 0
         );
 
     const installmentPerMonth =
         Number(
-            contract.installmentPerMonth ??
-            contract.monthly ??
-            0
+            contract.installmentPerMonth ?? 0
         );
-
-    const nextDueDate =
-        contract.nextDueDate ?? "";
 
     const progress =
         calculatePercentage(
@@ -101,17 +97,9 @@ function createContractCard(contract) {
 
     card.innerHTML = `
 
-        <h3>
+        <h3>${escapeHtml(customerName)}</h3>
 
-            ${escapeHtml(customerName)}
-
-        </h3>
-
-        <p>
-
-            ${escapeHtml(product)}
-
-        </p>
+        <p>${escapeHtml(product)}</p>
 
         <div class="progress">
 
@@ -123,36 +111,50 @@ function createContractCard(contract) {
         </div>
 
         <p>
-
             งวด
             ${paidInstallments}
             /
             ${totalInstallments}
             งวด
-
         </p>
 
         <p>
-
             ผ่อน / เดือน
-
             ${formatCurrency(
                 installmentPerMonth
             )}
-
         </p>
 
         <p>
-
             ครบกำหนด
-
             ${
-                nextDueDate
-                    ? formatDate(nextDueDate)
-                    : "-"
+                contract.nextDueDate
+                ? formatDate(
+                    contract.nextDueDate
+                  )
+                : "-"
             }
-
         </p>
+
+        <div class="contract-actions">
+
+            <button
+                class="edit-btn"
+                data-id="${contract.id}">
+
+                ✏️ แก้ไข
+
+            </button>
+
+            <button
+                class="delete-btn"
+                data-id="${contract.id}">
+
+                🗑️ ลบ
+
+            </button>
+
+        </div>
 
     `;
 
@@ -166,14 +168,10 @@ function escapeHtml(value = "") {
 
     return String(value)
 
-        .replace(/&/g, "&amp;")
-
-        .replace(/</g, "&lt;")
-
-        .replace(/>/g, "&gt;")
-
-        .replace(/"/g, "&quot;")
-
-        .replace(/'/g, "&#039;");
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
 
 }
