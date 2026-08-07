@@ -10,7 +10,7 @@ import { updateSummary } from "./summary.js";
 import { renderContracts } from "./ui.js";
 import { registerPWA } from "./pwa.js";
 
-function init() {
+async function init() {
 
     console.log("PayNest v1 Starting...");
 
@@ -20,7 +20,7 @@ function init() {
 
     renderContracts(contracts);
 
-    registerPWA();
+    await registerPWA();
 
     console.log("PayNest Ready");
 
