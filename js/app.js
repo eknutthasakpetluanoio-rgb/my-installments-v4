@@ -15,7 +15,7 @@ async function init() {
     console.log("PayNest v1 Starting...");
 
     const contracts = loadContracts();
-alert(JSON.stringify(contracts[0], null, 2));
+
     updateSummary(contracts);
 
     renderContracts(contracts);
