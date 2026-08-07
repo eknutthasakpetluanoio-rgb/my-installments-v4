@@ -27,7 +27,7 @@
 
         opacity:0;
 
-        transform:translateY(16px);
+        transform:translateY(var(--animation-slide-offset));
 
     }
 
