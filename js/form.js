@@ -1,12 +1,13 @@
 /* ==========================================
    PayNest v1
    File : form.js
-   Version : 1.0.0
+   Version : 2.0.0
    Description : Contract Form Engine
 ========================================== */
 
 import {
     createContract,
+    updateContract,
     loadContracts
 } from "./contracts.js";
 
@@ -53,22 +54,57 @@ function submitContract(event) {
 
     event.preventDefault();
 
+    const form =
+
+        document.getElementById(
+            "contractForm"
+        );
+
+    const editId =
+
+        form.dataset.editId;
+
     const data =
+
         getFormData();
 
     if (
+
         !validate(data)
+
     ) {
 
         return;
 
     }
 
-    createContract(data);
+    if (editId) {
+
+        updateContract(
+
+            editId,
+
+            data
+
+        );
+
+    }
+
+    else {
+
+        createContract(
+
+            data
+
+        );
+
+    }
 
     refresh();
 
     reset();
+
+    delete form.dataset.editId;
 
     closeModal();
 
@@ -123,12 +159,9 @@ function getFormData() {
 }
 
 /* ---------- Validate ---------- */
-
 function validate(data) {
 
-    if (
-        !data.customerName
-    ) {
+    if (!data.customerName) {
 
         alert(
             "กรุณากรอกชื่อลูกค้า"
@@ -138,9 +171,7 @@ function validate(data) {
 
     }
 
-    if (
-        !data.product
-    ) {
+    if (!data.product) {
 
         alert(
             "กรุณากรอกสินค้า"
@@ -150,9 +181,7 @@ function validate(data) {
 
     }
 
-    if (
-        data.totalPrice <= 0
-    ) {
+    if (data.totalPrice <= 0) {
 
         alert(
             "กรุณากรอกราคาสินค้า"
@@ -162,9 +191,7 @@ function validate(data) {
 
     }
 
-    if (
-        data.installmentPerMonth <= 0
-    ) {
+    if (data.installmentPerMonth <= 0) {
 
         alert(
             "กรุณากรอกค่างวด"
@@ -174,9 +201,7 @@ function validate(data) {
 
     }
 
-    if (
-        data.totalInstallments <= 0
-    ) {
+    if (data.totalInstallments <= 0) {
 
         alert(
             "กรุณากรอกจำนวนงวด"
@@ -195,14 +220,19 @@ function validate(data) {
 function refresh() {
 
     const contracts =
+
         loadContracts();
 
     updateSummary(
+
         contracts
+
     );
 
     renderContracts(
+
         contracts
+
     );
 
 }
@@ -211,11 +241,15 @@ function refresh() {
 
 function reset() {
 
-    document
-        .getElementById(
+    const form =
+
+        document.getElementById(
             "contractForm"
-        )
-        ?.reset();
+        );
+
+    form.reset();
+
+    delete form.dataset.editId;
 
 }
 
@@ -229,4 +263,3 @@ function value(id) {
         ?.trim() ?? "";
 
 }
-
