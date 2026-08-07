@@ -399,4 +399,94 @@
 
 }
 
+/* ---------- Contract Form ---------- */
+
+.modal-body form{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:14px;
+
+}
+
+.modal-body label{
+
+    color:var(--color-text);
+
+    font-size:.9rem;
+
+    font-weight:600;
+
+}
+
+.modal-body input,
+.modal-body textarea{
+
+    width:100%;
+
+    padding:12px;
+
+    border-radius:12px;
+
+    border:1px solid var(--glass-border);
+
+    background:rgba(255,255,255,.05);
+
+    color:var(--color-text);
+
+    outline:none;
+
+}
+
+.modal-body input:focus,
+.modal-body textarea:focus{
+
+    border-color:var(--color-primary);
+
+}
+
+.modal-actions{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:12px;
+
+    margin-top:12px;
+
+}
+
+.modal-actions button{
+
+    padding:12px 18px;
+
+    border:none;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+}
+
+#cancelContract{
+
+    background:#444;
+
+    color:#fff;
+
+}
+
+#saveContract{
+
+    background:var(--color-primary);
+
+    color:#fff;
+
+}
+
+
+
 
