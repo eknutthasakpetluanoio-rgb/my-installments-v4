@@ -63,6 +63,7 @@
     --font-size-md: 1rem;
     --font-size-lg: 1.25rem;
     --font-size-xl: 2rem;
+    --font-size-hero: 2.5rem;
 
     --font-weight-normal: 400;
     --font-weight-medium: 500;
@@ -79,7 +80,7 @@
 --fab-size: 60px;
 --fab-right: 24px;
 --fab-bottom: 96px;
-
+--icon-button-size: 44px;
     /* ========= Spacing ========= */
 
     --space-1: 4px;
