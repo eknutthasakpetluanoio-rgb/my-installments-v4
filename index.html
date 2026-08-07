@@ -257,17 +257,146 @@
 
         </div>
 
-        <div
-            class="modal-body">
+        <div class="modal-body">
 
-            <p>
+    <form id="contractForm">
 
-                ระบบเพิ่มสัญญา
-                จะเริ่มใช้งานใน Sprint 1B
+        <label for="customerName">
 
-            </p>
+            ชื่อลูกค้า
+
+        </label>
+
+        <input
+            id="customerName"
+            type="text"
+            autocomplete="off"
+            required>
+
+        <label for="phone">
+
+            เบอร์โทร
+
+        </label>
+
+        <input
+            id="phone"
+            type="tel"
+            autocomplete="off">
+
+        <label for="product">
+
+            สินค้า
+
+        </label>
+
+        <input
+            id="product"
+            type="text"
+            autocomplete="off"
+            required>
+
+        <label for="totalPrice">
+
+            ราคาสินค้า
+
+        </label>
+
+        <input
+            id="totalPrice"
+            type="number"
+            min="0"
+            required>
+
+        <label for="downPayment">
+
+            เงินดาวน์
+
+        </label>
+
+        <input
+            id="downPayment"
+            type="number"
+            min="0"
+            value="0">
+
+        <label for="installmentPerMonth">
+
+            ค่างวด / เดือน
+
+        </label>
+
+        <input
+            id="installmentPerMonth"
+            type="number"
+            min="0"
+            required>
+
+        <label for="totalInstallments">
+
+            จำนวนงวด
+
+        </label>
+
+        <input
+            id="totalInstallments"
+            type="number"
+            min="1"
+            required>
+
+        <label for="startDate">
+
+            วันที่เริ่มผ่อน
+
+        </label>
+
+        <input
+            id="startDate"
+            type="date">
+
+        <label for="nextDueDate">
+
+            วันที่ครบกำหนดงวดแรก
+
+        </label>
+
+        <input
+            id="nextDueDate"
+            type="date">
+
+        <label for="notes">
+
+            หมายเหตุ
+
+        </label>
+
+        <textarea
+            id="notes"
+            rows="3"></textarea>
+
+        <div class="modal-actions">
+
+            <button
+                id="cancelContract"
+                type="button">
+
+                ยกเลิก
+
+            </button>
+
+            <button
+                id="saveContract"
+                type="submit">
+
+                บันทึก
+
+            </button>
 
         </div>
+
+    </form>
+
+</div>
 
     </div>
 
