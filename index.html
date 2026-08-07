@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PayNest</title>
+
+<meta name="theme-color" content="#090A0C">
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="app">
+
+<header class="topbar">
+
+<div class="logo">
+
+<h1>PayNest</h1>
+
+<p>Smart Payment Tracker</p>
+
+</div>
+
+<div class="top-actions">
+
+<button
+class="glass"
+id="notificationBtn"
+aria-label="Notifications">
+
+<i class="fa-regular fa-bell"></i>
+
+</button>
+
+</div>
+
+</header>
+<main>
+
+<section class="hero-card">
+
+    <div class="glass hero">
+
+        <div class="hero-content">
+
+            <span>ยอดที่ต้องชำระเดือนนี้</span>
+
+            <h2 id="monthlyTotal">฿0</h2>
+
+            <p id="monthlyInfo">
+                ยังไม่มีรายการที่ต้องชำระ
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="summary">
+
+    <article class="glass card">
+
+        <span>ยอดคงเหลือ</span>
+
+        <h3 id="remainingTotal">฿0</h3>
+
+    </article>
+
+    <article class="glass card">
+
+        <span>ชำระแล้ว</span>
+
+        <h3 id="paidPercent">0%</h3>
+
+    </article>
+
+</section>
+
+<section class="contract-list">
+
+    <h2>รายการผ่อนทั้งหมด</h2>
+
+    <div id="contractContainer">
+
+        <div class="empty-state">
+
+            <i class="fa-regular fa-folder-open"></i>
+
+            <h3>ยังไม่มีสัญญา</h3>
+
+            <p>กดปุ่ม + เพื่อเพิ่มสัญญาแรก</p>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+<button class="fab" id="addContractBtn">
+
+    <i class="fa-solid fa-plus"></i>
+
+</button>
+
+<nav class="bottom-nav">
+
+    <a href="#" class="active">
+
+        <i class="fa-solid fa-house"></i>
+
+        <span>หน้าหลัก</span>
+
+    </a>
+
+    <a href="#">
+
+        <i class="fa-solid fa-file-lines"></i>
+
+        <span>สัญญา</span>
+
+    </a>
+
+    <a href="#">
+
+        <i class="fa-regular fa-calendar"></i>
+
+        <span>ปฏิทิน</span>
+
+    </a>
+
+    <a href="#">
+
+        <i class="fa-solid fa-chart-column"></i>
+
+        <span>สถิติ</span>
+
+    </a>
+
+    <a href="#">
+
+        <i class="fa-solid fa-user"></i>
+
+        <span>โปรไฟล์</span>
+
+    </a>
+
+</nav>
+
+</div>
+
+<div id="backdrop"></div>
+
+<div id="bottomSheet">
+
+    <div class="sheet-header">
+
+        <h2>เพิ่มสัญญา</h2>
+
+        <button id="closeSheet">
+
+            <i class="fa-solid fa-xmark"></i>
+
+        </button>
+
+    </div>
+
+    <div class="sheet-body">
+
+        <p>PayNest v1 กำลังอยู่ระหว่างพัฒนา</p>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
+
