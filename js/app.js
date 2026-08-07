@@ -1,7 +1,7 @@
 /* ==========================================
    PayNest v1
    File : app.js
-   Version : 1.2.0
+   Version : 1.3.0
    Description : Application Bootstrap
 ========================================== */
 
@@ -29,6 +29,10 @@ import {
     setupForm
 } from "./form.js";
 
+import {
+    setupEvents
+} from "./events.js";
+
 /* ---------- Init ---------- */
 
 async function init() {
@@ -51,6 +55,8 @@ async function init() {
     setupModal();
 
     setupForm();
+
+    setupEvents();
 
     await registerPWA();
 
