@@ -936,3 +936,39 @@ body::before{
     margin-bottom:16px;
 
 }
+.form-group{
+    margin-bottom:18px;
+}
+
+.form-group label{
+    display:block;
+    margin-bottom:8px;
+    font-size:14px;
+}
+
+.form-group input{
+    width:100%;
+    padding:14px 16px;
+    border:none;
+    border-radius:16px;
+    background:rgba(255,255,255,.08);
+    color:#fff;
+    font-size:15px;
+}
+
+.form-group input:focus{
+    outline:1px solid rgba(255,255,255,.25);
+}
+
+.save-btn{
+    width:100%;
+    padding:16px;
+    border:none;
+    border-radius:18px;
+    margin-top:12px;
+    background:#ffffff;
+    color:#090A0C;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
+}
