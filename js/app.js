@@ -1,7 +1,7 @@
 /* ==========================================
    PayNest v1
    File : app.js
-   Version : 1.0.2
+   Version : 1.2.0
    Description : Application Bootstrap
 ========================================== */
 
@@ -21,124 +21,20 @@ import {
     registerPWA
 } from "./pwa.js";
 
-/* ---------- Modal ---------- */
+import {
+    setupModal
+} from "./modal.js";
 
-function setupModal() {
-
-    const fab =
-        document.getElementById("fab");
-
-    const modal =
-        document.getElementById("contractModal");
-
-    const close =
-        document.getElementById("closeModal");
-
-    const form =
-        document.getElementById("contractForm");
-
-    if (
-        !fab ||
-        !modal ||
-        !close
-    ) {
-
-        return;
-
-    }
-
-    /* ---------- Open ---------- */
-
-    fab.addEventListener(
-
-        "click",
-
-        () => {
-
-            modal.classList.remove(
-
-                "hidden"
-
-            );
-
-        }
-
-    );
-
-    /* ---------- Close ---------- */
-
-    close.addEventListener(
-
-        "click",
-
-        () => {
-
-            modal.classList.add(
-
-                "hidden"
-
-            );
-
-        }
-
-    );
-
-    /* ---------- Click Outside ---------- */
-
-    modal.addEventListener(
-
-        "click",
-
-        event => {
-
-            if (
-
-                event.target === modal
-
-            ) {
-
-                modal.classList.add(
-
-                    "hidden"
-
-                );
-
-            }
-
-        }
-
-    );
-
-    /* ---------- Form ---------- */
-
-    if (form) {
-
-        form.addEventListener(
-
-            "submit",
-
-            event => {
-
-                event.preventDefault();
-
-                
-
-            }
-
-        );
-
-    }
-
-}
+import {
+    setupForm
+} from "./form.js";
 
 /* ---------- Init ---------- */
 
 async function init() {
 
     console.log(
-
         "PayNest v1 Starting..."
-
     );
 
     const contracts =
@@ -152,15 +48,14 @@ async function init() {
         contracts
     );
 
-
     setupModal();
+
+    setupForm();
 
     await registerPWA();
 
     console.log(
-
         "PayNest Ready"
-
     );
 
 }
