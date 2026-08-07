@@ -1,0 +1,503 @@
+/* ===========================
+   PayNest Premium v0.1
+=========================== */
+
+:root{
+
+    --bg:#111315;
+    --bg2:#1A1C20;
+
+    --glass:rgba(255,255,255,.08);
+
+    --border:rgba(255,255,255,.12);
+
+    --text:#FFFFFF;
+
+    --sub:#C8CCD3;
+
+    --success:#22C55E;
+
+    --warning:#F59E0B;
+
+    --danger:#EF4444;
+
+    --shadow:
+    0 15px 35px rgba(0,0,0,.35);
+
+}
+
+*{
+
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+
+}
+
+body{
+
+    background:
+    linear-gradient(
+    180deg,
+    #202328,
+    #111315);
+
+    color:var(--text);
+
+    font-family:
+    "Noto Sans Thai",
+    sans-serif;
+
+    min-height:100vh;
+
+}
+
+.app{
+
+    max-width:430px;
+
+    margin:auto;
+
+    padding:24px;
+
+}
+
+.topbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:24px;
+
+}
+
+.logo h1{
+
+    font-size:28px;
+
+    font-weight:700;
+
+}
+
+.logo p{
+
+    color:var(--sub);
+
+    font-size:14px;
+
+}
+
+.top-actions{
+
+    display:flex;
+
+    gap:12px;
+
+}
+
+.top-actions button{
+
+    width:46px;
+
+    height:46px;
+
+    border:none;
+
+    cursor:pointer;
+
+}
+/* ===========================
+   Glass Cards
+=========================== */
+
+.glass{
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(18px);
+
+    -webkit-backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.12);
+
+    border-radius:28px;
+
+    box-shadow:
+        0 20px 40px rgba(0,0,0,.35);
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+/* Reflection */
+
+.glass::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(255,255,255,.18) 0%,
+        rgba(255,255,255,.04) 25%,
+        transparent 55%
+    );
+
+    pointer-events:none;
+
+}
+
+/* ===========================
+   Hero Card
+=========================== */
+
+.hero-card{
+
+    margin-bottom:22px;
+
+}
+
+.hero-card .glass{
+
+    padding:26px;
+
+}
+
+.hero-card span{
+
+    color:var(--sub);
+
+    font-size:14px;
+
+}
+
+.hero-card h2{
+
+    margin-top:10px;
+
+    font-size:34px;
+
+    font-weight:700;
+
+}
+
+.hero-card p{
+
+    margin-top:8px;
+
+    color:var(--sub);
+
+}
+
+/* ===========================
+   Summary
+=========================== */
+
+.summary{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:16px;
+
+    margin-bottom:22px;
+
+}
+
+.card{
+
+    padding:22px;
+
+}
+
+.card span{
+
+    color:var(--sub);
+
+    font-size:13px;
+
+}
+
+.card h3{
+
+    margin-top:10px;
+
+    font-size:26px;
+
+}
+
+/* ===========================
+   Quick Menu
+=========================== */
+
+.quick-menu{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:14px;
+
+    margin-bottom:24px;
+
+}
+
+.menu-card{
+
+    padding:18px 10px;
+
+    border:none;
+
+    cursor:pointer;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:10px;
+
+    color:white;
+
+}
+
+.menu-card i{
+
+    font-size:20px;
+
+}
+
+.menu-card span{
+
+    font-size:12px;
+
+}
+/* ===========================
+   Contract List
+=========================== */
+
+.contract-list{
+
+    margin-top:8px;
+    margin-bottom:110px;
+
+}
+
+.contract-list h2{
+
+    font-size:18px;
+    margin-bottom:16px;
+    font-weight:600;
+
+}
+
+.contract-card{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:18px 20px;
+
+    margin-bottom:16px;
+
+    transition:.25s;
+
+}
+
+.contract-card:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 25px 45px rgba(0,0,0,.40);
+
+}
+
+.contract-info h3{
+
+    font-size:16px;
+    font-weight:600;
+
+}
+
+.contract-info p{
+
+    margin-top:6px;
+
+    color:var(--sub);
+
+    font-size:13px;
+
+}
+
+.contract-price{
+
+    text-align:right;
+
+}
+
+.contract-price strong{
+
+    display:block;
+
+    font-size:18px;
+
+    font-weight:700;
+
+}
+
+/* ===========================
+   Floating Button
+=========================== */
+
+.fab{
+
+    position:fixed;
+
+    bottom:95px;
+
+    right:22px;
+
+    width:64px;
+
+    height:64px;
+
+    border:none;
+
+    border-radius:50%;
+
+    cursor:pointer;
+
+    color:white;
+
+    background:
+    linear-gradient(
+        180deg,
+        rgba(255,255,255,.16),
+        rgba(255,255,255,.08)
+    );
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.18);
+
+    box-shadow:
+        0 20px 40px rgba(0,0,0,.45);
+
+    font-size:22px;
+
+    transition:.25s;
+
+}
+
+.fab:hover{
+
+    transform:scale(1.06);
+
+}
+
+.fab:active{
+
+    transform:scale(.95);
+
+}
+
+/* ===========================
+   Bottom Navigation
+=========================== */
+
+.bottom-nav{
+
+    position:fixed;
+
+    left:0;
+    right:0;
+    bottom:0;
+
+    max-width:430px;
+
+    margin:auto;
+
+    display:flex;
+
+    justify-content:space-around;
+
+    padding:14px 10px;
+
+    background:rgba(18,20,23,.80);
+
+    backdrop-filter:blur(22px);
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+}
+
+.bottom-nav a{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:6px;
+
+    color:#C8CCD3;
+
+    text-decoration:none;
+
+    font-size:11px;
+
+    transition:.25s;
+
+}
+
+.bottom-nav a i{
+
+    font-size:18px;
+
+}
+
+.bottom-nav a.active{
+
+    color:#FFFFFF;
+
+}
+
+/* ===========================
+   Responsive
+=========================== */
+
+@media(max-width:430px){
+
+    .app{
+
+        padding:18px;
+
+    }
+
+    .hero-card h2{
+
+        font-size:30px;
+
+    }
+
+    .quick-menu{
+
+        gap:10px;
+
+    }
+
+}
