@@ -11,7 +11,49 @@ import { loadData, saveData } from "./storage.js";
 
 export function loadContracts() {
 
-    return loadData();
+    const contracts = loadData();
+
+    return contracts.map(contract => ({
+
+        id: contract.id ?? crypto.randomUUID(),
+
+        customerName: contract.customerName ?? contract.shop ?? "",
+
+        phone: contract.phone ?? "",
+
+        product: contract.product ?? "",
+
+        totalPrice: Number(
+            contract.totalPrice ?? contract.price ?? 0
+        ),
+
+        downPayment: Number(
+            contract.downPayment ?? 0
+        ),
+
+        installmentPerMonth: Number(
+            contract.installmentPerMonth ??
+            contract.monthly ??
+            0
+        ),
+
+        totalInstallments: Number(
+            contract.totalInstallments ??
+            contract.months ??
+            0
+        ),
+
+        paidInstallments: Number(
+            contract.paidInstallments ?? 0
+        ),
+
+        startDate: contract.startDate ?? "",
+
+        nextDueDate: contract.nextDueDate ?? "",
+
+        status: contract.status ?? "active"
+
+    }));
 
 }
 
