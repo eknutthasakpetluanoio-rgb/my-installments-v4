@@ -4,7 +4,7 @@
    Version : 1.0.0
    Description : User Interface Renderer
 ========================================== */
-
+import { calculatePercentage } from "./utils.js";
 /* ---------- Render Contracts ---------- */
 
 export function renderContracts(contracts = []) {
@@ -30,8 +30,10 @@ export function renderContracts(contracts = []) {
 
     contracts.forEach(contract => {
 
-        const progress =
-            calculateProgress(contract);
+        const progress = calculatePercentage(
+    contract.paidInstallments,
+    contract.totalInstallments
+);
 
         const card = document.createElement("article");
 
@@ -63,29 +65,3 @@ export function renderContracts(contracts = []) {
 
 }
 
-/* ---------- Progress ---------- */
-
-function calculateProgress(contract) {
-
-    if (
-        !contract.totalInstallments ||
-        contract.totalInstallments <= 0
-    ) {
-
-        return 0;
-
-    }
-
-    return Math.min(
-
-        100,
-
-        (
-            contract.paidInstallments
-            /
-            contract.totalInstallments
-        ) * 100
-
-    );
-
-}
