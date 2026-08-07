@@ -1,254 +1,121 @@
 <!DOCTYPE html>
 <html lang="th">
-
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b0b0b">
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PayNest</title>
 
-<title>PayNest</title>
+  <link rel="manifest" href="manifest.json">
 
-<meta name="theme-color" content="#090A0C">
-
-<link rel="stylesheet" href="style.css">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
 <div class="app">
 
-<header class="topbar">
+<header class="hero-card">
 
-<div class="logo">
-
+<div class="hero-top">
+<div>
 <h1>PayNest</h1>
-
-<p>Smart Payment Tracker</p>
-
+<p>Dashboard</p>
 </div>
 
-<div class="top-actions">
-
-<button
-class="glass"
-id="notificationBtn"
-aria-label="Notifications">
-
-<i class="fa-regular fa-bell"></i>
-
+<button id="profileBtn" class="glass-btn">
+☰
 </button>
+</div>
+
+<div class="hero-income">
+
+<h2 id="monthlyIncome">
+฿0
+</h2>
+
+<p>รายรับเดือนนี้</p>
 
 </div>
 
 </header>
-<main>
 
-<section class="hero-card">
+<section class="summary-grid">
 
-    <div class="glass hero">
+<div class="summary-card">
+<span>วันนี้</span>
+<strong id="todayIncome">฿0</strong>
+</div>
 
-        <div class="hero-content">
+<div class="summary-card">
+<span>ทั้งหมด</span>
+<strong id="totalIncome">฿0</strong>
+</div>
 
-            <span>ยอดที่ต้องชำระเดือนนี้</span>
+<div class="summary-card">
+<span>ค้างชำระ</span>
+<strong id="overdueCount">0</strong>
+</div>
 
-            <h2 id="monthlyTotal">฿0</h2>
-
-            <p id="monthlyInfo">
-                ยังไม่มีรายการที่ต้องชำระ
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-<section class="summary">
-
-    <article class="glass card">
-
-        <span>ยอดคงเหลือ</span>
-
-        <h3 id="remainingTotal">฿0</h3>
-
-    </article>
-
-    <article class="glass card">
-
-        <span>ชำระแล้ว</span>
-
-        <h3 id="paidPercent">0%</h3>
-
-    </article>
+<div class="summary-card">
+<span>สัญญา</span>
+<strong id="contractCount">0</strong>
+</div>
 
 </section>
 
-<section class="contract-list">
+<section class="contract-section">
 
-    <h2>รายการผ่อนทั้งหมด</h2>
+<div class="section-title">
+<h2>Contracts</h2>
+</div>
 
-    <div id="contractContainer">
+<div id="contractList">
 
-        <div class="empty-state">
+<!-- Contract Cards -->
 
-            <i class="fa-regular fa-folder-open"></i>
-
-            <h3>ยังไม่มีสัญญา</h3>
-
-            <p>กดปุ่ม + เพื่อเพิ่มสัญญาแรก</p>
-
-        </div>
-
-    </div>
+</div>
 
 </section>
 
-</main>
+</div>
 
-<button class="fab" id="addContractBtn">
-
-    <i class="fa-solid fa-plus"></i>
-
+<button id="fab" class="fab">
++
 </button>
 
 <nav class="bottom-nav">
 
-    <a href="#" class="active">
+<button class="nav-item active">
+Home
+</button>
 
-        <i class="fa-solid fa-house"></i>
+<button class="nav-item">
+Contracts
+</button>
 
-        <span>หน้าหลัก</span>
+<button class="nav-item">
+Calendar
+</button>
 
-    </a>
+<button class="nav-item">
+Reports
+</button>
 
-    <a href="#">
-
-        <i class="fa-solid fa-file-lines"></i>
-
-        <span>สัญญา</span>
-
-    </a>
-
-    <a href="#">
-
-        <i class="fa-regular fa-calendar"></i>
-
-        <span>ปฏิทิน</span>
-
-    </a>
-
-    <a href="#">
-
-        <i class="fa-solid fa-chart-column"></i>
-
-        <span>สถิติ</span>
-
-    </a>
-
-    <a href="#">
-
-        <i class="fa-solid fa-user"></i>
-
-        <span>โปรไฟล์</span>
-
-    </a>
+<button class="nav-item">
+Settings
+</button>
 
 </nav>
 
-</div>
-
-<div id="backdrop"></div>
-
-<div id="bottomSheet">
-
-    <div class="sheet-header">
-
-        <h2>เพิ่มสัญญา</h2>
-
-        <button id="closeSheet">
-
-            <i class="fa-solid fa-xmark"></i>
-
-        </button>
-
-    </div>
-
-    <div class="sheet-body">
-
-<form id="contractForm">
-
-<div class="form-group">
-<label>ชื่อสินค้า</label>
-<input
-type="text"
-id="productName"
-placeholder="เช่น vivo V70"
-required>
-</div>
-
-<div class="form-group">
-<label>ร้านค้า</label>
-<input
-type="text"
-id="shopName"
-placeholder="เช่น BaNANA">
-</div>
-
-<div class="form-group">
-<label>ราคาสินค้า</label>
-<input
-type="number"
-id="price"
-placeholder="0">
-</div>
-
-<div class="form-group">
-<label>จำนวนงวด</label>
-<input
-type="number"
-id="months"
-placeholder="10">
-</div>
-
-<div class="form-group">
-<label>ค่างวดต่อเดือน</label>
-<input
-type="number"
-id="monthly"
-placeholder="1250">
-</div>
-
-<button
-type="submit"
-class="save-btn">
-บันทึกสัญญา
-</button>
-
-</form>
-
-</div>
-
-</div>
+<script type="module" src="js/app.js"></script>
 
 </body>
-
-</html>
-</form>
-
-    </div>
-
-</div>
-
-<script src="app.js"></script>
-
-</body>
-
 </html>
