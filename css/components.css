@@ -207,9 +207,13 @@
 
     position:fixed;
 
-    right:24px;
+    right:var(--space-6);
 
-    bottom:96px;
+bottom:calc(
+    var(--bottom-nav-height)
+    +
+    var(--space-6)
+);
 
     width:var(--fab-size);
 
@@ -260,7 +264,9 @@
 
     bottom:0;
 
-    height:var(--bottom-nav-height);
+    min-height:var(--bottom-nav-height);
+
+padding-bottom:env(safe-area-inset-bottom);
 
     display:flex;
 
