@@ -41,29 +41,35 @@ export function setupEvents() {
 
 function handleClick(event) {
 
-    const target = event.target;
+    const target = event.target.closest("button");
 
-    /* ---------- Delete ---------- */
+    if (!target) {
 
-    if (
+        return;
 
-        target.classList.contains(
+    }
 
-            "delete-btn"
-
-        )
-
-    ) {
+    if (target.matches(".delete-btn")) {
 
         removeContract(
-
             target.dataset.id
-
         );
 
         return;
 
     }
+
+    if (target.matches(".edit-btn")) {
+
+        editContract(
+            target.dataset.id
+        );
+
+        return;
+
+    }
+
+}
 
     /* ---------- Edit ---------- */
 
@@ -92,7 +98,7 @@ function handleClick(event) {
 /* ---------- Edit ---------- */
 
 function editContract(id) {
-
+alert("เข้า editContract");
     const contract =
 
         getContractById(id);
