@@ -41,6 +41,8 @@ async function init() {
 
     const contracts = loadContracts();
 
+alert(JSON.stringify(contracts, null, 2));
+
     updateSummary(contracts);
 
     renderContracts(contracts);
