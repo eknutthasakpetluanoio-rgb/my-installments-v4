@@ -71,11 +71,14 @@
 
     /* ========= Layout ========= */
 
-    --container-width: 480px;
+--container-width: 480px;
 
-    --header-height: 88px;
-    --bottom-nav-height: 76px;
-    --fab-size: 60px;
+--header-height: 88px;
+--bottom-nav-height: 76px;
+
+--fab-size: 60px;
+--fab-right: 24px;
+--fab-bottom: 96px;
 
     /* ========= Spacing ========= */
 
