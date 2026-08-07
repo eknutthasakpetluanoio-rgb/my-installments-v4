@@ -10,7 +10,7 @@
 ========================================== */
 
 .hidden{
-    display:none !important;
+    display:none;
 }
 
 .block{
@@ -21,9 +21,6 @@
     display:flex;
 }
 
-.grid{
-    display:grid;
-}
 
 .inline-flex{
     display:inline-flex;
