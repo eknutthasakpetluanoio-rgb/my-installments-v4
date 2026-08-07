@@ -1,7 +1,7 @@
 /* ==========================================
    PayNest v1
    File : pwa.js
-   Version : 1.0.0
+   Version : 1.0.1
    Description : Progressive Web App
 ========================================== */
 
@@ -11,34 +11,38 @@ export async function registerPWA() {
 
     if (!("serviceWorker" in navigator)) {
 
-        console.warn(
-            "Service Worker Not Supported"
-        );
-
         return;
 
     }
 
     try {
 
-        const registration =
-            await navigator.serviceWorker.register(
-                "./sw.js"
-            );
+        // ลบ Service Worker เก่าทั้งหมด
+        const registrations =
+            await navigator.serviceWorker.getRegistrations();
 
-        console.log(
+        for (const registration of registrations) {
 
-            "Service Worker Registered",
+            await registration.unregister();
 
-            registration.scope
+        }
+
+        // ล้าง Cache ทั้งหมด
+        const cacheNames = await caches.keys();
+
+        await Promise.all(
+
+            cacheNames.map(name => caches.delete(name))
 
         );
+
+        console.log("Old Service Worker Removed");
 
     } catch (error) {
 
         console.error(
 
-            "Service Worker Register Error",
+            "PWA Reset Error",
 
             error
 
