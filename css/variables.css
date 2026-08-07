@@ -1,0 +1,105 @@
+/* ==========================================
+   PayNest v1
+   File : variables.css
+   Description : Design System
+   Theme : Piano Black + Glass UI
+========================================== */
+
+:root {
+
+    /* ========= Brand ========= */
+
+    --app-name: "PayNest";
+
+    /* ========= Colors ========= */
+
+    --color-background: #050505;
+    --color-surface: #111111;
+    --color-card: rgba(255, 255, 255, 0.08);
+
+    --color-text: #ffffff;
+    --color-text-secondary: #bdbdbd;
+
+    --color-primary: #4f8cff;
+    --color-success: #36d17c;
+    --color-warning: #ffb020;
+    --color-danger: #ff5d73;
+
+    --color-border: rgba(255,255,255,.12);
+
+    /* ========= Glass ========= */
+
+    --glass-background: rgba(255,255,255,.08);
+    --glass-border: rgba(255,255,255,.12);
+    --glass-blur: 18px;
+
+    /* ========= Radius ========= */
+
+    --radius-xs: 8px;
+    --radius-sm: 12px;
+    --radius-md: 18px;
+    --radius-lg: 24px;
+    --radius-xl: 32px;
+    --radius-pill: 999px;
+
+    /* ========= Shadow ========= */
+
+    --shadow-sm: 0 2px 8px rgba(0,0,0,.25);
+
+    --shadow-md: 0 10px 24px rgba(0,0,0,.35);
+
+    --shadow-lg: 0 20px 60px rgba(0,0,0,.45);
+
+    /* ========= Typography ========= */
+
+    --font-family:
+        Inter,
+        "Noto Sans Thai",
+        system-ui,
+        sans-serif;
+
+    --font-size-xs: .75rem;
+    --font-size-sm: .875rem;
+    --font-size-md: 1rem;
+    --font-size-lg: 1.25rem;
+    --font-size-xl: 2rem;
+
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+
+    /* ========= Layout ========= */
+
+    --container-width: 480px;
+
+    --header-height: 88px;
+    --bottom-nav-height: 76px;
+    --fab-size: 60px;
+
+    /* ========= Spacing ========= */
+
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 20px;
+    --space-6: 24px;
+    --space-7: 32px;
+    --space-8: 40px;
+
+    /* ========= Transition ========= */
+
+    --transition-fast: .18s ease;
+    --transition-normal: .28s ease;
+    --transition-slow: .40s ease;
+
+    /* ========= Z-Index ========= */
+
+    --z-base: 1;
+    --z-header: 100;
+    --z-fab: 500;
+    --z-navigation: 800;
+    --z-modal: 1000;
+    --z-toast: 1100;
+}
