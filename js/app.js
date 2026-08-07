@@ -15,7 +15,7 @@ async function init() {
     console.log("PayNest v1 Starting...");
 
     const contracts = loadContracts();
-
+console.table(contracts);
     updateSummary(contracts);
 
     renderContracts(contracts);
