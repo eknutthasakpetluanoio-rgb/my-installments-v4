@@ -101,7 +101,7 @@
 
 --animation-duration: .35s;
 --animation-scale: .98;
-
+--animation-slide-offset: 16px;
     /* ========= Z-Index ========= */
 
     --z-base: 1;
