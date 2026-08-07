@@ -335,7 +335,9 @@
 
     justify-content:center;
 
-    background:rgba(0,0,0,.55);
+    padding:16px;
+
+    background:rgba(0,0,0,.60);
 
     z-index:1000;
 
@@ -343,7 +345,15 @@
 
 .modal-content{
 
-    width:min(92%,420px);
+    width:100%;
+
+    max-width:420px;
+
+    max-height:90vh;
+
+    display:flex;
+
+    flex-direction:column;
 
     background:var(--color-surface);
 
@@ -351,9 +361,9 @@
 
     border-radius:var(--radius-lg);
 
-    padding:var(--space-5);
-
     box-shadow:var(--shadow-lg);
+
+    overflow:hidden;
 
 }
 
@@ -393,12 +403,17 @@
 
 .modal-body{
 
+    flex:1;
+
+    overflow-y:auto;
+
+    padding:20px;
+
     color:var(--color-text-secondary);
 
     line-height:1.6;
 
 }
-
 /* ---------- Contract Form ---------- */
 
 .modal-body form{
@@ -449,13 +464,19 @@
 
 .modal-actions{
 
+    position:sticky;
+
+    bottom:0;
+
     display:flex;
 
     justify-content:flex-end;
 
     gap:12px;
 
-    margin-top:12px;
+    padding-top:16px;
+
+    background:var(--color-surface);
 
 }
 
