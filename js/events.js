@@ -1,7 +1,7 @@
 /* ==========================================
    PayNest v1
    File : events.js
-   Version : 1.1.0
+   Version : 1.2.0
    Description : Global Event Engine
 ========================================== */
 
@@ -28,11 +28,8 @@ import {
 export function setupEvents() {
 
     document.addEventListener(
-
         "click",
-
         handleClick
-
     );
 
 }
@@ -49,6 +46,8 @@ function handleClick(event) {
 
     }
 
+    /* ---------- Delete ---------- */
+
     if (target.matches(".delete-btn")) {
 
         removeContract(
@@ -58,6 +57,8 @@ function handleClick(event) {
         return;
 
     }
+
+    /* ---------- Edit ---------- */
 
     if (target.matches(".edit-btn")) {
 
@@ -71,36 +72,11 @@ function handleClick(event) {
 
 }
 
-    /* ---------- Edit ---------- */
-
-    if (
-
-        target.classList.contains(
-
-            "edit-btn"
-
-        )
-
-    ) {
-
-        editContract(
-
-            target.dataset.id
-
-        );
-
-        return;
-
-    }
-
-}
-
 /* ---------- Edit ---------- */
 
 function editContract(id) {
-alert("เข้า editContract");
-    const contract =
 
+    const contract =
         getContractById(id);
 
     if (!contract) {
@@ -110,72 +86,48 @@ alert("เข้า editContract");
     }
 
     document.getElementById(
-
         "customerName"
-
     ).value = contract.customerName;
 
     document.getElementById(
-
         "phone"
-
     ).value = contract.phone;
 
     document.getElementById(
-
         "product"
-
     ).value = contract.product;
 
     document.getElementById(
-
         "totalPrice"
-
     ).value = contract.totalPrice;
 
     document.getElementById(
-
         "downPayment"
-
     ).value = contract.downPayment;
 
     document.getElementById(
-
         "installmentPerMonth"
-
     ).value = contract.installmentPerMonth;
 
     document.getElementById(
-
         "totalInstallments"
-
     ).value = contract.totalInstallments;
 
     document.getElementById(
-
         "startDate"
-
     ).value = contract.startDate;
 
     document.getElementById(
-
         "nextDueDate"
-
     ).value = contract.nextDueDate;
 
     document.getElementById(
-
         "notes"
-
     ).value = contract.notes;
 
-    /* เก็บ id ไว้ให้ form.js */
-
-    document
-        .getElementById(
-            "contractForm"
-        )
-        .dataset.editId = id;
+    document.getElementById(
+        "contractForm"
+    ).dataset.editId = id;
 
     openModal();
 
@@ -185,15 +137,9 @@ alert("เข้า editContract");
 
 function removeContract(id) {
 
-    if (
-
-        !confirm(
-
-            "ลบสัญญานี้ใช่หรือไม่?"
-
-        )
-
-    ) {
+    if (!confirm(
+        "ลบสัญญานี้ใช่หรือไม่?"
+    )) {
 
         return;
 
@@ -210,19 +156,14 @@ function removeContract(id) {
 export function refresh() {
 
     const contracts =
-
         loadContracts();
 
     updateSummary(
-
         contracts
-
     );
 
     renderContracts(
-
         contracts
-
     );
 
 }
