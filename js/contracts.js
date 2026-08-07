@@ -1,7 +1,7 @@
 /* ==========================================
    PayNest v1
    File : contracts.js
-   Version : 1.0.0
+   Version : 1.0.1
    Description : Contract Engine
 ========================================== */
 
@@ -17,7 +17,74 @@ import {
 
 export function loadContracts() {
 
-    return loadData();
+    const contracts = loadData();
+
+    return contracts.map(contract => ({
+
+        id:
+            contract.id ?? generateId(),
+
+        customerName:
+            contract.customerName ??
+            contract.shop ??
+            "-",
+
+        phone:
+            contract.phone ?? "",
+
+        product:
+            contract.product ?? "",
+
+        totalPrice:
+            toNumber(
+                contract.totalPrice ??
+                contract.price ??
+                0
+            ),
+
+        downPayment:
+            toNumber(
+                contract.downPayment ?? 0
+            ),
+
+        installmentPerMonth:
+            toNumber(
+                contract.installmentPerMonth ??
+                contract.monthly ??
+                0
+            ),
+
+        totalInstallments:
+            toNumber(
+                contract.totalInstallments ??
+                contract.months ??
+                0
+            ),
+
+        paidInstallments:
+            toNumber(
+                contract.paidInstallments ?? 0
+            ),
+
+        startDate:
+            contract.startDate ?? "",
+
+        nextDueDate:
+            contract.nextDueDate ?? "",
+
+        status:
+            contract.status ?? "active",
+
+        notes:
+            contract.notes ?? "",
+
+        createdAt:
+            contract.createdAt ?? "",
+
+        updatedAt:
+            contract.updatedAt ?? ""
+
+    }));
 
 }
 
@@ -25,7 +92,7 @@ export function loadContracts() {
 
 export function getContracts() {
 
-    return loadData();
+    return loadContracts();
 
 }
 
@@ -33,7 +100,7 @@ export function getContracts() {
 
 export function getContractById(id) {
 
-    return loadData().find(
+    return loadContracts().find(
 
         contract => contract.id === id
 
@@ -45,7 +112,7 @@ export function getContractById(id) {
 
 export function createContract(data) {
 
-    const contracts = loadData();
+    const contracts = loadContracts();
 
     const contract = {
 
@@ -72,7 +139,7 @@ export function createContract(data) {
         totalInstallments:
             toNumber(data.totalInstallments),
 
-        paidInstallments:0,
+        paidInstallments: 0,
 
         startDate:
             data.startDate ?? getToday(),
@@ -80,7 +147,7 @@ export function createContract(data) {
         nextDueDate:
             data.nextDueDate ?? getToday(),
 
-        status:"active",
+        status: "active",
 
         notes:
             data.notes ?? "",
@@ -103,9 +170,9 @@ export function createContract(data) {
 
 /* ---------- Update ---------- */
 
-export function updateContract(id,data){
+export function updateContract(id, data) {
 
-    const contracts = loadData();
+    const contracts = loadContracts();
 
     const index = contracts.findIndex(
 
@@ -113,7 +180,7 @@ export function updateContract(id,data){
 
     );
 
-    if(index === -1){
+    if (index === -1) {
 
         return null;
 
@@ -125,7 +192,7 @@ export function updateContract(id,data){
 
         ...data,
 
-        updatedAt:getToday()
+        updatedAt: getToday()
 
     };
 
@@ -137,9 +204,9 @@ export function updateContract(id,data){
 
 /* ---------- Delete ---------- */
 
-export function deleteContract(id){
+export function deleteContract(id) {
 
-    const contracts = loadData();
+    const contracts = loadContracts();
 
     const filtered = contracts.filter(
 
@@ -155,7 +222,7 @@ export function deleteContract(id){
 
 /* ---------- Save ---------- */
 
-export function saveContracts(contracts){
+export function saveContracts(contracts) {
 
     return saveData(contracts);
 
