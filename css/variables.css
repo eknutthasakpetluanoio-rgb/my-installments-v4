@@ -97,6 +97,10 @@
     --transition-fast: .18s ease;
     --transition-normal: .28s ease;
     --transition-slow: .40s ease;
+/* Animation */
+
+--animation-duration: .35s;
+--animation-scale: .98;
 
     /* ========= Z-Index ========= */
 
