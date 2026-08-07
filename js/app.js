@@ -121,11 +121,7 @@ function setupModal() {
 
                 event.preventDefault();
 
-                alert(
-
-                    "Sprint 1B ขั้นต่อไปจะเชื่อมระบบบันทึกข้อมูล"
-
-                );
+                
 
             }
 
