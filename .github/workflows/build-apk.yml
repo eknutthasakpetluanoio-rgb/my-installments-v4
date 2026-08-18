@@ -1,0 +1,41 @@
+name: Build PAYFLOW APK
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Unpack PAYFLOW Android project
+        run: |
+          unzip -q PAYFLOW-Android-CLOUD-BUILD.zip -d unpacked
+          ls -la unpacked/PAYFLOW-Android
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+
+      - name: Build PAYFLOW APK
+        working-directory: unpacked/PAYFLOW-Android
+        run: gradle --no-daemon assembleDebug
+
+      - name: Upload PAYFLOW APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: PAYFLOW-APK
+          path: unpacked/PAYFLOW-Android/app/build/outputs/apk/debug/app-debug.apk
